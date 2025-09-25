@@ -30,7 +30,7 @@ defmodule XTweak.MixProject do
       {:ash_phoenix, "~> 2.3"},
       {:ash_authentication, "~> 4.9"},
       {:ash_postgres, "~> 2.6"},
-      {:ash, "~> 3.5"},
+      {:ash, "~> 3.5.39"},
       {:igniter, "~> 0.4"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
