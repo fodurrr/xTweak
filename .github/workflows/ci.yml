@@ -34,7 +34,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: xpando_test
+          POSTGRES_DB: xtweak_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -79,18 +79,18 @@ jobs:
         mix format --check-formatted
         mix credo --strict
         mix deps.audit
-        mix sobelow --root apps/xpando_web --skip
+        mix sobelow --root apps/xtweak_web --skip
 
     - name: 🧪 Run Tests
       if: matrix.check == 'test'
       env:
-        DATABASE_URL: "ecto://postgres:postgres@postgres:5432/xpando_test"
+        DATABASE_URL: "ecto://postgres:postgres@postgres:5432/xtweak_test"
       run: |
         # Ensure the project is fully compiled
         mix compile --warnings-as-errors
         
-        # Run the Ash-specific setup command from *within* the correct app's directory
-        cd apps/xpando_core && mix ash.setup && cd ../..
+        # Set up the database using Ecto from the core app
+        cd apps/xtweak_core && mix ecto.create && mix ecto.migrate
         
         # Now, run all tests from the umbrella root
         mix test

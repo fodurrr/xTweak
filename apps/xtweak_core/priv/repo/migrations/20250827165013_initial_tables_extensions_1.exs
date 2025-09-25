@@ -1,4 +1,4 @@
-defmodule XPando.Repo.Migrations.InitialTablesExtensions1 do
+defmodule XTweak.Repo.Migrations.InitialTablesExtensions1 do
   @moduledoc """
   Installs any extensions that are mentioned in the repo's `installed_extensions/0` callback
 

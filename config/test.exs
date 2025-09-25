@@ -5,7 +5,7 @@ config :xtweak_core, XTweak.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "xpando_test",
+  database: "xtweak_test",
   port: 5432,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10

@@ -1,4 +1,4 @@
-defmodule XPando.Repo.Migrations.AddNewsletterSubscriptions do
+defmodule XTweak.Repo.Migrations.AddNewsletterSubscriptions do
   @moduledoc """
   Updates resources based on their most recent snapshots.
 
