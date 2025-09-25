@@ -1,0 +1,106 @@
+<nav
+  class="navbar bg-base-200 shadow-lg sticky top-0 z-50 px-4"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-start">
+    <a class="btn btn-ghost text-xl font-bold text-primary hover:text-primary-focus">
+      xTweak
+    </a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="/weather">Weather Demo</a></li>
+    </ul>
+  </div>
+  <div class="navbar-end">
+    <a href="/weather" class="btn btn-primary">Try Demo</a>
+  </div>
+</nav>
+
+<div class="hero min-h-screen bg-gradient-to-br from-primary via-secondary to-accent">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold text-white">xTweak</h1>
+      <p class="py-6 text-xl text-white">
+        A minimal Elixir umbrella project template with Phoenix, Ash Framework, and DaisyUI
+      </p>
+      <a href="/weather" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+  </div>
+</div>
+
+<section id="features" class="py-20 bg-base-100">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">Template Features</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card bg-base-200 shadow-xl">
+        <div class="card-body items-center text-center">
+          <h3 class="card-title">🚀 Three Apps</h3>
+          <p>Web app with auth, Documentation app, and UI component library</p>
+        </div>
+      </div>
+
+      <div class="card bg-base-200 shadow-xl">
+        <div class="card-body items-center text-center">
+          <h3 class="card-title">⚡ Modern Stack</h3>
+          <p>Phoenix LiveView, Ash Framework, Tailwind CSS, DaisyUI</p>
+        </div>
+      </div>
+
+      <div class="card bg-base-200 shadow-xl">
+        <div class="card-body items-center text-center">
+          <h3 class="card-title">🤖 AI Ready</h3>
+          <p>Pre-configured for Claude Code and MCP servers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="py-20 bg-base-200">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-8">About xTweak</h2>
+    <div class="max-w-3xl mx-auto">
+      <p class="text-lg mb-6">
+        xTweak is a clean, minimal Elixir umbrella template designed to kickstart your next project.
+        It comes with authentication, a weather demo page, and a component library ready to customize.
+      </p>
+      <p class="text-lg">
+        Perfect for developers who want a solid foundation without the bloat.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter" class="py-20 bg-base-100">
+  <div class="container mx-auto px-4">
+    <div class="max-w-md mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Stay Updated</h2>
+      <.form :let={f} for={@form} action={~p"/subscribe"} method="post">
+        <div class="form-control">
+          <div class="input-group">
+            <.input
+              field={f[:email]}
+              type="email"
+              placeholder="Enter your email"
+              required
+              class="input input-bordered w-full"
+            />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+        </div>
+      </.form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer footer-center p-10 bg-base-200 text-base-content">
+  <div>
+    <p class="font-bold">xTweak Template</p>
+    <p>© 2024 - Built with Elixir, Phoenix, and Ash Framework</p>
+  </div>
+</footer>
