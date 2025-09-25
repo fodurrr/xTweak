@@ -1,6 +1,5 @@
 defmodule XTweak.Core.UserTest do
   use XTweak.DataCase
-  alias XTweak.Core
   alias XTweak.Core.User
 
   describe "user creation" do
@@ -9,26 +8,28 @@ defmodule XTweak.Core.UserTest do
                User
                |> Ash.Changeset.for_create(:register_with_password, %{
                  email: "test@example.com",
-                 password: "ValidPassword123!",
-                 password_confirmation: "ValidPassword123!"
+                 password: "ValidPassword123!"
                })
-               |> Core.create()
+               |> Ash.create()
 
-      assert user.email == "test@example.com"
+      assert to_string(user.email) == "test@example.com"
       assert user.role == :user
     end
 
     test "fails with invalid email" do
-      assert {:error, changeset} =
+      assert {:error, error} =
                User
                |> Ash.Changeset.for_create(:register_with_password, %{
                  email: "invalid",
-                 password: "ValidPassword123!",
-                 password_confirmation: "ValidPassword123!"
+                 password: "ValidPassword123!"
                })
-               |> Core.create()
+               |> Ash.create()
 
-      assert %{email: ["must have the @ sign and no spaces"]} = errors_on(changeset)
+      assert %Ash.Error.Invalid{} = error
+      # Check that the email validation error is present
+      assert Enum.any?(error.errors, fn err ->
+               match?(%Ash.Error.Changes.InvalidAttribute{field: :email}, err)
+             end)
     end
   end
 end

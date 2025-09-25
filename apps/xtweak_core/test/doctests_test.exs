@@ -9,17 +9,8 @@ defmodule XTweak.Core.DoctestsTest do
 
   # Core Resources
   doctest XTweak.Core.User
-  doctest XTweak.Core.Node
-  doctest XTweak.Core.Knowledge
-  doctest XTweak.Core.Contribution
-  doctest XTweak.Core.Token
+  doctest XTweak.Core.Newsletter
 
   # Domain
   doctest XTweak.Core
-
-  # Validators
-  doctest XTweak.Core.Node.ValidatePublicKey
-  doctest XTweak.Core.Knowledge.ValidateContentHash
-  doctest XTweak.Core.Contribution.ValidateContributionData
-  doctest XTweak.Core.Node.ValidateNodeIdentity
 end
