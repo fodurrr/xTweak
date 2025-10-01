@@ -2,15 +2,15 @@
 
 ## Project Structure & Module Organization
 - `apps/`: Umbrella apps
-  - `xpando_core/`: Ash domain, data, and business logic.
-  - `xpando_web/`: Phoenix web app (LiveView, endpoints, assets).
-  - `xpando_node/`: Node/peer runtime components.
+  - `xtweak_core/`: Ash domain, data, and business logic.
+  - `xtweak_web/`: Phoenix web app (LiveView, endpoints, assets).
+  - Additional apps as needed for your domain.
 - `config/`: Environment configs (`dev.exs`, `test.exs`, `prod.exs`, `runtime.exs`).
-- `apps/xpando_web/assets/`: JS/CSS (Tailwind, esbuild) and UI libs.
+- `apps/xtweak_web/assets/`: JS/CSS (Tailwind, esbuild) and UI libs.
 
 ## Build, Test, and Development Commands
-- `make install`: `mix deps.get` + `npm install` in `apps/xpando_web/assets`.
-- `make setup`: `mix ecto.setup` then `mix assets.setup` (web assets). If missing, run `mix cmd --app xpando_web mix assets.setup`.
+- `make install`: `mix deps.get` + `npm install` in `apps/xtweak_web/assets`.
+- `make setup`: `mix ecto.setup` then `mix assets.setup` (web assets). If missing, run `mix cmd --app xtweak_web mix assets.setup`.
 - `make server`: `mix phx.server`.
 - `make test`: `mix test` (umbrella tests).
 - `make quality` / `make quality-full`: `mix quality` / `mix quality.full` (format, Credo, compile; “full” adds tests + `deps.audit`).
@@ -20,27 +20,22 @@
 ## Architecture Overview
 ```
                +-------------------+
-               |  xpando_web (UI)  |
+               |  xtweak_web (UI)  |
                | Phoenix + LiveView|
                +---------+---------+
                          |
                          v
                  +-------+-------+
-                 |  xpando_core  |
+                 |  xtweak_core  |
                  |  Ash Domains  |
                  +-------+-------+
-                         ^
-                         |
-               +---------+---------+
-               |  xpando_node      |
-               |  P2P/cluster ops  |
-               +-------------------+
 ```
-- Web/Node depend on Core; Core has no web deps.
+- Web depends on Core; Core has no web dependencies.
+- Additional apps can be added as needed for your domain.
 
 ## Coding Style & Naming Conventions
 - Elixir: `mix format` (2‑space); Credo enforced. Modules `PascalCase`, files `snake_case.ex`.
-- Phoenix/Ash: Contexts in `xpando_core`; web code in `xpando_web/lib/**`.
+- Phoenix/Ash: Contexts in `xtweak_core`; web code in `xtweak_web/lib/**`.
 - JS/CSS: Tailwind + esbuild; `kebab-case.js` under `assets/js/`.
 
 ## Testing Guidelines
@@ -65,33 +60,33 @@
 ## TideWave MCP Setup (Codex CLI)
 - Proxy script: `scripts/mcp/tidewave-stdio-proxy.js` (Node ≥ 18; bridges stdio ↔ HTTP).
 - Minimal TOML (`~/.codex/config.toml`, WSL):
-  
+
   ```toml
   [mcp_servers.tidewave]
   command = "node"
-  args = ["/home/fodurrr/dev/xpando_ai/scripts/mcp/tidewave-stdio-proxy.js"]
+  args = ["/path/to/your/project/scripts/mcp/tidewave-stdio-proxy.js"]
   env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp", TIDEWAVE_PROTOCOL_VERSION = "2025-03-26" }
   ```
 
 - If your client speaks raw JSON (no Content-Length), force raw replies:
-  
+
   ```toml
   env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp", TIDEWAVE_PROTOCOL_VERSION = "2025-03-26", TIDEWAVE_FORCE_RAW = "1" }
   ```
 
 - Debug wrapper (optional): redirect proxy logs to `/tmp/tidewave-proxy.log`:
-  
+
   ```toml
   [mcp_servers.tidewave]
   command = "bash"
-  args = ["-lc", "TIDEWAVE_BASE_URL=http://127.0.0.1:4000/tidewave/mcp TIDEWAVE_PROTOCOL_VERSION=2025-03-26 TIDEWAVE_DEBUG=1 node /home/fodurrr/dev/xpando_ai/scripts/mcp/tidewave-stdio-proxy.js 2>>/tmp/tidewave-proxy.log"]
+  args = ["-lc", "TIDEWAVE_BASE_URL=http://127.0.0.1:4000/tidewave/mcp TIDEWAVE_PROTOCOL_VERSION=2025-03-26 TIDEWAVE_DEBUG=1 node /path/to/your/project/scripts/mcp/tidewave-stdio-proxy.js 2>>/tmp/tidewave-proxy.log"]
   ```
 
 - Windows launcher note: if Codex runs on Windows, run the proxy in WSL:
-  
+
   ```toml
   command = "wsl"
-  args = ["node", "/home/fodurrr/dev/xpando_ai/scripts/mcp/tidewave-stdio-proxy.js"]
+  args = ["node", "/path/to/your/project/scripts/mcp/tidewave-stdio-proxy.js"]
   ```
 
 ## Ash AI MCP Setup (Codex CLI)
@@ -101,7 +96,7 @@
   ```toml
   [mcp_servers.ash_ai]
   command = "node"
-  args = ["/home/fodurrr/dev/xpando_ai/scripts/mcp/ashai-stdio-proxy.js"]
+  args = ["/path/to/your/project/scripts/mcp/ashai-stdio-proxy.js"]
   env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp", ASHAI_PROTOCOL_VERSION = "2025-03-26" }
   ```
 
@@ -116,5 +111,5 @@
   ```toml
   [mcp_servers.ash_ai]
   command = "bash"
-  args = ["-lc", "ASHAI_BASE_URL=http://127.0.0.1:4000/ash_ai/mcp ASHAI_PROTOCOL_VERSION=2025-03-26 ASHAI_DEBUG=1 node /home/fodurrr/dev/xpando_ai/scripts/mcp/ashai-stdio-proxy.js 2>>/tmp/ashai-proxy.log"]
+  args = ["-lc", "ASHAI_BASE_URL=http://127.0.0.1:4000/ash_ai/mcp ASHAI_PROTOCOL_VERSION=2025-03-26 ASHAI_DEBUG=1 node /path/to/your/project/scripts/mcp/ashai-stdio-proxy.js 2>>/tmp/ashai-proxy.log"]
   ```

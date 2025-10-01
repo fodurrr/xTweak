@@ -1,21 +1,51 @@
-# XpandoNode
+# XTweakDocs
 
-**TODO: Add description**
+Documentation app for the xTweak infrastructure template.
 
-## Installation
+## Description
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `xpando_node` to your list of dependencies in `mix.exs`:
+This app contains project documentation, guides, and reference materials for xTweak.
 
-```elixir
-def deps do
-  [
-    {:xpando_node, "~> 0.1.0"}
-  ]
-end
+## Purpose
+
+- **Project Documentation**: Architecture, design decisions, patterns
+- **Development Guides**: Setup instructions, workflows, best practices
+- **Reference Materials**: API docs, examples, troubleshooting
+
+## Structure
+
+```
+xtweak_docs/
+├── lib/
+│   └── xtweak_docs.ex     # Application module
+└── docs/
+    ├── architecture/      # System design docs
+    ├── guides/            # How-to guides
+    └── reference/         # API reference
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/xpando_node>.
+## Usage
 
+This is a documentation-only app with no runtime dependencies.
+
+### Generating Documentation
+
+```bash
+# Generate ExDocs for all apps
+mix docs
+
+# View generated docs
+open doc/index.html
+```
+
+## Contents
+
+See the main project `docs/` directory for:
+- Architecture documentation
+- Frontend design principles
+- User stories and specifications
+- QA guidelines
+
+---
+
+**Note**: This is part of the xTweak infrastructure template. Documentation structure can be adapted for your own project.

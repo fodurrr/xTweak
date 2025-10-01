@@ -145,10 +145,10 @@ end
 
 # In the LiveView module
 def mount(_params, _session, socket) do
-  form = 
-    XPando.Core.User
+  form =
+    {YourApp}.Core.User
     |> AshPhoenix.Form.for_create(:create)
-    
+
   {:ok, assign(socket, form: form)}
 end
 
@@ -280,7 +280,7 @@ mcp__playwright__browser_take_screenshot({
 Build reusable LiveView components with Daisy UI:
 
 ```elixir
-defmodule XpandoWeb.Components.DataTable do
+defmodule {YourApp}Web.Components.DataTable do
   use Phoenix.Component
   
   attr :rows, :list, required: true
@@ -380,7 +380,7 @@ end
 ### Navigation Component
 
 ```elixir
-defmodule XpandoWeb.Components.Navigation do
+defmodule {YourApp}Web.Components.Navigation do
   use Phoenix.Component
   
   def navbar(assigns) do
@@ -399,7 +399,7 @@ defmodule XpandoWeb.Components.Navigation do
             <li><.link navigate={~p"/users"}>Users</.link></li>
           </ul>
         </div>
-        <.link navigate={~p"/"} class="btn btn-ghost text-xl">XPando AI</.link>
+        <.link navigate={~p"/"} class="btn btn-ghost text-xl">{YourApp}</.link>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
@@ -422,7 +422,7 @@ end
 ### Modal Component
 
 ```elixir
-defmodule XpandoWeb.Components.Modal do
+defmodule {YourApp}Web.Components.Modal do
   use Phoenix.Component
   
   attr :id, :string, required: true
