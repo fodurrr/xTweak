@@ -1,188 +1,59 @@
-# Claude Code Guidelines for xTweak Project
+# Claude Code Guidelines · xTweak
 
-## 🎯 CRITICAL: Understanding Placeholders
+## How to Use This Playbook
+- Treat this document as the high-level contract; detailed instructions live in the pattern library (`.claude/patterns/README.md`).
+- Load the **Core Pattern Stack** (`placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`) before implementing anything.
+- Use agents documented in `.claude/AGENT_USAGE_GUIDE.md` for focused tasks. Each agent lists the patterns it consumes via `pattern-stack`.
 
-**ALL examples use PLACEHOLDER SYNTAX** to be project-agnostic:
-- `{YourApp}` → Your actual project name (e.g., XTweak, Blog, Shop)
-- `{YourApp}Web` → Your web module (e.g., XTweakWeb, BlogWeb)
-- `{YourApp}.Domain` or `{YourApp}.Core` → Your domain module
-- `MyApp` in examples → Generic placeholder, **NEVER** use literally
+## Project Snapshot (October 2, 2025)
+- **Umbrella apps**: `xtweak_core` (Ash domain logic), `xtweak_web` (Phoenix + LiveView).
+- **Domain module**: `XTweak.Core`.
+- **Web namespace**: `XTweakWeb`.
+- **Frontend stack**: Tailwind CSS + DaisyUI, validated with Playwright MCP tools.
+- **Data layer**: Ash Framework over Postgres—no direct Ecto schemas or Repo calls.
 
-**When working on THIS project (xTweak)**:
-- Agents detect via Phase 0: Core app = `xtweak_core`, Domain = `XTweak.Core`, Web = `XTweakWeb`
-- All `{YourApp}` placeholders become `XTweak` automatically
-- Pattern: `{YourApp}.Core.User` → Becomes: `XTweak.Core.User`
+## 5 Critical Principles (Read Before Every Session)
+1. **MCP first** – Verification beats assumption. Use Tidewave/Ash/Context7 MCP tools before writing or editing code.
+2. **Ash everywhere** – Model data with Ash resources/actions/policies. Generators + `ash-resource-template` pattern are mandatory starting points.
+3. **Respect umbrella boundaries** – Core has no web deps; web depends on core only. Keep interfaces clean.
+4. **Generator-first, customize second** – Check `mcp__ash_ai__list_generators`, run scaffold with `--yes`, then extend safely.
+5. **Quality gates** – Run `mix format`, `mix credo --strict`, `mix compile --warnings-as-errors`, and targeted `mix test` before declaring success.
 
-**This file uses placeholders where possible** to serve as a template for other projects.
+## Placeholder Discipline
+- All shared examples use `{Placeholder}` tokens. See `placeholder-basics.md` for the canonical explanation and wrong/right examples.
+- Always perform `phase-zero-context` to detect real module names, then replace every token before responding.
 
-## 🚨 CRITICAL: Must Follow These 5 Core Principles
+## Recommended Workflow (per task)
+- **Implementation**: `mcp-verify-first` → domain-specific agent (e.g., `ash-resource-architect`, `frontend-design-enforcer`) → `code-reviewer`/`code-review-implement` for validation.
+- **Reviews**: `mcp-verify-first` → `code-reviewer` (analysis) → `code-review-implement` (fixes) → rerun `code-reviewer`.
+- **Testing**: `mcp-verify-first` → `test-builder` → targeted `mix test` commands → document with `collaboration-handoff`.
+- **Security**: `mcp-verify-first` → `security-reviewer` → follow up with owners.
 
-### 1. **MCP Server Tools FIRST - Never Assume, Always Research**
-**This is non-negotiable.** Use MCP tools as your primary interface:
-- `mcp__tidewave__project_eval` - Execute and test Elixir code in the running app
-- Use `h Module.function` to get documentation for any module or function
-- `mcp__tidewave__get_docs` - Get documentation directly
-- `mcp__tidewave__search_package_docs` - Search Ash/Phoenix/dependency docs before starting work
-- `mcp__tidewave__execute_sql_query` - Query database (for debugging only)
-- `mcp__ash_ai__list_generators` - List available Ash generators
-- `mcp__tidewave__get_ecto_schemas` - Find all Ash resources quickly
-- `mcp__tidewave__get_logs` - Check for runtime errors
+## Tooling Cheat Sheet
+- **Tidewave MCP**: `project_eval`, `get_docs`, `get_logs`, `search_package_docs`, `get_ecto_schemas`, `execute_sql_query` (debug only).
+- **Ash AI MCP**: `list_ash_resources`, `list_generators`, `get_usage_rules`.
+- **Context7 MCP**: `resolve-library-id`, `get-library-docs` (DaisyUI, Cytoscape, etc.).
+- **Playwright MCP**: browser navigation, screenshots, console capture for UI verification.
 
-**NEVER** start/stop Phoenix server - it breaks some of the MCP connections!
-
-### 2. **Ash Framework Exclusively - Zero Direct Ecto**
-This project uses **Ash Framework** for ALL data operations:
-- Resources are in `apps/{yourapp}_core/lib/{yourapp}/core/`
-  - For xTweak: `apps/xtweak_core/lib/xtweak/core/`
-- **NEVER** use Ecto schemas, changesets, or Repo directly
-- **ALWAYS** use Ash resources, actions, queries, and changes
-- Resources must include: `use Ash.Resource`, domain, data_layer, extensions
-- Follow existing patterns in your project's resources (User, etc.)
-
-### 3. **Elixir Umbrella Boundaries are Sacred**
-Respect the umbrella architecture:
-```
-apps/
-├── {yourapp}_core/   # Ash resources, business logic, domain
-├── {yourapp}_web/    # Phoenix, LiveView, channels, web interface
-└── {yourapp}_node/   # Optional: Additional apps (P2P, background jobs, etc.)
-
-# For xTweak specifically:
-apps/
-├── xtweak_core/   # Ash resources, business logic, domain
-└── xtweak_web/    # Phoenix, LiveView, channels, web interface
-```
-- **NEVER** cross boundaries incorrectly
-- Core app has NO web dependencies
-- Web/Node apps depend on Core, not on each other
-- Use proper umbrella inter-app dependencies
-
-### 4. **Generator-First, Then Customize**
-Development workflow:
-1. **ALWAYS** check for generators first: `mcp__ash_ai__list_generators` or `mix help`
-2. Use generators with `--yes` flag to avoid interactive prompts
-3. Generate the base code as starting point
-4. Customize generated code to fit requirements
-5. Follow patterns from generated code in manual implementations
-
-### 5. **Quality Gates Before ANY Completion**
-**Mandatory** before marking any task complete:
+## Quality Gates & Commands
 ```bash
-mix format                              # Format code
-mix credo --strict                      # Code quality
-mix compile --warnings-as-errors        # Compilation check
-mix test apps/{yourapp}_core/test/...   # Run relevant tests
-
-# For xTweak:
-mix test apps/xtweak_core/test/...
-```
-After executing code:
-- Check compilation: `mix compile`
-- Check logs: `mcp__tidewave__get_logs level: "error"`
-- Run applicable tests to verify changes work correctly
-
-## Additional Critical Rules
-
-### Resource Naming and Structure
-- Ash resources: `{YourApp}.Core.{ResourceName}` (User, Post, Product, etc.)
-  - For xTweak: `XTweak.Core.User`, `XTweak.Core.Post`, etc.
-- Test files mirror source structure: `test/{app_name}/core/{resource}_test.exs`
-  - For xTweak: `test/xtweak/core/user_test.exs`
-- Use DataCase for tests requiring database: `use {YourApp}.DataCase`
-  - For xTweak: `use XTweak.DataCase`
-- Validators go in subdirectories: `core/resource/validate_something.ex`
-
-### Testing Best Practices
-```bash
-# Test specific app
-mix test apps/{yourapp}_core/test
-# For xTweak: mix test apps/xtweak_core/test
-
-# Test with timeout for long-running tests
-timeout 30 mix test apps/{yourapp}_core/test/{app_name}/core/{resource}_test.exs
-# For xTweak: timeout 30 mix test apps/xtweak_core/test/xtweak/core/user_test.exs
-
-# Run with seed for reproducible tests
-mix test --seed 0
+mix format
+mix credo --strict
+mix compile --warnings-as-errors
+mix test --only <tag>
+mix test apps/xtweak_core/test/xtweak/core/<resource>_test.exs
+mix ash_postgres.generate_migrations
 ```
 
-### Database and Migrations
-- **ONLY** use Ash migrations: `mix ash_postgres.generate_migrations`
-- Database setup: `mix ash.setup` (NOT ecto commands)
-- Check migration snapshots in `priv/resource_snapshots/`
-- Test environment: `MIX_ENV=test mix ash_postgres.migrate`
+## Git & Change Control
+- Never commit/push without explicit direction.
+- Use `TodoWrite` to manage multi-step edits; clear tasks before handing off.
+- Summaries for handoffs should follow `collaboration-handoff` pattern (summary, artifacts, outstanding items, validation, next steps).
 
-## Required Documentation to Follow
+## Reference Material
+- `.claude/patterns/README.md` – index of reusable patterns with version metadata.
+- `.claude/AGENT_USAGE_GUIDE.md` – agent matrix and selection guide.
+- `.claude/agent-workflows.md` – recommended multi-agent sequences.
+- `CLAUDE_CLI_REFACTOR_PLAN.md` – current refactoring roadmap and progress.
 
-1. **`docs/frontend_design_principles/frontend-design-principles.md`** - Tailwind/DaisyUI component-first approach
-2. **`docs/architecture/`** - System design and patterns
-3. **`docs/stories/`** - User stories and implementation details
-4. **`docs/qa/`** - Quality gates and testing requirements
-
-## Project Owner Context - Peter
-
-- **Background**: Computer geek since 1984, experienced programmer in multiple languages
-- **Learning**: Just starting with Elixir, Phoenix, and Ash Framework
-- **Working Style**: Has creative, sometimes breakthrough ideas that may need exploration
-- **Communication**: Help improve terminology and explain Elixir/Ash concepts along the way
-- **First Resource**: Ask Peter when you don't know something or where to look
-
-## Non-Negotiable Git & GitHub Rules
-
-- **NEVER** commit, push, or create PRs/issues without explicit permission
-- **ALWAYS** when you asked to commit **AWLWAYS** commit all files in the project use `git add -A`.
-- **ALWAYS** use `gh` CLI for ALL GitHub interactions
-- **NO** autonomous git operations - wait for explicit instructions
-- This is an **Elixir umbrella project** - all decisions must respect this architecture
-
-## Project Architecture
-
-- **Type**: Elixir/Phoenix/Ash umbrella application infrastructure template
-- **Purpose**: Refactored basic infrastructure for building production-ready applications
-- **Frontend**: Tailwind CSS + DaisyUI component-first approach
-- **Resources**: Define based on your application needs (User, Post, Product, etc.)
-
-## Common Commands Reference
-
-```bash
-# Ash/Database
-mix ash.setup                    # Setup database
-mix ash_postgres.generate_migrations  # Generate migrations
-mix ash_postgres.migrate         # Run migrations
-
-# Quality & Testing  
-mix format                       # Format code
-mix credo --strict              # Code quality
-mix compile --warnings-as-errors # Strict compilation
-mix test                        # Run all tests
-mix dialyzer                    # Type checking
-
-# Development
-mix phx.server                  # Start Phoenix (DON'T use in MCP)
-iex -S mix                      # Interactive shell (DON'T use in MCP)
-```
-
----
-
-## 📝 Note on This File
-
-**CLAUDE.md as a Template**:
-- This file uses **placeholder syntax** (`{YourApp}`) where possible to be reusable
-- Specific xTweak examples show how placeholders are applied
-- When you see `{YourApp}` → Replace with YOUR project name
-- When you see "For xTweak:" → That's the example for THIS infrastructure project
-
-**If copying to your own project**:
-- Replace all `{YourApp}` → Your project name (e.g., Blog, Shop)
-- Replace `{yourapp}` → Your app prefix (e.g., blog, shop)
-- Update domain pattern if different (e.g., `Blog.Domain` instead of `XTweak.Core`)
-
-**Agents reading this file**:
-- Will use Phase 0 detection to find actual project structure
-- Will adapt all `{YourApp}` placeholders to detected values
-- For xTweak specifically: `{YourApp}` → `XTweak`, `{yourapp}` → `xtweak`
-
----
-
-**Remember**: This is an Ash-first project. When in doubt, use MCP tools to research. Never make assumptions. Always verify with `mcp__tidewave__project_eval` before implementing.
-
+Stay pattern-first, cite MCP evidence, and keep responses sharp and scannable.
