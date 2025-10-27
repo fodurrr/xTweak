@@ -1,0 +1,27 @@
+## Summary
+
+This comprehensive plan provides a structured approach to achieving Claude agent parity in Codex CLI:
+
+### Key Deliverables Provided:
+1. **Phased Roadmap**: 4 phases over 15 days with clear objectives, tasks, success criteria, and risk mitigation
+2. **Mapping Table**: Complete mapping of 21 Claude agents to Codex profiles with priority levels
+3. **MCP Integration Strategy**: Server configuration, stdio proxy usage, example tool calls
+4. **Minimal TOML Examples**: Base config with providers, MCP servers, and two sample profiles (`verify`, `review`)
+5. **CLI Workflows**: Interactive and CI integration examples with practical scripts
+6. **Verification Checklist**: Phase-by-phase validation steps and integration tests
+7. **Rollback Plan**: Immediate, partial, and full rollback procedures with triggers
+
+### Critical Success Factors:
+- **MCP Connectivity**: All 4 servers (Tidewave, Ash AI, Context7, Playwright) must be accessible
+- **Pattern Discipline**: Core pattern stack must be embedded in each profile
+- **Tool Permissions**: Profiles must declare allowed tools matching Claude agents
+- **Quality Gates**: Format, credo, compile, and test checks must be enforced
+
+### Next Steps:
+1. Start with Phase 1 infrastructure setup
+2. Test MCP connectivity using provided health checks
+3. Implement `verify` profile as proof of concept
+4. Gradually migrate agents by priority (P0 → P1 → P2 → P3)
+5. Validate multi-agent workflows match Claude behavior
+
+The plan maintains reversibility at each phase and preserves the PLAN → CONTEXT → DIFFS → CHECKS → SUMMARY operating pattern that defines the Claude agent system.

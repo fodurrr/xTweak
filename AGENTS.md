@@ -56,8 +56,10 @@
 - Keep Phoenix running; don’t start/stop from MCP sessions.
 - Key tools: `mcp__tidewave__project_eval`, `mcp__tidewave__get_docs`, `mcp__ash_ai__list_generators`.
 - Flow: query → generate (Ash) → customize → `make quality-full`. See `CLAUDE.md` for details.
+- Codex parity lives in-repo: run `make codex-setup` and `make codex-validate` to regenerate `scripts/codex/local/`, then launch via `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-mcp-verify-first "PLAN"` (full matrix in `docs/codex_profiles.md`).
 
 ## TideWave MCP Setup (Codex CLI)
+> Prefer the repo-local workflow in `docs/codex_profiles.md`; the snippet below is kept for reference when configuring Codex globally.
 - Proxy script: `scripts/mcp/tidewave-stdio-proxy.js` (Node ≥ 18; bridges stdio ↔ HTTP).
 - Minimal TOML (`~/.codex/config.toml`, WSL):
 
@@ -90,6 +92,7 @@
   ```
 
 ## Ash AI MCP Setup (Codex CLI)
+> Prefer the repo-local workflow in `docs/codex_profiles.md`; the snippet below is kept for reference when configuring Codex globally.
 - Proxy script: `scripts/mcp/ashai-stdio-proxy.js` (Node ≥ 18).
 - Minimal TOML (WSL):
 

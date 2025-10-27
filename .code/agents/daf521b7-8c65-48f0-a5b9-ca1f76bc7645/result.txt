@@ -1,0 +1,216 @@
+Okay, I will analyze the existing Claude agent documentation and create a comprehensive plan to replicate the system in the Codex CLI.
+
+First, I need to understand the current setup. I'll start by reading `CLAUDE.md` and `.claude/AGENT_USAGE_GUIDE.md`.
+Based on my analysis of the provided documents, here is a comprehensive plan to replicate the Claude agent system within the Codex CLI.
+
+This plan mirrors the existing patterns, tools, and workflows to ensure a consistent and effective agentic development environment.
+
+### **1. Phased Roadmap**
+
+This project will be executed in three phases to minimize disruption and allow for iterative validation.
+
+**Phase 1: Core Infrastructure & Pilot Profile (1-2 days)**
+*   **Goal:** Establish the foundational TOML configuration and implement a single "reviewer" agent.
+*   **Tasks:**
+    1.  Create the main `codex.toml` file.
+    2.  Define the OpenAI provider block.
+    3.  Define the shared MCP server blocks (`tidewave`, `ash_ai`, `context7`, `playwright`) as tools, assuming they expose an OpenAI-compatible tool-use API.
+    4.  Consolidate the "Core Pattern Stack" and the `code-reviewer` agent patterns into a single system prompt.
+    5.  Create the `[profile.review]` block, referencing the consolidated prompt and the MCP tools.
+*   **Success Criteria:** The `codex-cli -p review "..."` command successfully invokes the agent, which uses MCP tools and follows the review workflow.
+*   **Risks:** The MCP servers might not expose a directly compatible tool API. (Mitigation: Use a simple wrapper script or confirm the MCP server's interface).
+
+**Phase 2: Full Agent & Workflow Migration (3-5 days)**
+*   **Goal:** Migrate the remaining high-priority Claude agents and define standard workflows.
+*   **Tasks:**
+    1.  Create Codex profiles for `base`, `refactor_strict`, `migration`, `elixir_phoenix`, and `sql_powerbi`.
+    2.  For each profile, create the corresponding system prompt by combining the Core Pattern Stack with agent-specific patterns from `.claude/`.
+    3.  Document the mapping from old agent names to new profile flags (e.g., `claude-agent review` -> `codex-cli -p review`).
+    4.  Refine the system prompts to explicitly enforce the `PLAN → CONTEXT → DIFFS → CHECKS → SUMMARY` workflow.
+*   **Success Criteria:** All priority agents are functional as Codex profiles and demonstrably follow the established workflow for a set of test tasks.
+*   **Risks:** System prompts for different models (Claude vs. OpenAI) may require tuning to achieve the same behavior.
+
+**Phase 3: CI Integration & Documentation (1 day)**
+*   **Goal:** Integrate the new Codex CLI profiles into CI pipelines and update developer documentation.
+*   **Tasks:**
+    1.  Create example scripts showing how to run profiles like `review` or `security` in a non-interactive CI environment.
+    2.  Update `AGENTS.md` or create a new `CODEX.md` to reflect the new CLI commands and workflows.
+    3.  Remove or archive the old Claude-specific tooling and documentation to avoid confusion.
+*   **Success Criteria:** A GitHub Actions workflow can successfully run a `codex-cli` profile and report on its findings. Developer documentation is fully updated.
+*   **Risks:** CI environment may lack access to the MCP servers. (Mitigation: Ensure network policies and environment variables are correctly configured).
+
+---
+
+### **2. Claude Agent to Codex Profile Mapping**
+
+The following table maps the requested Claude agents to their new Codex CLI profile names and corresponding system prompt components.
+
+| Claude Agent (Old) | Codex Profile (New) | System Prompt Components |
+| :--- | :--- | :--- |
+| `base` | `codex-cli -p base` | Core Pattern Stack + `mcp-verify-first` |
+| `review` | `codex-cli -p review` | Core Pattern Stack + `code-reviewer` patterns |
+| `refactor_strict` | `codex-cli -p refactor` | Core Pattern Stack + `code-review-implement` patterns |
+| `migration` | `codex-cli -p migration` | Core Pattern Stack + `database-migration-specialist` patterns |
+| `elixir_phoenix` | `codex-cli -p web` | Core Pattern Stack + `frontend-design-enforcer` patterns |
+| `sql_powerbi` | `codex-cli -p sql` | Core Pattern Stack + `ash-resource-architect` + SQL focus |
+
+---
+
+### **3. MCP Integration Strategy**
+
+The MCP servers will be defined as tools within the `codex.toml` configuration. This assumes each MCP server (e.g., `tidewave`) runs as a local HTTP server that exposes an OpenAI-compatible API for tool definitions.
+
+**Example `codex.toml` Tool Definition:**
+```toml
+# This block defines a tool that the agent can call.
+# It points to the Tidewave MCP server, which is assumed to be running locally.
+[[tool]]
+type = "openapi"
+name = "tidewave"
+uri = "http://localhost:8081/openapi.json" # URI to the MCP's OpenAPI spec
+```
+
+**Example Agent Interaction (Conceptual):**
+1.  The agent's system prompt instructs it: "Use the `tidewave` tool to get project context."
+2.  The agent decides to call the `project_eval` function from the `tidewave` tool.
+3.  Codex CLI sends the tool call request to `http://localhost:8081/`.
+4.  The Tidewave MCP server executes the function and returns the results to the agent.
+
+---
+
+### **4. Minimal TOML Configuration Excerpt**
+
+Here is a minimal `codex.toml` to illustrate the structure.
+
+```toml
+# codex.toml
+
+# 1. Define the LLM provider
+[provider]
+type = "openai"
+model = "gpt-4o"
+# api_key = "$OPENAI_API_KEY" # Loaded from environment
+
+# 2. Define shared MCP servers as tools
+# Assumes each MCP server runs on a different port and exposes an OpenAPI schema.
+[[tool]]
+type = "openapi"
+name = "tidewave"
+uri = "http://localhost:8081/openapi.json"
+
+[[tool]]
+type = "openapi"
+name = "ash_ai"
+uri = "http://localhost:8082/openapi.json"
+
+[[tool]]
+type = "openapi"
+name = "context7"
+uri = "http://localhost:8083/openapi.json"
+
+[[tool]]
+type = "openapi"
+name = "playwright"
+uri = "http://localhost:8084/openapi.json"
+
+# 3. Define a sample profile for the 'review' agent
+[profile.review]
+# The system_prompt would contain the concatenated text from:
+# .claude/patterns/placeholder-basics.md
+# .claude/patterns/phase-zero-context.md
+# .claude/patterns/mcp-tool-discipline.md
+# .claude/patterns/self-check-core.md
+# .claude/patterns/dual-example-bridge.md
+# ...and the specific patterns for the 'code-reviewer' agent.
+system_prompt = """
+You are an expert code reviewer for an Elixir/Phoenix project.
+[...contents of all pattern files concatenated here...]
+Your task is to review the specified file, identify issues, and provide a scorecard. Do not edit the file.
+Follow the workflow: PLAN → CONTEXT → ANALYSIS → REPORT.
+"""
+tools = ["tidewave", "ash_ai"] # List the tools this profile needs
+```
+
+---
+
+### **5. Example CLI Workflows**
+
+**Interactive Workflow (Developer-led Review):**
+A developer wants to review a file.
+
+```bash
+# 1. Developer invokes the 'review' agent on a specific file.
+codex-cli -p review "Please review the file apps/xtweak_core/lib/xtweak/core/accounts/user.ex"
+
+# 2. The agent, guided by its prompt, uses MCP tools to gather context.
+# (Agent output)
+# PLAN: I will review the User resource.
+# CONTEXT: Using `tidewave` to read the file and `ash_ai` to inspect the resource definition.
+# ...tool calls are made here...
+
+# 3. The agent provides its analysis based on the gathered context.
+# (Agent output)
+# ANALYSIS: The file looks good, but the `register_with_password` action is missing a policy authorizer.
+# REPORT:
+# - Scorecard: B-
+# - Findings: ...
+# - Recommendation: Add `authorizer: true` to the action.
+```
+
+**CI Workflow (Automated Security Check):**
+A GitHub Actions job runs a security check on every pull request.
+
+```yaml
+# .github/workflows/pr-check.yml
+jobs:
+  security-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: '26.0'
+          elixir-version: '1.15'
+
+      - name: Run MCP Servers
+        run: |
+          ./mcp/tidewave &
+          ./mcp/ash_ai &
+          # ... start other MCPs
+
+      - name: Run Codex Security Review
+        run: |
+          codex-cli -p security "Review all changed files for security issues" > review_output.txt
+      
+      - name: Check for Critical Findings
+        run: |
+          if grep -q "CRITICAL" review_output.txt; then
+            echo "Critical security issue found!"
+            exit 1
+          fi
+```
+
+---
+
+### **6. Verification Checklist**
+
+1.  [ ] `codex.toml` is created and syntactically valid.
+2.  [ ] Provider and tool blocks are correctly defined.
+3.  [ ] The `[profile.review]` can be invoked and successfully uses a `tidewave` tool.
+4.  [ ] All priority profiles (`base`, `review`, `refactor`, `migration`, `web`, `sql`) are created.
+5.  [ ] Each profile's system prompt correctly incorporates the Core Pattern Stack.
+6.  [ ] An interactive test case for each profile completes successfully.
+7.  [ ] The CI workflow runs and correctly identifies a test issue.
+8.  [ ] Developer documentation is updated with the new `codex-cli` commands.
+9.  [ ] Old Claude-specific scripts and docs are archived.
+
+---
+
+### **7. Rollback Plan**
+
+The phased approach ensures minimal risk. Since no production code is being modified, a rollback is simple.
+
+*   **Action:** Delete or rename the `codex.toml` file.
+*   **Effect:** This will immediately disable all Codex CLI profiles, and the team can revert to using the previous Claude-based workflow without any further changes.
+*   **Reversibility:** The process is 100% reversible as it only involves adding and removing configuration files.

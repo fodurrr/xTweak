@@ -1,0 +1,233 @@
+[2025-10-02T21:26:51] OpenAI Codex v0.0.0 (research preview)
+--------
+workdir: /home/fodurrr/dev/xTweak
+model: gpt-5-codex
+provider: openai
+approval: never
+sandbox: danger-full-access
+reasoning effort: medium
+reasoning summaries: auto
+--------
+[2025-10-02T21:26:51] User instructions:
+Context: /home/fodurrr/dev/xTweak
+
+Agent: You are helping design a plan to replicate the Claude Code agent system inside Codex CLI profiles (ChatGPT/OpenAI protocol). We need a comprehensive plan that mirrors existing Claude agents, guardrails, and workflows in Codex CLI using TOML profile configuration. 
+
+Context:
+- Repository: xTweak (umbrella Elixir + Phoenix project) with existing Claude agent stack documented under CLAUDE.md and .claude/AGENT_USAGE_GUIDE.md.
+- Current objective is to map Claude agents (base, review, refactor_strict, migration, elixir_phoenix, sql_powerbi) to Codex CLI profiles, using the same MCP servers (tidewave, ash_ai, context7, playwright, etc.) and preserving the PLAN → CONTEXT → DIFFS → CHECKS → SUMMARY operating pattern.
+- Deliverables expected in final plan: phased roadmap with risks/success criteria, mapping table between Claude agents and new Codex profiles, MCP integration strategy with example calls, minimal TOML excerpt showing provider block(s), shared MCP servers, and one sample profile, example CLI workflows (interactive + CI), verification checklist, and rollback plan.
+- Constraints: keep TOML minimal, assume MCP binaries already on PATH, prefer reversible steps, repo-specific rules should remain mergeable via AGENTS.md but not be mandatory.
+
+Please analyze the existing Claude agent docs (CLAUDE.md, .claude/AGENT_USAGE_GUIDE.md) and propose a concrete step-by-step plan to achieve parity inside Codex CLI. Highlight dependencies, configuration changes, and validation steps needed.
+
+[Running in read-only mode - no modifications allowed]
+
+[2025-10-02T21:26:59] thinking
+
+**Preparing to analyze documentation**
+[2025-10-02T21:27:00] exec bash -lc 'ls CLAUDE.md .claude/AGENT_USAGE_GUIDE.md' in /home/fodurrr/dev/xTweak/.
+[2025-10-02T21:27:00] bash -lc 'ls CLAUDE.md .claude/AGENT_USAGE_GUIDE.md' succeeded in 53ms:
+.claude/AGENT_USAGE_GUIDE.md
+CLAUDE.md
+[2025-10-02T21:27:00] tokens used: 10,727
+
+[2025-10-02T21:27:05] thinking
+
+**Reading file contents**
+[2025-10-02T21:27:05] exec bash -lc 'cat CLAUDE.md' in /home/fodurrr/dev/xTweak/.
+[2025-10-02T21:27:05] bash -lc 'cat CLAUDE.md' succeeded in 50ms:
+# Claude Code Guidelines · xTweak
+
+## How to Use This Playbook
+- Treat this document as the high-level contract; detailed instructions live in the pattern library (`.claude/patterns/README.md`).
+- Load the **Core Pattern Stack** (`placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`) before implementing anything.
+- Use agents documented in `.claude/AGENT_USAGE_GUIDE.md` for focused tasks. Each agent lists the patterns it consumes via `pattern-stack`.
+
+## Project Snapshot (October 2, 2025)
+- **Umbrella apps**: `xtweak_core` (Ash domain logic), `xtweak_web` (Phoenix + LiveView).
+- **Domain module**: `XTweak.Core`.
+- **Web namespace**: `XTweakWeb`.
+- **Frontend stack**: Tailwind CSS + DaisyUI, validated with Playwright MCP tools.
+- **Data layer**: Ash Framework over Postgres—no direct Ecto schemas or Repo calls.
+
+## 5 Critical Principles (Read Before Every Session)
+1. **MCP first** – Verification beats assumption. Use Tidewave/Ash/Context7 MCP tools before writing or editing code.
+2. **Ash everywhere** – Model data with Ash resources/actions/policies. Generators + `ash-resource-template` pattern are mandatory starting points.
+3. **Respect umbrella boundaries** – Core has no web deps; web depends on core only. Keep interfaces clean.
+4. **Generator-first, customize second** – Check `mcp__ash_ai__list_generators`, run scaffold with `--yes`, then extend safely.
+5. **Quality gates** – Run `mix format`, `mix credo --strict`, `mix compile --warnings-as-errors`, and targeted `mix test` before declaring success.
+[2025-10-02T21:27:07] tokens used: 10,956
+
+[2025-10-02T21:27:09] thinking
+
+**Searching for AGENT_USAGE_GUIDE**
+[2025-10-02T21:27:09] exec bash -lc 'cat .claude/AGENT_USAGE_GUIDE.md' in /home/fodurrr/dev/xTweak/.
+[2025-10-02T21:27:10] bash -lc 'cat .claude/AGENT_USAGE_GUIDE.md' succeeded in 47ms:
+# Agent Usage Guide (Updated October 2, 2025)
+
+## Read This First
+- Load the **Core Pattern Stack** before launching any agent: `placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`.
+- Start ambiguous requests with `mcp-verify-first`; it produces a verified context packet for downstream agents.
+- Each agent declares its patterns in front matter (`pattern-stack`). Reference those files for full instructions.
+
+## Quick Selection Matrix
+
+| Agent | Primary Use | Key Outputs | Core Follow-ups |
+| --- | --- | --- | --- |
+| `mcp-verify-first` | Gather ground truth before work begins | Detected app/domain map, evidence log, recommended next steps | Any implementation or review agent |
+| `ash-resource-architect` | Design/extend Ash resources, actions, policies | Resource plan, generator usage, code snippets, migration/test checklist | `test-builder`, `code-reviewer` |
+| `frontend-design-enforcer` | Coordinate LiveView UX, accessibility, and integration tasks | HEEx/JS updates, validation evidence, integration TODOs | `daisyui-expert`, `tailwind-strategist`, `test-builder` |
+| `cytoscape-expert` | Graph visualizations with Cytoscape.js + LiveView | Resource updates, JS hooks, performance guidance, UI validation artifacts | `test-builder`, `code-reviewer` |
+| `daisyui-expert` | Component/theming research for DaisyUI | Component snippets, theming guidance, accessibility notes | `frontend-design-enforcer` |
+| `tailwind-strategist` | Tailwind strategy, utility audits, responsive plans | Usage audit, config recommendations, layout playbooks | `frontend-design-enforcer` |
+| `docs-maintainer` | Sync developer docs & changelog with recent changes | Updated Markdown, changelog snippets, doc debt Todo list | Review/merge, `release-coordinator` |
+| `release-coordinator` | Run release readiness checks and compile notes | Readiness dashboard, changelog draft, risk register | `docs-maintainer`, `dependency-auditor` |
+| `dependency-auditor` | Audit deps for updates & security issues | Prioritized findings, upgrade plan, evidence bundle | `test-builder`, `release-coordinator` |
+[2025-10-02T21:27:12] tokens used: 12,113
+
+[2025-10-02T21:27:22] thinking
+
+**Drafting detailed migration plan**
+
+I'm putting together a phased roadmap to map Claude agents to Codex CLI profiles, including risks, success criteria, and dependencies. I'll also create a mapping table for specified agents, outline TOML configuration samples with provider blocks, discuss MCP integration, and show example CLI workflows for interactive and CI use. Verification and rollback plans will be included, referencing docs as precisely as possible by adding line numbers to source files for accuracy.
+[2025-10-02T21:27:25] exec bash -lc "nl -ba CLAUDE.md | sed -n '1,160p'" in /home/fodurrr/dev/xTweak/.
+[2025-10-02T21:27:25] bash -lc "nl -ba CLAUDE.md | sed -n '1,160p'" succeeded in 56ms:
+     1	# Claude Code Guidelines · xTweak
+     2	
+     3	## How to Use This Playbook
+     4	- Treat this document as the high-level contract; detailed instructions live in the pattern library (`.claude/patterns/README.md`).
+     5	- Load the **Core Pattern Stack** (`placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`) before implementing anything.
+     6	- Use agents documented in `.claude/AGENT_USAGE_GUIDE.md` for focused tasks. Each agent lists the patterns it consumes via `pattern-stack`.
+     7	
+     8	## Project Snapshot (October 2, 2025)
+     9	- **Umbrella apps**: `xtweak_core` (Ash domain logic), `xtweak_web` (Phoenix + LiveView).
+    10	- **Domain module**: `XTweak.Core`.
+    11	- **Web namespace**: `XTweakWeb`.
+    12	- **Frontend stack**: Tailwind CSS + DaisyUI, validated with Playwright MCP tools.
+    13	- **Data layer**: Ash Framework over Postgres—no direct Ecto schemas or Repo calls.
+    14	
+    15	## 5 Critical Principles (Read Before Every Session)
+    16	1. **MCP first** – Verification beats assumption. Use Tidewave/Ash/Context7 MCP tools before writing or editing code.
+    17	2. **Ash everywhere** – Model data with Ash resources/actions/policies. Generators + `ash-resource-template` pattern are mandatory starting points.
+    18	3. **Respect umbrella boundaries** – Core has no web deps; web depends on core only. Keep interfaces clean.
+    19	4. **Generator-first, customize second** – Check `mcp__ash_ai__list_generators`, run scaffold with `--yes`, then extend safely.
+    20	5. **Quality gates** – Run `mix format`, `mix credo --strict`, `mix compile --warnings-as-errors`, and targeted `mix test` before declaring success.
+[2025-10-02T21:27:25] tokens used: 14,384
+
+[2025-10-02T21:27:30] thinking
+
+**Searching for AGENT_USAGE guide**
+[2025-10-02T21:27:30] exec bash -lc "nl -ba .claude/AGENT_USAGE_GUIDE.md | sed -n '1,200p'" in /home/fodurrr/dev/xTweak/.
+[2025-10-02T21:27:30] bash -lc "nl -ba .claude/AGENT_USAGE_GUIDE.md | sed -n '1,200p'" succeeded in 52ms:
+     1	# Agent Usage Guide (Updated October 2, 2025)
+     2	
+     3	## Read This First
+     4	- Load the **Core Pattern Stack** before launching any agent: `placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`.
+     5	- Start ambiguous requests with `mcp-verify-first`; it produces a verified context packet for downstream agents.
+     6	- Each agent declares its patterns in front matter (`pattern-stack`). Reference those files for full instructions.
+     7	
+     8	## Quick Selection Matrix
+     9	
+    10	| Agent | Primary Use | Key Outputs | Core Follow-ups |
+    11	| --- | --- | --- | --- |
+    12	| `mcp-verify-first` | Gather ground truth before work begins | Detected app/domain map, evidence log, recommended next steps | Any implementation or review agent |
+    13	| `ash-resource-architect` | Design/extend Ash resources, actions, policies | Resource plan, generator usage, code snippets, migration/test checklist | `test-builder`, `code-reviewer` |
+    14	| `frontend-design-enforcer` | Coordinate LiveView UX, accessibility, and integration tasks | HEEx/JS updates, validation evidence, integration TODOs | `daisyui-expert`, `tailwind-strategist`, `test-builder` |
+    15	| `cytoscape-expert` | Graph visualizations with Cytoscape.js + LiveView | Resource updates, JS hooks, performance guidance, UI validation artifacts | `test-builder`, `code-reviewer` |
+    16	| `daisyui-expert` | Component/theming research for DaisyUI | Component snippets, theming guidance, accessibility notes | `frontend-design-enforcer` |
+    17	| `tailwind-strategist` | Tailwind strategy, utility audits, responsive plans | Usage audit, config recommendations, layout playbooks | `frontend-design-enforcer` |
+    18	| `docs-maintainer` | Sync developer docs & changelog with recent changes | Updated Markdown, changelog snippets, doc debt Todo list | Review/merge, `release-coordinator` |
+    19	| `release-coordinator` | Run release readiness checks and compile notes | Readiness dashboard, changelog draft, risk register | `docs-maintainer`, `dependency-auditor` |
+    20	| `dependency-auditor` | Audit deps for updates & security issues | Prioritized findings, upgrade plan, evidence bundle | `test-builder`, `release-coordinator` |
+[2025-10-02T21:27:30] tokens used: 15,772
+
+[2025-10-02T21:27:44] thinking
+
+**Drafting comprehensive plan**
+
+I'm putting together a detailed plan that includes example TOML for profile mapping, a clear mapping table of Claude agents to Codex profiles with purposes and patterns, plus a phased roadmap with risks and success criteria. I'll cover MCP integration with example CLI commands, verification checklists, and a rollback strategy, all structured to avoid nested lists but still keep things clear and actionable.
+[2025-10-02T21:27:45] codex
+
+**Plan Overview**
+- Phase roadmap, agent mapping, MCP wiring, workflow patterns, and safeguards below align with the CLAUDE core pattern stack and launch protocol requirements in `CLAUDE.md:3-51` and `.claude/AGENT_USAGE_GUIDE.md:3-53`.
+
+| Phase | Focus | Key Activities | Risks | Success Criteria |
+| --- | --- | --- | --- | --- |
+| 0 | Discovery | Inventory Claude agent prompts, shared pattern stacks, current MCP endpoints; capture CLI version + profile loading order | Missing hidden overrides or custom scripts | Documented baseline covering agents, patterns, MCP servers |
+| 1 | Profile Design | Define Codex profile schema mirroring PLAN→CONTEXT→DIFFS→CHECKS→SUMMARY loop; map patterns to prompts/system messages; decide shared vs per-profile config | Profile drift or duplicated prompt maintenance | Draft TOML with shared `[provider]`, `[mcp_servers]`, and profile overlays ready for review |
+| 2 | Implementation | Add profiles to `~/.codex/config.toml`, implement shared template files if needed, wire MCP proxies (tidewave, ash_ai, context7, playwright) | Misconfigured env vars, profile load failures | Codex CLI loads profiles without warnings; MCP commands respond successfully |
+| 3 | Validation | Run interactive smoke tests per profile, execute CI scenario (non-interactive plan) and confirm PLAN→SUMMARY outputs, capture evidence | Missing guardrail parity, degraded UX | Validation checklist satisfied with logs/screenshots for each agent-to-profile mapping |
+| 4 | Rollout | Announce availability, update `AGENTS.md` with opt-in notes, schedule feedback window, monitor usage | Developer confusion, fallback to Claude needed | Team adopts profiles, feedback triaged, rollback plan documented |
+| 5 | Optimization | Post-launch tuning based on feedback, update patterns, automate CI profile runs | Scope creep, config sprawl | Documented improvements merged with minimal churn |
+
+| Claude Agent | Purpose Snapshot | Codex Profile Name | Prompt/Pattern Notes | Special Tooling |
+| --- | --- | --- | --- | --- |
+| `base` | General implementation within CLAUDE stack | `xtweak-base` | Embed Core Pattern Stack, PLAN→CONTEXT→DIFFS→CHECKS→SUMMARY ritual | Tidewave, Ash AI, Context7, Playwright |
+| `review` | Scorecard-only review | `xtweak-review` | Strict self-check, ban edits, enforce evidence citations | Tidewave logs/docs, optional Playwright |
+| `refactor_strict` | Surgical refactors with Todo discipline | `xtweak-refactor` | Demand TodoWrite, diff justification before code | Tidewave eval for impact |
+| `migration` | Complex data migrations | `xtweak-migration` | Require Ash generators, rollback steps, migration/test checklists | Tidewave SQL, Ash AI generators |
+| `elixir_phoenix` | Phoenix LiveView + Tailwind work | `xtweak-phoenix` | Include frontend patterns (`frontend-design-enforcer`, DaisyUI/Tailwind helpers) | Playwright validation mandatory |
+| `sql_powerbi` | Data/analytics storytelling | `xtweak-analytics` | Focus on SQL evidence, visualization handoff, contract guard | Tidewave SQL, Context7 docs |
+
+**MCP Integration Strategy**
+- Shared servers block defines Tidewave, Ash AI, Context7, Playwright with PATH-resolved commands; each profile inherits but can toggle tools via allowlists to enforce “MCP first” discipline from `CLAUDE.md:15-20`.
+- Example Codex CLI invocation (interactive): `codex --profile xtweak-base --call tidewave__project_eval '{"code":"IO.inspect Mix.Project.config"}'`.
+- Example MCP verification step for migrations: `codex --profile xtweak-migration --call tidewave__execute_sql_query '{"query":"SELECT count(*) FROM ash_migrations"}'`.
+- Ensure environment variables (`TIDEWAVE_BASE_URL`, `ASHAI_BASE_URL`, etc.) exported in shell rc to avoid duplicating in TOML; profiles should reference them without secrets in repo.
+
+**Minimal TOML Skeleton**
+```toml
+[provider.codex]
+protocol = "openai"                      # existing Codex CLI provider
+
+[mcp_servers.tidewave]
+command = "tidewave-stdio-proxy"
+args = []
+env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp" }
+
+[mcp_servers.ash_ai]
+command = "ashai-stdio-proxy"
+args = []
+env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp" }
+
+[mcp_servers.context7]
+command = "context7-stdio-proxy"
+args = []
+
+[mcp_servers.playwright]
+command = "playwright-stdio-proxy"
+args = []
+
+[profiles.xtweak-base]
+provider = "codex"
+system = """
+Apply PLAN → CONTEXT → DIFFS → CHECKS → SUMMARY.
+Load patterns: placeholder-basics, phase-zero-context, mcp-tool-discipline, self-check-core, dual-example-bridge.
+"""
+mcp_servers = ["tidewave","ash_ai","context7","playwright"]
+plan_required = true
+```
+- Additional profiles (`xtweak-review`, `xtweak-refactor`, etc.) extend `system` blocks with agent-specific constraints (e.g., REVIEW forbids file edits; MIGRATION enforces rollback steps) while referencing same shared MCP list unless deliberately restricted.
+
+**Workflow Parity**
+- Interactive loop: `codex --profile xtweak-base` → respond to PLAN prompt → auto-populate CONTEXT using `mcp-verify-first` equivalent command snippet → produce DIFFS via textual patch plan → run CHECKS by executing `mix` commands (evidence pasted) → final SUMMARY referencing validation.
+- CI mode: add job invoking `codex --profile xtweak-review --input @ci/pr_context.md` to run automated review; capture JSON output for gating. Another job for migrations using `xtweak-migration` with scripted PLAN/CONTEXT payload.
+
+**Verification Checklist**
+- Profiles load without warnings (`codex --list-profiles` shows six new entries).
+- Each profile enforces PLAN→SUMMARY ordering in sample conversation.
+- MCP proxies respond for Tidewave/Ash/Context7/Playwright (health ping).
+- Review profile responds with findings and blocks edits.
+- Phoenix profile produces Playwright screenshot evidence after UI tasks.
+- Migration profile outputs rollback + test commands before summary.
+- CI workflow consumes profile output with expected exit codes.
+
+**Rollback Plan**
+1. Backup `~/.codex/config.toml` before edits (`cp ~/.codex/config.toml{,.bak-YYYYMMDD}`).
+2. Introduce new profiles via temporary include file (e.g., `~/.codex/config.xtweak.toml`) and use `include` directive; removing file reverts instantly.
+3. Maintain changelog entry for profile rollout; revert by restoring backup or removing include, restart Codex session.
+4. If MCP proxies misbehave, disable by commenting `mcp_servers` entries and fallback to previous Claude workflow documented in `.claude`.
+
+Next step: Review this plan and confirm priorities or adjustments before drafting actual profile TOML.
+[2025-10-02T21:28:05] tokens used: 19,739

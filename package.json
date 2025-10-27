@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/fodurrr/xpando_ai#readme",
   "dependencies": {
-    "@google/gemini-cli": "^0.6.1",
-    "@just-every/code": "^0.2.166",
-    "@openai/codex": "^0.41.0"
+    "@google/gemini-cli": "^0.10.0",
+    "@just-every/code": "^0.4.3",
+    "@openai/codex": "^0.50.0",
+    "@playwright/mcp": "^0.0.44"
   }
 }

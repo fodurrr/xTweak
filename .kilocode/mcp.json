@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": ""
+      }
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp",
+        "--browser",
+        "msedge"
+      ],
+      "env": {},
+      "disabled": false,
+      "alwaysAllow": []
+    },
+    "tidewave": {
+      "type": "streamable-http",
+      "url": "http://localhost:4000/tidewave/mcp",
+      "disabled": false,
+      "alwaysAllow": []
+    },
+    "ash_ai": {
+      "type": "streamable-http",
+      "url": "http://localhost:4000/ash_ai/mcp",
+      "disabled": false,
+      "alwaysAllow": []
+    }
+  }
+}

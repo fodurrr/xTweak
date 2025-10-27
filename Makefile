@@ -1,7 +1,7 @@
 # xTweak Template Makefile
 # Convenient commands for development workflow
 
-.PHONY: help setup quality test clean install server assets
+.PHONY: help setup quality test clean install server assets codex-setup codex-validate
 
 # Default target
 help:
@@ -20,6 +20,9 @@ help:
 	@echo ""
 	@echo "Maintenance:"
 	@echo "  make clean       Clean build artifacts"
+	@echo "  make codex-setup Install Codex CLI include + profiles"
+	@echo "  make codex-validate Validate Codex configuration"
+	@echo "  (use) CODE_CONFIG_HOME=$$(pwd)/scripts/codex/local codex --profile xtweak-mcp-verify-first \"PLAN\""
 	@echo ""
 
 # Project setup
@@ -67,3 +70,11 @@ clean:
 dialyzer:
 	@echo "🔬 Running Dialyzer analysis..."
 	mix dialyzer
+
+codex-setup:
+	@echo "🛠️  Installing Codex CLI configuration..."
+	bash scripts/codex/setup.sh
+
+codex-validate:
+	@echo "🧾 Validating Codex CLI configuration..."
+	bash scripts/codex/validate.sh
