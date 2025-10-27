@@ -5,6 +5,6 @@
     }
   ],
   "settings": {
-    "workbench.colorTheme": "Elixir Dark"
+    "workbench.colorTheme": "dark+(elixir)"
   }
 }
