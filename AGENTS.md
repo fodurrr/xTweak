@@ -116,3 +116,58 @@
   command = "bash"
   args = ["-lc", "ASHAI_BASE_URL=http://127.0.0.1:4000/ash_ai/mcp ASHAI_PROTOCOL_VERSION=2025-03-26 ASHAI_DEBUG=1 node /path/to/your/project/scripts/mcp/ashai-stdio-proxy.js 2>>/tmp/ashai-proxy.log"]
   ```
+
+## Codex CLI Setup (xTweak Agent System)
+> Prefer the repo-local workflow via `make codex-setup`; agents available in `.codex/agents/` with full pattern stack.
+
+### Directory Structure
+- **Agent directory**: `.codex/agents/` (21 specialized agents matching Claude parity)
+- **Pattern library**: `.codex/patterns/` (shared with Claude via symlinks)
+- **Launch guide**: `.codex/AGENT_USAGE_GUIDE.md` (agent matrix and selection)
+- **Workflows**: `.codex/agent-workflows.md` (multi-agent sequences)
+- **Guidelines**: `CODEX.md` (5 critical principles + tooling)
+- **Reports**: `.codex/agent-reports/` (agent execution reports)
+- **Changelog**: `.codex/CHANGELOG.md` (pattern library version tracking)
+
+### Quick Start
+```bash
+make codex-setup    # One-time local configuration
+make codex-validate # Verify configuration is valid
+```
+
+### Launch Syntax
+All Codex agents use the repo-local configuration:
+```bash
+CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-[agent-name] "PLAN"
+```
+
+### Example Agent Launches
+```bash
+# Verify project state
+CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-mcp-verify-first "List all Ash resources"
+
+# Design Ash resource
+CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-ash-resource-architect "Add Comment resource"
+
+# Build frontend
+CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-frontend-design-enforcer "Implement user profile page"
+
+# Write tests
+CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-test-builder "Test Newsletter resource"
+
+# Review code
+CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-code-reviewer "Review user.ex"
+```
+
+### Available Agents (21 Total)
+Full agent matrix and selection guidance in `.codex/AGENT_USAGE_GUIDE.md`. Key agents:
+- **mcp-verify-first**: Ground truth discovery before work begins
+- **ash-resource-architect**: Design/extend Ash resources, actions, policies
+- **frontend-design-enforcer**: LiveView UX and integration
+- **test-builder**: Author/repair ExUnit test suites
+- **code-reviewer**: Single-file audit with actionable reports
+- **security-reviewer**: High-confidence security assessment
+- See `.codex/AGENT_USAGE_GUIDE.md` for complete list
+
+### Pattern Stack
+All agents use the **Core Pattern Stack**: `placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`. Additional patterns available in `.codex/patterns/`.
