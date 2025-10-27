@@ -27,7 +27,7 @@ defmodule XTweakDocs.MixProject do
     [
       {:earmark, "~> 1.4"},
       {:makeup, "~> 1.1"},
-      {:makeup_elixir, "~> 0.16"}
+      {:makeup_elixir, "~> 1.0"}
     ]
   end
 end

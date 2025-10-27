@@ -27,10 +27,10 @@ defmodule XTweak.MixProject do
 
   defp deps do
     [
-      {:ash_phoenix, "~> 2.3"},
-      {:ash_authentication, "~> 4.9"},
-      {:ash_postgres, "~> 2.6"},
-      {:ash, "~> 3.5.39"},
+      {:ash_phoenix, "~> 2.3.17"},
+      {:ash_authentication, "~> 4.12"},
+      {:ash_postgres, "~> 2.6.23"},
+      {:ash, "~> 3.7.6"},
       {:igniter, "~> 0.4"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},

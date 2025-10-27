@@ -31,10 +31,10 @@ defmodule XTweakCore.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ash, "~> 3.5"},
-      {:ash_postgres, "~> 2.6"},
-      {:ash_authentication, "~> 4.9"},
-      {:ash_phoenix, "~> 2.3"},
+      {:ash, "~> 3.7.6"},
+      {:ash_postgres, "~> 2.6.23"},
+      {:ash_authentication, "~> 4.12"},
+      {:ash_phoenix, "~> 2.3.17"},
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.2"},
       {:picosat_elixir, "~> 0.2"},

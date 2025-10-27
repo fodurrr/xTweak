@@ -8,7 +8,8 @@ defmodule XTweak.Core.Newsletter do
 
   use Ash.Resource,
     domain: XTweak.Core,
-    data_layer: AshPostgres.DataLayer
+    data_layer: AshPostgres.DataLayer,
+    authorizers: [Ash.Policy.Authorizer]
 
   attributes do
     uuid_primary_key(:id)
@@ -89,5 +90,24 @@ defmodule XTweak.Core.Newsletter do
 
   validations do
     validate(match(:email, ~r/^[^\s]+@[^\s]+$/), message: "must be a valid email")
+  end
+
+  policies do
+    # Allow public newsletter subscription (no authentication required)
+    policy action(:create) do
+      authorize_if(always())
+    end
+
+    # Users can read their own subscription; admins can read all
+    policy action_type(:read) do
+      authorize_if(expr(email == ^actor(:email)))
+      authorize_if(actor_attribute_equals(:role, :admin))
+    end
+
+    # Users can update/unsubscribe their own subscription; admins can modify any
+    policy action_type(:update) do
+      authorize_if(expr(email == ^actor(:email)))
+      authorize_if(actor_attribute_equals(:role, :admin))
+    end
   end
 end
