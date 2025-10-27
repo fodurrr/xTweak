@@ -1,0 +1,1 @@
+../../.claude/patterns/dual-example-bridge.md

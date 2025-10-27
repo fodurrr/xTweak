@@ -1,0 +1,1 @@
+../../.claude/patterns/mcp-tool-discipline.md

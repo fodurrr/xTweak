@@ -1,0 +1,1 @@
+../../.claude/patterns/ash-resource-template.md

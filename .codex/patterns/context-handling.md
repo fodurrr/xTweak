@@ -1,0 +1,1 @@
+../../.claude/patterns/context-handling.md

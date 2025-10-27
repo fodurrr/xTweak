@@ -1,0 +1,1 @@
+../../.claude/patterns/error-recovery-loop.md

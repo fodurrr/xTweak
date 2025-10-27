@@ -1,0 +1,1 @@
+../../.claude/patterns/self-check-core.md

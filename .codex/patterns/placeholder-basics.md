@@ -1,0 +1,1 @@
+../../.claude/patterns/placeholder-basics.md
