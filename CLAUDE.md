@@ -5,12 +5,13 @@
 - Load the **Core Pattern Stack** (`placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`) before implementing anything.
 - Use agents documented in `.claude/AGENT_USAGE_GUIDE.md` for focused tasks. Each agent lists the patterns it consumes via `pattern-stack`.
 
-## Project Snapshot (October 2, 2025)
-- **Umbrella apps**: `xtweak_core` (Ash domain logic), `xtweak_web` (Phoenix + LiveView).
+## Project Snapshot (October 27, 2025)
+- **Umbrella apps**: `xtweak_core` (Ash domain logic), `xtweak_web` (Phoenix + LiveView), `xtweak_docs` (documentation), `xtweak_ui` (component library).
 - **Domain module**: `XTweak.Core`.
 - **Web namespace**: `XTweakWeb`.
 - **Frontend stack**: Tailwind CSS + DaisyUI, validated with Playwright MCP tools.
-- **Data layer**: Ash Framework over Postgres—no direct Ecto schemas or Repo calls.
+- **Data layer**: Ash Framework 3.7.6+ over Postgres—no direct Ecto schemas or Repo calls.
+- **Recent updates**: Dependency upgrade completed (30 packages), Newsletter resource added with authorization policies, Dialyzer cleanup completed, CVE-2025-48043 security fix applied.
 
 ## 5 Critical Principles (Read Before Every Session)
 1. **MCP first** – Verification beats assumption. Use Tidewave/Ash/Context7 MCP tools before writing or editing code.
@@ -54,6 +55,8 @@ mix ash_postgres.generate_migrations
 - `.claude/patterns/README.md` – index of reusable patterns with version metadata.
 - `.claude/AGENT_USAGE_GUIDE.md` – agent matrix and selection guide.
 - `.claude/agent-workflows.md` – recommended multi-agent sequences.
-- `CLAUDE_CLI_REFACTOR_PLAN.md` – current refactoring roadmap and progress.
+- `.claude/CHANGELOG.md` – pattern library and agent change log.
+- `.claude/agent-reports/` – detailed reports from agent executions (dependency audits, reviews, etc.).
+- `dev_docs/claude_agent_workflow.md` – developer guide to working with Claude agents.
 
 Stay pattern-first, cite MCP evidence, and keep responses sharp and scannable.

@@ -17,7 +17,7 @@ xTweak is built as an **Elixir umbrella application** with four independent apps
 
 - **Elixir** 1.18.1+
 - **Erlang/OTP** 27.2+
-- **PostgreSQL** 16+
+- **PostgreSQL** 14+ (tested with 16)
 - **Node.js** 18+ (for asset compilation)
 
 ### Development Setup
@@ -83,12 +83,13 @@ mix dialyzer
 
 ### Tech Stack
 
-- **Elixir** - Functional programming language
-- **Phoenix LiveView** - Real-time web applications
-- **Ash Framework** - Resource-based application framework
-- **PostgreSQL** - Primary database
-- **DaisyUI** - Semantic CSS component library
-- **Tailwind CSS** - Utility-first CSS framework
+- **Elixir** 1.18.1+ - Functional programming language
+- **Phoenix** 1.8+ with **LiveView** 1.1+ - Real-time web applications
+- **Ash Framework** 3.7+ - Resource-based application framework
+- **AshPostgres** 2.6+ - PostgreSQL data layer
+- **PostgreSQL** 14+ - Primary database
+- **DaisyUI** 4+ - Semantic CSS component library
+- **Tailwind CSS** 3+ - Utility-first CSS framework
 
 ## 🗄️ Database Schema
 
@@ -217,12 +218,19 @@ mix assets.deploy       # Build assets for production
 
 ## 🤖 AI Development Ready
 
-This template is pre-configured for AI-assisted development:
+This template is pre-configured for AI-assisted development with Claude Code:
 
-- **Claude Code** integration with MCP servers
-- **Ash AI** for framework assistance
-- **TideWave** for Elixir development
-- Comprehensive project documentation and patterns
+### MCP Server Integration
+- **Ash AI** (`mcp__ash_ai__*`) - Ash Framework assistance, resource listings, generators
+- **TideWave** (`mcp__tidewave__*`) - Elixir development tools, project evaluation, docs
+- **Context7** (`mcp__context7__*`) - Library documentation (DaisyUI, Cytoscape, etc.)
+- **Playwright** (`mcp__playwright__*`) - Browser automation for UI verification
+
+### Pattern-Based Development
+- Comprehensive pattern library in `.claude/patterns/`
+- Specialized agents for different tasks (see `.claude/AGENT_USAGE_GUIDE.md`)
+- Enforced quality gates and verification workflows
+- See `CLAUDE.md` for complete guidelines
 
 ## 🎨 Theming & Styling
 
