@@ -1,5 +1,28 @@
 # Claude CLI Change Log
 
+## 2025-10-28
+- **Codex CLI Configuration Simplification (Phase 2):** Simplified configuration from `scripts/codex/local/` to project-local `.codex/config.toml`
+  - Created `.codex/config.toml` with all 21 profiles and MCP server configurations at project root
+  - Removed obsolete files: `scripts/codex/config.xtweak.toml` (template), `scripts/codex/setup.sh` (setup script), `scripts/codex/local/` (entire directory)
+  - Updated `.gitignore` to properly handle `.codex/` directory (keep config, ignore cache/sessions)
+  - Updated `scripts/codex/validate.sh` to check `.codex/config.toml` instead of `scripts/codex/local/config.xtweak.toml`
+  - Updated `Makefile` to remove `codex-setup` target and simplify `codex-validate` help text
+  - Updated documentation: `docs/codex_profiles.md`, `dev_docs/codex_mcp_troubleshooting.md`, `scripts/codex/MIGRATION.md` with Phase 2 section
+  - Simplified workflow: `cd /path/to/xTweak && codex --profile <name>` (no `CODE_CONFIG_HOME` needed!)
+  - Benefits: Zero setup required, no environment variables, version controlled config, simpler commands, less maintenance
+
+- **Codex CLI Native HTTP MCP Migration (Phase 1):** Migrated from proxy-based MCP configuration to native HTTP support in Codex CLI 0.50+
+  - Enabled `experimental_use_rmcp_client` flag for native HTTP MCP support
+  - Configured TideWave and AshAI with direct HTTP URLs in `.codex/config.toml`
+  - Archived legacy proxy scripts to `scripts/mcp/archive/*.bak`
+  - Updated `.gitignore` to exclude archived proxy scripts
+  - Created comprehensive migration guide at `scripts/codex/MIGRATION.md`
+  - Updated troubleshooting guide at `dev_docs/codex_mcp_troubleshooting.md` for native HTTP
+  - Updated `docs/codex_profiles.md` with native HTTP examples and MCP integration section
+  - Updated `AGENTS.md` to replace proxy-based setup with native HTTP configuration
+  - All 4 MCP servers verified working (TideWave, AshAI via HTTP; Context7, Playwright via stdio)
+  - Benefits: Simpler configuration, better performance, no proxy layer, easier troubleshooting
+
 ## 2025-10-27
 - **Dependency Upgrade:** Completed comprehensive phased upgrade of 30 packages (Ash 3.5.42 → 3.7.6, Phoenix ecosystem, dev tools)
 - **Security Fix:** Applied CVE-2025-48043 patch (Ash policy bypass vulnerability)

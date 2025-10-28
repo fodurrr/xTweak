@@ -33,29 +33,31 @@
 | pattern-librarian | xtweak-pattern-librarian | Audit pattern library & compliance | tidewave, context7 |
 | agent-architect | xtweak-agent-architect | Design/refine agent specs & prompts | tidewave, context7 |
 
-## MCP Integration Plan
-- Reuse existing MCP launchers: `node scripts/mcp/tidewave-stdio-proxy.js`, `node scripts/mcp/ashai-stdio-proxy.js`, `npx -y @upstash/context7-mcp`, `npx @playwright/mcp`; export `*_BASE_URL` env vars once in shell rc.
-- Plan step: `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-mcp-verify-first --call tidewave__project_eval '{"code":"Mix.Project.config"}'` to collect ground truth.
-- Context step: `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-ash-resource-architect --call ash_ai__list_generators '{}'` before crafting Ash code; `context7__resolve-library-id "daisyui"` when UI involved.
-- Checks step: Phoenix/UX runs must trigger `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-phoenix --call playwright__browser_navigate '{"url":"http://localhost:4000"}'` for screenshot evidence; migrations call Tidewave SQL helpers with the same `CODE_CONFIG_HOME` wrapper.
+## MCP Integration (Native HTTP Support)
+- **Codex CLI 0.50+** supports native HTTP MCP servers - no proxy scripts needed!
+- **TideWave** and **AshAI** use direct HTTP URLs: `http://127.0.0.1:4000/tidewave/mcp` and `http://127.0.0.1:4000/ash_ai/mcp`
+- **Context7** and **Playwright** remain stdio-based via npx: `npx -y @upstash/context7-mcp`, `npx @playwright/mcp`
+- **Enable native support**: Set `experimental_use_rmcp_client = true` in config
+- **Usage**: All Codex profiles automatically access configured MCP servers via `mcp = [...]` declarations
 - Profiles declare explicit `mcp = [...]` lists to enforce MCP-first discipline; omit unused servers per role if necessary.
 
-## Minimal TOML Excerpt
+## Minimal TOML Excerpt (Native HTTP)
 ```toml
+# Enable native HTTP MCP support (Codex CLI 0.50+)
+experimental_use_rmcp_client = true
+
 [providers.openai]
 type = "openai"
-model = "gpt-4.1"
+model = "gpt-5-codex-medium"
 
+# Native HTTP MCP servers (no proxy scripts needed!)
 [mcp_servers.tidewave]
-command = "node"
-args = ["{{PROJECT_ROOT}}/scripts/mcp/tidewave-stdio-proxy.js"]
-env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp", TIDEWAVE_PROTOCOL_VERSION = "2025-03-26" }
+url = "http://127.0.0.1:4000/tidewave/mcp"
 
 [mcp_servers.ash_ai]
-command = "node"
-args = ["{{PROJECT_ROOT}}/scripts/mcp/ashai-stdio-proxy.js"]
-env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp", ASHAI_PROTOCOL_VERSION = "2025-03-26" }
+url = "http://127.0.0.1:4000/ash_ai/mcp"
 
+# STDIO MCP servers (via npx)
 [mcp_servers.context7]
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
@@ -76,41 +78,48 @@ Guardrails:
 - CHECKS captures validation commands.
 - SUMMARY ends with recommendation + next steps.
 """
-# See scripts/codex/config.xtweak.toml for full Claude mirror definitions.
+mcp = ["tidewave", "ash_ai", "context7"]
+# See .codex/config.toml for full Claude mirror definitions.
 ```
 
-### Template & Scripts
-- Template file: `scripts/codex/config.xtweak.toml` (uses `{{PROJECT_ROOT}}` placeholder).
-- Bootstrap: `scripts/codex/setup.sh` replaces the placeholder and writes repo-local config under `scripts/codex/local/` (no `~/.code` usage).
-- Validation: `scripts/codex/validate.sh` checks for Codex CLI availability, substituted paths, and that referenced proxy scripts exist; run via `make codex-validate`.
-- Convenience targets: `make codex-setup` (regenerate local config) and `make codex-validate` (rerun validation).
+### Project-Local Configuration
+- Configuration file: `.codex/config.toml` (project-local, checked into version control).
+- No setup script needed - just `cd` to project root and run `codex` commands.
+- Validation: `scripts/codex/validate.sh` checks for Codex CLI availability and verifies `.codex/config.toml` exists; run via `make codex-validate`.
+- Convenience target: `make codex-validate` (verify configuration).
 
-### MCP Server Snapshot
+### MCP Server Snapshot (Native HTTP)
 ```text
 $ codex mcp list
-Name        Command  Args                                                             Env
-ash_ai      node     {{PROJECT_ROOT}}/scripts/mcp/ashai-stdio-proxy.js                ASHAI_BASE_URL=http://127.0.0.1:4000/ash_ai/mcp, ASHAI_PROTOCOL_VERSION=2025-03-26
-context7    npx      -y @upstash/context7-mcp                                         -
-playwright  npx      @playwright/mcp                                                  -
-tidewave    node     {{PROJECT_ROOT}}/scripts/mcp/tidewave-stdio-proxy.js             TIDEWAVE_BASE_URL=http://127.0.0.1:4000/tidewave/mcp, TIDEWAVE_PROTOCOL_VERSION=2025-03-26
+Name        Command  Args                      Env  Cwd  Status   Auth
+context7    npx      -y @upstash/context7-mcp  -    -    enabled  Unsupported
+playwright  npx      @playwright/mcp           -    -    enabled  Unsupported
+
+Name      Url                                 Bearer Token Env Var  Status   Auth
+ash_ai    http://127.0.0.1:4000/ash_ai/mcp    -                     enabled  Unsupported
+tidewave  http://127.0.0.1:4000/tidewave/mcp  -                     enabled  Unsupported
 ```
 
+Note: TideWave and AshAI now show as HTTP URL-based servers (transport: `streamable_http`), while Context7 and Playwright remain stdio-based.
+
 ## Example Workflows
-- Interactive: `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-mcp-verify-first "PLAN – map project state"`
-- Implementation: `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-ash-resource-architect "PLAN – extend Accounts resource"`
-- Review: `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-code-reviewer "PLAN – audit PR 123"`
+All commands run from the project root (`/path/to/xTweak`). Codex automatically reads `.codex/config.toml`.
+
+- Interactive: `codex --profile xtweak-mcp-verify-first "PLAN – map project state"`
+- Implementation: `codex --profile xtweak-ash-resource-architect "PLAN – extend Accounts resource"`
+- Review: `codex --profile xtweak-code-reviewer "PLAN – audit PR 123"`
 
 ## Verification Checklist
-- [ ] `scripts/codex/local/config.xtweak.toml` contains xtweak-mcp-verify-first … xtweak-agent-architect (21 profiles) matching the template.
+- [ ] `.codex/config.toml` contains xtweak-mcp-verify-first … xtweak-agent-architect (21 profiles).
 - [ ] Each profile transcript shows PLAN → CONTEXT → DIFFS → CHECKS → SUMMARY ordering with MCP evidence.
 - [ ] Tidewave + Ash AI calls succeed (`codex --profile xtweak-ash-resource-architect --call tidewave__project_eval ...`).
 - [ ] Frontend runs emit Playwright screenshots via `xtweak-frontend-design-enforcer`; migrations emit rollback + `mix test` commands via `xtweak-database-migration-specialist`.
 - [ ] CI smoke job emits JSON/markdown artifact and respects failure thresholds.
-- [ ] AGENTS.md updated with Codex availability, scripts, and fallback instructions.
-- [ ] `make codex-validate` completes without missing-script errors.
+- [ ] AGENTS.md updated with Codex availability and workflow instructions.
+- [ ] `make codex-validate` completes successfully.
 
 ## Rollback / Exit Plan
-- Remove `scripts/codex/local/` (or regenerate via `make codex-setup` when needed).
-- Launch Codex without `CODE_CONFIG_HOME` to fall back to personal/global configuration.
-- If MCP instability occurs, comment profile `mcp` arrays inside `scripts/codex/config.xtweak.toml` and rerun `make codex-setup`.
+- Revert `.codex/config.toml` to a previous version from git history if needed.
+- Codex will use global `~/.codex/config.toml` if project-local config is removed.
+- If MCP instability occurs, comment out problematic profile `mcp` arrays inside `.codex/config.toml`.
 - Document rollback choice in team notes and restore previous config within minutes.

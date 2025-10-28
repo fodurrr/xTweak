@@ -87,6 +87,15 @@ temp/
 #.gemini/
 #.qwen/
 
+# Codex CLI artifacts (keep config, ignore cache/sessions)
+.codex/cache/
+.codex/sessions/
+.codex/history.jsonl
+.codex/auth.json
+.codex/log/
+.codex/version.json
+# Keep: .codex/config.toml (project configuration)
+
 # DevBox and containers
 #.devcontainer/
 #.devbox/
@@ -98,6 +107,9 @@ coverage/
 
 # Playwright MCP screenshots and artifacts
 .playwright-mcp/
+
+# Archived MCP proxy scripts (deprecated - using native HTTP support)
+scripts/mcp/archive/
 
 # Design review images
 design_reviews/**/*.png

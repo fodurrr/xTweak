@@ -1,10 +1,10 @@
-# MCP Troubleshooting (Codex CLI + WSL)
+# MCP Troubleshooting (Codex CLI + Native HTTP Support)
 
-This guide helps diagnose stdio↔HTTP MCP setups for TideWave and Ash AI using the local proxy scripts in this repo.
+This guide helps diagnose native HTTP MCP configurations for TideWave and Ash AI. **As of Codex CLI 0.50+, native HTTP support is available and the proxy scripts are no longer needed.**
 
 ## Quick Health Checks
 - TideWave init (expect JSON with tools and protocolVersion):
-  
+
   ```bash
   curl -sS -X POST -H 'content-type: application/json' \
     -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","clientInfo":{"name":"test"},"capabilities":{}}}' \
@@ -12,7 +12,7 @@ This guide helps diagnose stdio↔HTTP MCP setups for TideWave and Ash AI using 
   ```
 
 - Ash AI init (expect JSON with protocolVersion):
-  
+
   ```bash
   curl -sS -X POST -H 'content-type: application/json' \
     -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","clientInfo":{"name":"test"},"capabilities":{}}}' \
@@ -21,88 +21,154 @@ This guide helps diagnose stdio↔HTTP MCP setups for TideWave and Ash AI using 
 
 If curl works, the server endpoint is healthy.
 
-## Enable Proxy Debug Logging
-Use a logging wrapper to capture proxy stderr to /tmp without polluting MCP stdout.
+## Native HTTP MCP Configuration
 
-- TideWave:
-  
-  ```toml
-  [mcp_servers.tidewave]
-  command = "bash"
-  args = ["-lc", "TIDEWAVE_BASE_URL=http://127.0.0.1:4000/tidewave/mcp TIDEWAVE_PROTOCOL_VERSION=2025-03-26 TIDEWAVE_DEBUG=1 node /home/you/xtweak/scripts/mcp/tidewave-stdio-proxy.js 2>>/tmp/tidewave-proxy.log"]
-  ```
+Codex CLI 0.50+ supports HTTP MCP servers natively. You need to enable the `experimental_use_rmcp_client` flag.
 
-- Ash AI:
+### Recommended Configuration
 
-  ```toml
-  [mcp_servers.ash_ai]
-  command = "bash"
-  args = ["-lc", "ASHAI_BASE_URL=http://127.0.0.1:4000/ash_ai/mcp ASHAI_PROTOCOL_VERSION=2025-03-26 ASHAI_DEBUG=1 node /home/you/xtweak/scripts/mcp/ashai-stdio-proxy.js 2>>/tmp/ashai-proxy.log"]
-  ```
+For xTweak, use the project-local `.codex/config.toml` at the repository root:
 
-Tail logs while starting Codex:
+```toml
+# Enable experimental RMCP client for native HTTP MCP support
+experimental_use_rmcp_client = true
 
-```bash
-tail -f /tmp/tidewave-proxy.log /tmp/ashai-proxy.log
+# TideWave - Native HTTP MCP server
+[mcp_servers.tidewave]
+url = "http://127.0.0.1:4000/tidewave/mcp"
+# Optional: bearer_token_env_var = "TIDEWAVE_TOKEN"
+
+# AshAI - Native HTTP MCP server
+[mcp_servers.ash_ai]
+url = "http://127.0.0.1:4000/ash_ai/mcp"
+# Optional: bearer_token_env_var = "ASHAI_TOKEN"
+
+# Context7 - STDIO MCP server (via npx)
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+
+# Playwright - STDIO MCP server (via npx)
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp"]
 ```
 
-Expected lines:
-- "stdin chunk bytes=…" — Codex wrote to proxy
-- "RAW JSON fallback" or printed header — framing detected
-- "<- client method=initialize id=1"
-- "POST …/mcp" and "HTTP 200 bytes=…"
-- "-> client RAW json bytes=…" (or Content-Length: …) — proxy replied
+### Verify Configuration
+
+From the xTweak project root:
+
+```bash
+cd /path/to/xTweak
+
+# List all configured MCP servers (reads .codex/config.toml automatically)
+codex mcp list
+
+# Check specific server details
+codex mcp get tidewave
+codex mcp get ash_ai
+```
+
+Expected output for HTTP servers:
+- `transport: streamable_http`
+- `url: http://127.0.0.1:4000/...`
 
 ## Common Symptoms and Fixes
-- Error: request timed out
-  - Cause: Wrong host/port/path or missing protocolVersion.
-  - Fix: Use 127.0.0.1 (not localhost), ensure server path is `/tidewave/mcp` or `/ash_ai/mcp`, and set `*_PROTOCOL_VERSION=2025-03-26`.
 
-- No MCP tools available
-  - Cause: Client uses RAW JSON but proxy replied with LSP framing, or tools/list not forwarded.
-  - Fix: Set `TIDEWAVE_FORCE_RAW=1` or `ASHAI_FORCE_RAW=1` in TOML env; check logs for `tools/list` flow and RAW reply.
+### Error: request timed out
+- **Cause**: Wrong host/port/path or Phoenix server not running.
+- **Fix**:
+  - Use `127.0.0.1` (not `localhost`)
+  - Ensure Phoenix server is running: `mix phx.server`
+  - Verify endpoints: `/tidewave/mcp` and `/ash_ai/mcp`
+  - Test with curl (see Quick Health Checks above)
 
-- Nothing in /tmp logs
-  - Cause: Codex reading a different config.
-  - Fix: Confirm you edited WSL `~/.codex/config.toml`. Temporarily set `command = "bash"`, `args=["-lc","exit 99"]` to confirm it’s read.
+### MCP servers not detected
+- **Cause**: `experimental_use_rmcp_client` flag not enabled.
+- **Fix**: Add `experimental_use_rmcp_client = true` at the top of your config file.
 
-- WSL vs Windows
-  - If Codex runs on Windows: use `command="wsl"` and WSL paths, or set base URL to `http://wsl.localhost:4000/...`.
+### Wrong transport type showing
+- **Cause**: Old proxy-based configuration still present.
+- **Fix**:
+  - Remove old `command` and `args` fields from `[mcp_servers.tidewave]` and `[mcp_servers.ash_ai]`
+  - Replace with `url` field
+  - Run `codex mcp list` to verify `transport: streamable_http`
 
-- Node not found
-  - Ensure `node -v` ≥ 18 in the same shell you start Codex from. Use absolute path to node if needed (e.g., `/usr/bin/node`).
+### Configuration not being read
+- **Cause**: Wrong working directory or global config overriding project config.
+- **Fix**:
+  - Ensure you're running `codex` from the xTweak project root directory
+  - Codex automatically reads `.codex/config.toml` from the current working directory
+  - Check `~/.codex/config.toml` (global config) for conflicting settings
+  - Use `codex mcp list` to see which configuration is active
 
-## Minimal Working TOML (WSL)
-- TideWave:
+### WSL-specific issues
+- If Codex runs on Windows but servers run in WSL:
+  - Use `http://wsl.localhost:4000/...` as the URL
+  - Or use `127.0.0.1` if port forwarding is configured
 
-  ```toml
-  [mcp_servers.tidewave]
-  command = "node"
-  args = ["/home/you/xtweak/scripts/mcp/tidewave-stdio-proxy.js"]
-  env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp", TIDEWAVE_PROTOCOL_VERSION = "2025-03-26" }
-  ```
+## Minimal Working Configuration
 
-- Ash AI:
+Complete working configuration for all 4 MCP servers:
 
-  ```toml
-  [mcp_servers.ash_ai]
-  command = "node"
-  args = ["/home/you/xtweak/scripts/mcp/ashai-stdio-proxy.js"]
-  env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp", ASHAI_PROTOCOL_VERSION = "2025-03-26" }
-  ```
+```toml
+# Enable native HTTP MCP support
+experimental_use_rmcp_client = true
 
-If your Codex build uses RAW JSON, add `*_FORCE_RAW = "1"` to the env.
+# Default model
+model = "gpt-5-codex-medium"
 
-## Manual Stdio Handshake Test
-If in doubt, send a correctly framed initialize to the proxy directly:
+# TideWave - Native HTTP
+[mcp_servers.tidewave]
+url = "http://127.0.0.1:4000/tidewave/mcp"
 
-```bash
-BODY='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"clientInfo":{"name":"test"},"capabilities":{},"protocolVersion":"2025-03-26"}}'
-LEN=$(printf '%s' "$BODY" | wc -c)
-printf 'Content-Length: %d\r\n\r\n%s' "$LEN" "$BODY" | node /home/you/xtweak/scripts/mcp/tidewave-stdio-proxy.js | head -c 200
+# AshAI - Native HTTP
+[mcp_servers.ash_ai]
+url = "http://127.0.0.1:4000/ash_ai/mcp"
+
+# Context7 - STDIO via npx
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+
+# Playwright - STDIO via npx
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp"]
 ```
 
-You should see a framed response (`Content-Length: …`).
+## Rollback to Proxy-Based Configuration
+
+If you need to roll back to the legacy proxy configuration:
+
+1. **Restore proxy scripts**:
+   ```bash
+   cp scripts/mcp/archive/*.bak scripts/mcp/
+   rename 's/\.bak$//' scripts/mcp/*.bak
+   ```
+
+2. **Update config**:
+   ```toml
+   [mcp_servers.tidewave]
+   command = "node"
+   args = ["/absolute/path/to/scripts/mcp/tidewave-stdio-proxy.js"]
+   env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp" }
+
+   [mcp_servers.ash_ai]
+   command = "node"
+   args = ["/absolute/path/to/scripts/mcp/ashai-stdio-proxy.js"]
+   env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp" }
+   ```
+
+3. **Verify**: Run `codex mcp list` to confirm servers are detected
 
 ---
-If issues persist, capture the last 15 lines from `/tmp/*-proxy.log` and your `[mcp_servers.*]` TOML blocks; those two bits of info are enough to pinpoint framing and connectivity.
+
+## Getting Help
+
+If issues persist:
+1. Ensure you're running from the xTweak project root directory
+2. Check `codex mcp list` output
+3. Verify Phoenix server is running (`mix phx.server`)
+4. Test endpoints with curl (see Quick Health Checks)
+5. Review `.codex/config.toml` and check `~/.codex/config.toml` for conflicting configurations

@@ -1,31 +1,44 @@
-# xTweak Codex CLI include file
+# xTweak Project Codex Configuration
+# This configuration is project-local and does not affect global Codex settings.
+# All team members use this same configuration when working in this project.
 
-# Replace {{PROJECT_ROOT}} with the absolute path to this repo root.
-# `make codex-setup` will substitute the placeholder and write a runnable copy
-# under scripts/codex/local/ without touching ~/.code/.
+# Enable experimental RMCP client for native HTTP MCP server support
+experimental_use_rmcp_client = true
 
+# Default model for this project
+model = "gpt-5-codex-medium"
+
+# OpenAI provider configuration
 [providers.openai]
 type = "openai"
-model = "gpt-4.1"
-# authentication comes from OPENAI_API_KEY or interactive login
+model = "gpt-5-codex-medium"
+# Authentication comes from OPENAI_API_KEY environment variable or interactive login
 
+# TideWave - Native HTTP MCP server (no proxy needed)
 [mcp_servers.tidewave]
-command = "node"
-args = ["{{PROJECT_ROOT}}/scripts/mcp/tidewave-stdio-proxy.js"]
-env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp", TIDEWAVE_PROTOCOL_VERSION = "2025-03-26" }
+url = "http://127.0.0.1:4000/tidewave/mcp"
+# Optional: uncomment if authentication is required
+# bearer_token_env_var = "TIDEWAVE_TOKEN"
 
+# AshAI - Native HTTP MCP server (no proxy needed)
 [mcp_servers.ash_ai]
-command = "node"
-args = ["{{PROJECT_ROOT}}/scripts/mcp/ashai-stdio-proxy.js"]
-env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp", ASHAI_PROTOCOL_VERSION = "2025-03-26" }
+url = "http://127.0.0.1:4000/ash_ai/mcp"
+# Optional: uncomment if authentication is required
+# bearer_token_env_var = "ASHAI_TOKEN"
 
+# Context7 - STDIO MCP server via npx (working as-is)
 [mcp_servers.context7]
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 
+# Playwright - STDIO MCP server via npx (working as-is)
 [mcp_servers.playwright]
 command = "npx"
 args = ["@playwright/mcp"]
+
+# =============================================================================
+# Codex Profiles - Claude Agent Parity
+# =============================================================================
 
 [profiles.xtweak-security-reviewer]
 provider = "openai"
@@ -40,6 +53,7 @@ Workflow:
 Guardrails: avoid speculative claims; cite proofs for each finding.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-code-review-implement]
 provider = "openai"
 instructions = """
@@ -52,6 +66,7 @@ Workflow:
 Guardrails: stay within review scope, avoid unrelated refactors, cite evidence, run self-check-core.
 """
 mcp = ["tidewave", "ash_ai", "context7"]
+
 [profiles.xtweak-frontend-design-enforcer]
 provider = "openai"
 instructions = """
@@ -65,6 +80,7 @@ Workflow:
 Guardrails: enforce Ash forms, accessibility, and performance; document delegations to specialist agents.
 """
 mcp = ["tidewave", "ash_ai", "context7", "playwright"]
+
 [profiles.xtweak-ash-resource-architect]
 provider = "openai"
 instructions = """
@@ -78,6 +94,7 @@ Workflow:
 Guardrails: generator-first, respect umbrella boundaries, replace placeholders before finishing.
 """
 mcp = ["tidewave", "ash_ai", "context7"]
+
 [profiles.xtweak-daisyui-expert]
 provider = "openai"
 instructions = """
@@ -105,6 +122,7 @@ Workflow:
 Guardrails: ensure alignment with core pattern stack, cite evidence, and run self-check-core.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-pattern-librarian]
 provider = "openai"
 instructions = """
@@ -118,6 +136,7 @@ Workflow:
 Guardrails: maintain placeholder discipline, log outstanding debt via TodoWrite when applicable.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-test-builder]
 provider = "openai"
 instructions = """
@@ -131,6 +150,7 @@ Workflow:
 Guardrails: keep tests deterministic, cite evidence for failures, adhere to self-check-core.
 """
 mcp = ["tidewave", "ash_ai"]
+
 [profiles.xtweak-ci-cd-optimizer]
 provider = "openai"
 instructions = """
@@ -144,6 +164,7 @@ Workflow:
 Guardrails: avoid destructive pipeline edits; provide staged rollout plan.
 """
 mcp = ["tidewave"]
+
 [profiles.xtweak-database-migration-specialist]
 provider = "openai"
 instructions = """
@@ -171,6 +192,7 @@ Workflow:
 Guardrails: stay read-only; cite evidence for every claim; maintain placeholder discipline.
 """
 mcp = ["tidewave", "ash_ai", "context7"]
+
 [profiles.xtweak-performance-profiler]
 provider = "openai"
 instructions = """
@@ -198,6 +220,7 @@ Workflow:
 Guardrails: coordinate with release-coordinator; ensure secrets remain out of logs.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-api-contract-guardian]
 provider = "openai"
 instructions = """
@@ -211,6 +234,7 @@ Workflow:
 Guardrails: ensure backwards compatibility or flag breaking changes explicitly.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-beam-runtime-specialist]
 provider = "openai"
 instructions = """
@@ -224,6 +248,7 @@ Workflow:
 Guardrails: respect safety of production-like commands; document every assumption with evidence.
 """
 mcp = ["tidewave"]
+
 [profiles.xtweak-dependency-auditor]
 provider = "openai"
 instructions = """
@@ -237,6 +262,7 @@ Workflow:
 Guardrails: do not change code; provide actionable recommendations with citations.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-release-coordinator]
 provider = "openai"
 instructions = """
@@ -250,6 +276,7 @@ Workflow:
 Guardrails: capture evidence for every claim; escalate unresolved risks.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-docs-maintainer]
 provider = "openai"
 instructions = """
@@ -263,6 +290,7 @@ Workflow:
 Guardrails: maintain placeholder discipline, cite MCP evidence, and run self-check-core.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-tailwind-strategist]
 provider = "openai"
 instructions = """
@@ -276,6 +304,7 @@ Workflow:
 Guardrails: prefer config-driven solutions, maintain DaisyUI compatibility, avoid unbounded custom CSS.
 """
 mcp = ["tidewave", "context7"]
+
 [profiles.xtweak-cytoscape-expert]
 provider = "openai"
 instructions = """
@@ -289,7 +318,7 @@ Workflow:
 Guardrails: preserve accessibility, avoid blocking UI threads, coordinate with frontend-design-enforcer when layout work extends beyond graph scope.
 """
 mcp = ["tidewave", "ash_ai", "context7", "playwright"]
-# --- mirrored Claude agents ---
+
 [profiles.xtweak-mcp-verify-first]
 provider = "openai"
 instructions = """

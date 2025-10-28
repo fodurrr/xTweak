@@ -52,67 +52,35 @@
 - Run `make security` (`mix deps.audit` + `sobelow`) before releases.
 
 ## Agents & MCP Instructions
-- MCP servers in `.mcp.json`: `tidewave`, `ash_ai`, `playwright`, `context7`.
-- Keep Phoenix running; don’t start/stop from MCP sessions.
+- MCP servers configured in `.codex/config.toml` (project-local): `tidewave`, `ash_ai`, `playwright`, `context7`.
+- Keep Phoenix running; don't start/stop from MCP sessions.
 - Key tools: `mcp__tidewave__project_eval`, `mcp__tidewave__get_docs`, `mcp__ash_ai__list_generators`.
 - Flow: query → generate (Ash) → customize → `make quality-full`. See `CLAUDE.md` for details.
-- Codex parity lives in-repo: run `make codex-setup` and `make codex-validate` to regenerate `scripts/codex/local/`, then launch via `CODE_CONFIG_HOME=$(pwd)/scripts/codex/local codex --profile xtweak-mcp-verify-first "PLAN"` (full matrix in `docs/codex_profiles.md`).
+- **Codex CLI**: Configuration is project-local in `.codex/config.toml`. Just clone the repo and run `codex` from the project root - no setup needed! See `docs/codex_profiles.md` for full profile matrix.
 
-## TideWave MCP Setup (Codex CLI)
-> Prefer the repo-local workflow in `docs/codex_profiles.md`; the snippet below is kept for reference when configuring Codex globally.
-- Proxy script: `scripts/mcp/tidewave-stdio-proxy.js` (Node ≥ 18; bridges stdio ↔ HTTP).
-- Minimal TOML (`~/.codex/config.toml`, WSL):
+## Codex CLI Setup (Project-Local Configuration)
+> **✅ Self-Contained**: All Codex configuration lives in `.codex/config.toml` at the project root. No global config changes needed!
 
-  ```toml
-  [mcp_servers.tidewave]
-  command = "node"
-  args = ["/path/to/your/project/scripts/mcp/tidewave-stdio-proxy.js"]
-  env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp", TIDEWAVE_PROTOCOL_VERSION = "2025-03-26" }
-  ```
+**Quick Start**:
+```bash
+cd /path/to/xTweak
+codex                                    # Automatically reads .codex/config.toml
+codex --profile xtweak-mcp-verify-first "PLAN"  # Use a specific profile
+```
 
-- If your client speaks raw JSON (no Content-Length), force raw replies:
+**Validation**:
+```bash
+bash scripts/codex/validate.sh          # Validate configuration
+codex mcp list                           # List all MCP servers
+# Expected: TideWave & AshAI show "transport: streamable_http"
+#           Context7 & Playwright show command-based stdio
+```
 
-  ```toml
-  env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp", TIDEWAVE_PROTOCOL_VERSION = "2025-03-26", TIDEWAVE_FORCE_RAW = "1" }
-  ```
+**Configuration Details**:
+- **Location**: `.codex/config.toml` (project root)
+- **MCP Servers**: Native HTTP for TideWave/AshAI, stdio for Context7/Playwright
+- **Profiles**: 21 Claude agent mirrors (see `docs/codex_profiles.md`)
+- **Model**: GPT-5 Codex Medium (default)
+- **Migration**: See `scripts/codex/MIGRATION.md` for history and rollback procedures
 
-- Debug wrapper (optional): redirect proxy logs to `/tmp/tidewave-proxy.log`:
-
-  ```toml
-  [mcp_servers.tidewave]
-  command = "bash"
-  args = ["-lc", "TIDEWAVE_BASE_URL=http://127.0.0.1:4000/tidewave/mcp TIDEWAVE_PROTOCOL_VERSION=2025-03-26 TIDEWAVE_DEBUG=1 node /path/to/your/project/scripts/mcp/tidewave-stdio-proxy.js 2>>/tmp/tidewave-proxy.log"]
-  ```
-
-- Windows launcher note: if Codex runs on Windows, run the proxy in WSL:
-
-  ```toml
-  command = "wsl"
-  args = ["node", "/path/to/your/project/scripts/mcp/tidewave-stdio-proxy.js"]
-  ```
-
-## Ash AI MCP Setup (Codex CLI)
-> Prefer the repo-local workflow in `docs/codex_profiles.md`; the snippet below is kept for reference when configuring Codex globally.
-- Proxy script: `scripts/mcp/ashai-stdio-proxy.js` (Node ≥ 18).
-- Minimal TOML (WSL):
-
-  ```toml
-  [mcp_servers.ash_ai]
-  command = "node"
-  args = ["/path/to/your/project/scripts/mcp/ashai-stdio-proxy.js"]
-  env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp", ASHAI_PROTOCOL_VERSION = "2025-03-26" }
-  ```
-
-- Force RAW replies if your client uses raw JSON (no LSP framing):
-
-  ```toml
-  env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp", ASHAI_PROTOCOL_VERSION = "2025-03-26", ASHAI_FORCE_RAW = "1" }
-  ```
-
-- Debug wrapper (optional):
-
-  ```toml
-  [mcp_servers.ash_ai]
-  command = "bash"
-  args = ["-lc", "ASHAI_BASE_URL=http://127.0.0.1:4000/ash_ai/mcp ASHAI_PROTOCOL_VERSION=2025-03-26 ASHAI_DEBUG=1 node /path/to/your/project/scripts/mcp/ashai-stdio-proxy.js 2>>/tmp/ashai-proxy.log"]
-  ```
+**Troubleshooting**: See `dev_docs/codex_mcp_troubleshooting.md` for common issues and solutions.
