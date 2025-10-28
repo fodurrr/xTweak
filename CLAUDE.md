@@ -1,5 +1,20 @@
 # Claude Code Guidelines · xTweak
 
+> **📋 MANDATORY**: Read [DEV_PREFERENCES.md](./DEV_PREFERENCES.md) first – User preferences override all instructions below.
+
+## Quick Start Navigation
+
+**Essential Reading** (in order):
+1. [DEV_PREFERENCES.md](./DEV_PREFERENCES.md) – Mandatory user preferences
+2. [docs/claude/quick-reference.md](./docs/claude/quick-reference.md) – One-minute checklist
+3. [docs/README.md](./docs/README.md) – Complete documentation index
+
+**Configuration & Patterns**:
+- [.claude/README.md](./.claude/README.md) – MCP setup details
+- [.claude/patterns/README.md](./.claude/patterns/README.md) – All patterns
+- [.claude/AGENT_USAGE_GUIDE.md](./.claude/AGENT_USAGE_GUIDE.md) – Agent selection
+- [.claude/agent-workflows.md](./.claude/agent-workflows.md) – Multi-agent sequences
+
 ## How to Use This Playbook
 - Treat this document as the high-level contract; detailed instructions live in the pattern library (`.claude/patterns/README.md`).
 - Load the **Core Pattern Stack** (`placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`) before implementing anything.
@@ -57,6 +72,6 @@ mix ash_postgres.generate_migrations
 - `.claude/agent-workflows.md` – recommended multi-agent sequences.
 - `.claude/CHANGELOG.md` – pattern library and agent change log.
 - `.claude/agent-reports/` – detailed reports from agent executions (dependency audits, reviews, etc.).
-- `dev_docs/claude_agent_workflow.md` – developer guide to working with Claude agents.
+- [docs/README.md](./docs/README.md) – Complete documentation index with all guides
 
 Stay pattern-first, cite MCP evidence, and keep responses sharp and scannable.

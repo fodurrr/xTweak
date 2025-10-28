@@ -138,8 +138,6 @@ To customize settings without affecting the team:
 ## Related Files
 
 - `../../.mcp.json` - MCP server definitions (project root)
-- `../../AGENTS.md` - Team documentation for agents and MCP
-- `../../CLAUDE.md` - Project instructions for Claude Code
 
 ## Parallel Structure
 

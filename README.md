@@ -2,6 +2,21 @@
 
 A minimal, clean Elixir umbrella project template with Phoenix LiveView, Ash Framework, and DaisyUI. Perfect for starting new projects with a solid foundation.
 
+## 🤖 AI Development Setup
+
+This project is optimized for AI-assisted development. **Start with these guides:**
+
+**Entry Points** (read in this order):
+1. 📋 [DEV_PREFERENCES.md](./DEV_PREFERENCES.md) – **Start here!** Mandatory user preferences
+2. 🎯 [CLAUDE.md](./CLAUDE.md) – Claude Code primary guide (pattern-first workflows)
+3. 📚 [AGENTS.md](./AGENTS.md) – Multi-tool standard (Codex, Cursor, Copilot, Jules, Aider)
+
+**Quick References**:
+- ⚡ [Quick Reference](./docs/claude/quick-reference.md) – One-minute checklist
+- 🎨 [Frontend Principles](./docs/frontend_design_principles/frontend-design-principles.md) – UI workflow
+- 🔧 [Codex Profiles](./docs/codex_profiles.md) – 21 agent profiles
+- 📖 [Complete Documentation Index](./docs/README.md) – All guides and references
+
 ## 🏗️ Architecture
 
 xTweak is built as an **Elixir umbrella application** with four independent apps:
