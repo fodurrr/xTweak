@@ -83,9 +83,19 @@ temp/
 
 # AI/ML artifacts
 #.bmad-core/
-#.claude/
 #.gemini/
 #.qwen/
+
+# Claude Code artifacts (keep config, ignore cache/sessions)
+.claude/cache/
+.claude/sessions/
+.claude/history.jsonl
+.claude/auth.json
+.claude/log/
+.claude/version.json
+.claude/settings.local.json
+# Keep: .claude/settings.json (project configuration)
+# Keep: .claude/agents/, .claude/commands/, .claude/patterns/ (shared resources)
 
 # Codex CLI artifacts (keep config, ignore cache/sessions)
 .codex/cache/

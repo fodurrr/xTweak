@@ -1,0 +1,208 @@
+{
+  // =================================================================
+  // xTweak Project - Claude Code Configuration
+  // =================================================================
+  // This configuration is project-local and shared with the team.
+  // Parallel to .codex/config.toml for Codex CLI.
+  //
+  // Configuration hierarchy (highest to lowest precedence):
+  //   1. Command-line arguments
+  //   2. .claude/settings.local.json (personal overrides, not in git)
+  //   3. .claude/settings.json (THIS FILE - team-shared)
+  //   4. ~/.claude/settings.json (user global)
+  // =================================================================
+
+  // =================================================================
+  // MCP (Model Context Protocol) Servers
+  // =================================================================
+  // These servers provide additional context and tools to Claude Code.
+  // Ensure Phoenix server is running on port 4000 for HTTP servers.
+
+  "mcpServers": {
+    // TideWave - Elixir/Phoenix project evaluation and documentation
+    // Provides: project_eval, get_docs, search_package_docs, get_logs, etc.
+    "tidewave": {
+      "type": "http",
+      "url": "http://127.0.0.1:4000/tidewave/mcp"
+    },
+
+    // Ash AI - Ash Framework generators and resource management
+    // Provides: list_ash_resources, list_generators, get_usage_rules
+    "ash_ai": {
+      "type": "http",
+      "url": "http://127.0.0.1:4000/ash_ai/mcp"
+    },
+
+    // Playwright - Browser automation and UI testing
+    // Provides: browser navigation, screenshots, console capture
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp", "--browser", "msedge"],
+      "env": {}
+    },
+
+    // Context7 - Library documentation and code examples
+    // Provides: resolve-library-id, get-library-docs (DaisyUI, Cytoscape, etc.)
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {}
+    }
+  },
+
+  // Enable all project-scoped MCP servers defined above
+  "enableAllProjectMcpServers": true,
+
+  // Explicitly enable these MCP servers (matches mcpServers keys)
+  "enabledMcpjsonServers": [
+    "tidewave",
+    "ash_ai",
+    "playwright",
+    "context7"
+  ],
+
+  // =================================================================
+  // Tool Permissions
+  // =================================================================
+  // Fine-grained control over what Claude Code can access and execute.
+  // Pattern format: ToolName(pattern) where pattern uses glob syntax.
+
+  "permissions": {
+    // --- ALLOWED TOOLS ---
+    "allow": [
+      // --- File Operations ---
+      "Bash(md-tree:*)",        // Directory tree visualization
+      "Bash(mkdir:*)",          // Create directories
+      "Bash(cat:*)",            // Read file contents
+      "Bash(mv:*)",             // Move/rename files
+      "Bash(find:*)",           // Find files
+      "Bash(grep:*)",           // Search file contents
+
+      // --- Mix (Elixir Build Tool) ---
+      "Bash(mix igniter.install:*)",  // Igniter library installer
+      "Bash(mix deps.get:*)",         // Fetch dependencies
+      "Bash(mix deps:*)",             // Dependency management
+      "Bash(mix deps.update:*)",      // Update dependencies
+      "Bash(mix compile:*)",          // Compile project
+      "Bash(mix format)",             // Format code
+      "Bash(mix dialyzer:*)",         // Type checking
+      "Bash(mix help:*)",             // Mix help
+      "Bash(mix hex.outdated:*)",     // Check outdated packages
+      "Bash(mix hex.info:*)",         // Package info
+
+      // --- Mix Testing ---
+      "Bash(mix test)",                     // Run all tests
+      "Bash(mix test:*)",                   // Run specific tests
+      "Bash(timeout 30 mix test:*)",        // Tests with 30s timeout
+      "Bash(timeout 60 mix test:*)",        // Tests with 60s timeout
+      "Bash(timeout 90 mix test:*)",        // Tests with 90s timeout
+      "Bash(timeout 10 mix phx.server)",    // Short Phoenix server runs
+      "Bash(timeout 5 mix phx.server)",     // Very short Phoenix server runs
+
+      // Specific test files (xpando_core)
+      "Bash(timeout 30 mix test apps/xpando_core/test/xpando/core/node_test.exs)",
+      "Bash(timeout 30 mix test apps/xpando_core/test/xpando/core/knowledge_test.exs)",
+      "Bash(timeout 30 mix test apps/xpando_core/test/xpando/core/contribution_test.exs)",
+      "Bash(timeout 30 mix test apps/xpando_core/test/xpando/core/user_test.exs)",
+      "Bash(timeout 30 mix test apps/xpando_core/test/xpando/core/user_test.exs:*)",
+      "Bash(timeout 60 mix test apps/xpando_core/test/xpando/core/token_test.exs)",
+      "Bash(timeout 30 mix test apps/xpando_core/test/xpando/core_test.exs)",
+      "Bash(timeout 30 mix test apps/xpando_core/test/xpando/core/validators_test.exs)",
+      "Bash(timeout 60 mix test apps/xpando_core/test:*)",
+      "Bash(timeout 30 mix test apps/xpando_core/test/doctests_test.exs)",
+
+      // Specific test files (xpando_web)
+      "Bash(timeout 60 mix test apps/xpando_web/test/xpando_web_web/live/dashboard_live_test.exs)",
+
+      // Specific test files (xpando_node)
+      "Bash(timeout 30 mix test test/xpando_node/xpando_node/cluster_test.exs:*)",
+      "Bash(timeout 30 mix test test/xpando_node/xpando_node/distributed_test.exs:*)",
+      "Bash(timeout 60 mix test test/xpando_node/xpando_node/distributed_test.exs:*)",
+
+      // Specific test files (xtweak_web)
+      "Bash(timeout 30 mix test apps/xtweak_web/test/xtweak_web_web/controllers/page_controller_test.exs:*)",
+
+      // Specific test files (xtweak_core)
+      "Bash(MIX_ENV=test mix test apps/xtweak_core/test/xtweak/core/user_test.exs)",
+
+      // Generic test patterns
+      "Bash(timeout 30 mix test test/*)",
+      "Bash(timeout 60 mix test --seed 0)",
+      "Bash(timeout 90 mix test --seed 0)",
+      "Bash(timeout 30 mix test --seed 0:*)",
+      "Bash(timeout 90 mix test --seed 0 --failed)",
+      "Bash(timeout 30 mix test --only doctest:*)",
+
+      // --- Mix Database ---
+      "Bash(MIX_ENV=test mix ash_postgres.create:*)",
+      "Bash(MIX_ENV=test mix ash_postgres.migrate:*)",
+      "Bash(MIX_ENV=test mix ash_postgres.generate_migrations:*)",
+      "Bash(MIX_ENV=test mix ecto.migrate:*)",
+
+      // --- GitHub CLI ---
+      "Bash(gh run view:*)",   // View workflow runs
+      "Bash(gh run list:*)",   // List workflow runs
+
+      // --- Web Resources ---
+      "WebFetch(domain:hex.pm)",       // Hex package manager
+      "WebFetch(domain:hexdocs.pm)",   // Hex documentation
+      "WebFetch(domain:github.com)",   // GitHub
+      "WebFetch(domain:daisyui.com)",  // DaisyUI docs
+      "WebSearch",                     // General web search
+
+      // --- TideWave MCP Tools ---
+      "mcp__tidewave__get_docs",              // Get Elixir/Hex docs
+      "mcp__tidewave__search_package_docs",   // Search package docs
+      "mcp__tidewave__project_eval",          // Evaluate Elixir code
+      "mcp__tidewave__get_logs",              // Get application logs
+      "mcp__tidewave__get_ecto_schemas",      // List Ecto schemas
+
+      // --- Ash AI MCP Tools ---
+      "mcp__ash_ai__list_generators",         // List Ash generators
+      "mcp__ash_ai__list_ash_resources",      // List Ash resources
+
+      // --- Playwright MCP Tools ---
+      "mcp__playwright__browser_navigate",           // Navigate to URL
+      "mcp__playwright__browser_resize",             // Resize browser window
+      "mcp__playwright__browser_take_screenshot",    // Take screenshots
+      "mcp__playwright__browser_evaluate",           // Execute JavaScript
+      "mcp__playwright__browser_press_key",          // Press keyboard keys
+      "mcp__playwright__browser_console_messages",   // Get console logs
+      "mcp__playwright__browser_click",              // Click elements
+      "mcp__playwright__browser_snapshot",           // Take accessibility snapshot
+      "mcp__playwright__browser_navigate_back",      // Navigate back
+      "mcp__playwright__browser_type",               // Type text
+      "mcp__playwright__browser_close",              // Close browser
+
+      // --- Context7 MCP Tools ---
+      "mcp__context7__resolve-library-id",    // Resolve library ID
+      "mcp__context7__get-library-docs"       // Get library documentation
+    ],
+
+    // --- DENIED TOOLS ---
+    // Security restrictions - block access to sensitive directories
+    "deny": [
+      // Block .ignore directory (private notes/scratch)
+      "Read(.ignore/*)",
+      "Read(.ignore)",
+      "Glob(.ignore/*)",
+      "Grep(.ignore/*)",
+      "LS(.ignore)",
+      "Edit(.ignore/*)",
+      "Write(.ignore/*)",
+      "MultiEdit(.ignore/*)",
+
+      // Block .dev_docs directory (personal development notes)
+      "Read(.dev_docs/*)",
+      "Read(.dev_docs)",
+      "Glob(.dev_docs/*)",
+      "Grep(.dev_docs/*)",
+      "LS(.dev_docs)",
+      "Edit(.dev_docs/*)",
+      "Write(.dev_docs/*)",
+      "MultiEdit(.dev_docs/*)"
+    ]
+  }
+}

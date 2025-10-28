@@ -52,11 +52,12 @@
 - Run `make security` (`mix deps.audit` + `sobelow`) before releases.
 
 ## Agents & MCP Instructions
-- MCP servers configured in `.codex/config.toml` (project-local): `tidewave`, `ash_ai`, `playwright`, `context7`.
+- MCP servers configured project-locally for both Claude Code and Codex CLI
+  - **Claude Code**: `.claude/settings.json` (team-shared configuration)
+  - **Codex CLI**: `.codex/config.toml` (21 agent profiles)
 - Keep Phoenix running; don't start/stop from MCP sessions.
 - Key tools: `mcp__tidewave__project_eval`, `mcp__tidewave__get_docs`, `mcp__ash_ai__list_generators`.
 - Flow: query → generate (Ash) → customize → `make quality-full`. See `CLAUDE.md` for details.
-- **Codex CLI**: Configuration is project-local in `.codex/config.toml`. Just clone the repo and run `codex` from the project root - no setup needed! See `docs/codex_profiles.md` for full profile matrix.
 
 ## Codex CLI Setup (Project-Local Configuration)
 > **✅ Self-Contained**: All Codex configuration lives in `.codex/config.toml` at the project root. No global config changes needed!
@@ -84,3 +85,38 @@ codex mcp list                           # List all MCP servers
 - **Migration**: See `scripts/codex/MIGRATION.md` for history and rollback procedures
 
 **Troubleshooting**: See `dev_docs/codex_mcp_troubleshooting.md` for common issues and solutions.
+
+## Claude Code Setup (Project-Local Configuration)
+> **✅ Self-Contained**: All Claude Code configuration lives in `.claude/settings.json` at the project root, parallel to `.codex/config.toml`.
+
+**Quick Start**:
+```bash
+cd /path/to/xTweak
+claude                                   # Automatically reads .claude/settings.json
+```
+
+**Configuration Details**:
+- **Location**: `.claude/settings.json` (project-local, version controlled, well-commented)
+- **MCP Servers**: Same 4 servers as Codex CLI
+  - TideWave (HTTP): `http://127.0.0.1:4000/tidewave/mcp`
+  - Ash AI (HTTP): `http://127.0.0.1:4000/ash_ai/mcp`
+  - Playwright (stdio): `npx @playwright/mcp --browser msedge`
+  - Context7 (stdio): `npx -y @upstash/context7-mcp`
+- **Permissions**: Pre-configured for xTweak development (mix commands, tests, MCP tools)
+- **Format**: JSONC (JSON with Comments) for readability
+
+**File Structure**:
+```
+.claude/
+├── settings.json       ← Team-shared config (this file!)
+├── agents/             ← Custom Claude Code agents
+├── commands/           ← Slash commands
+└── patterns/           ← Reusable patterns
+```
+
+**Personal Overrides** (optional):
+Create `.claude/settings.local.json` for personal preferences (automatically gitignored).
+
+**Parallel Structure**:
+- `.codex/config.toml` ↔ `.claude/settings.json`
+- Both project-local, both version controlled, both team-shared!
