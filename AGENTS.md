@@ -87,28 +87,37 @@ codex mcp list                           # List all MCP servers
 **Troubleshooting**: See `dev_docs/codex_mcp_troubleshooting.md` for common issues and solutions.
 
 ## Claude Code Setup (Project-Local Configuration)
-> **✅ Self-Contained**: All Claude Code configuration lives in `.claude/settings.json` at the project root, parallel to `.codex/config.toml`.
+> **✅ Self-Contained**: Claude Code configuration uses TWO files at the project root.
 
 **Quick Start**:
 ```bash
 cd /path/to/xTweak
-claude                                   # Automatically reads .claude/settings.json
+claude                                   # Automatically reads .mcp.json and .claude/settings.json
 ```
 
-**Configuration Details**:
-- **Location**: `.claude/settings.json` (project-local, version controlled, well-commented)
-- **MCP Servers**: Same 4 servers as Codex CLI
-  - TideWave (HTTP): `http://127.0.0.1:4000/tidewave/mcp`
-  - Ash AI (HTTP): `http://127.0.0.1:4000/ash_ai/mcp`
-  - Playwright (stdio): `npx @playwright/mcp --browser msedge`
-  - Context7 (stdio): `npx -y @upstash/context7-mcp`
-- **Permissions**: Pre-configured for xTweak development (mix commands, tests, MCP tools)
-- **Format**: JSONC (JSON with Comments) for readability
+**Configuration Files**:
+1. **`.mcp.json`** (project root, required by Claude Code)
+   - Defines MCP server connections (TideWave, Ash AI, Playwright, Context7)
+   - Must be in project root (Claude Code requirement)
+   - Version controlled, team-shared
+
+2. **`.claude/settings.json`** (project-local, well-commented)
+   - Controls which MCP servers to enable from `.mcp.json`
+   - Pre-configured permissions for xTweak development
+   - Version controlled, team-shared
+   - Format: JSONC (JSON with Comments) for readability
+
+**MCP Servers** (defined in `.mcp.json`):
+- TideWave (HTTP): `http://127.0.0.1:4000/tidewave/mcp`
+- Ash AI (HTTP): `http://127.0.0.1:4000/ash_ai/mcp`
+- Playwright (stdio): `npx @playwright/mcp --browser msedge`
+- Context7 (stdio): `npx -y @upstash/context7-mcp`
 
 **File Structure**:
 ```
+.mcp.json               ← MCP server definitions (required by Claude Code)
 .claude/
-├── settings.json       ← Team-shared config (this file!)
+├── settings.json       ← Permissions & MCP enablement
 ├── agents/             ← Custom Claude Code agents
 ├── commands/           ← Slash commands
 └── patterns/           ← Reusable patterns
@@ -117,6 +126,7 @@ claude                                   # Automatically reads .claude/settings.
 **Personal Overrides** (optional):
 Create `.claude/settings.local.json` for personal preferences (automatically gitignored).
 
-**Parallel Structure**:
-- `.codex/config.toml` ↔ `.claude/settings.json`
-- Both project-local, both version controlled, both team-shared!
+**Why Two Files?**
+- Claude Code requires `.mcp.json` at project root for MCP server discovery
+- `.claude/settings.json` controls permissions and which servers to enable
+- Similar to how `.codex/config.toml` works for Codex CLI (but all-in-one)

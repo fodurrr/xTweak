@@ -15,47 +15,24 @@
   // =================================================================
   // MCP (Model Context Protocol) Servers
   // =================================================================
-  // These servers provide additional context and tools to Claude Code.
-  // Ensure Phoenix server is running on port 4000 for HTTP servers.
+  // IMPORTANT: MCP server definitions are in .mcp.json (project root)
+  // Claude Code requires .mcp.json to be at the project root.
+  //
+  // This file (.claude/settings.json) only controls:
+  //   - Which servers from .mcp.json to enable
+  //   - Tool permissions for those servers
+  //
+  // Configured servers (see .mcp.json for details):
+  //   - tidewave: Elixir/Phoenix project evaluation (HTTP)
+  //   - ash_ai: Ash Framework generators (HTTP)
+  //   - playwright: Browser automation (stdio)
+  //   - context7: Library documentation (stdio)
+  // =================================================================
 
-  "mcpServers": {
-    // TideWave - Elixir/Phoenix project evaluation and documentation
-    // Provides: project_eval, get_docs, search_package_docs, get_logs, etc.
-    "tidewave": {
-      "type": "http",
-      "url": "http://127.0.0.1:4000/tidewave/mcp"
-    },
-
-    // Ash AI - Ash Framework generators and resource management
-    // Provides: list_ash_resources, list_generators, get_usage_rules
-    "ash_ai": {
-      "type": "http",
-      "url": "http://127.0.0.1:4000/ash_ai/mcp"
-    },
-
-    // Playwright - Browser automation and UI testing
-    // Provides: browser navigation, screenshots, console capture
-    "playwright": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["@playwright/mcp", "--browser", "msedge"],
-      "env": {}
-    },
-
-    // Context7 - Library documentation and code examples
-    // Provides: resolve-library-id, get-library-docs (DaisyUI, Cytoscape, etc.)
-    "context7": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"],
-      "env": {}
-    }
-  },
-
-  // Enable all project-scoped MCP servers defined above
+  // Enable all project-scoped MCP servers from .mcp.json
   "enableAllProjectMcpServers": true,
 
-  // Explicitly enable these MCP servers (matches mcpServers keys)
+  // Explicitly enable these MCP servers (must match keys in .mcp.json)
   "enabledMcpjsonServers": [
     "tidewave",
     "ash_ai",
