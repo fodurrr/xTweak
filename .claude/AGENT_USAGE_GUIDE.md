@@ -30,6 +30,7 @@
 | `security-reviewer` | High-confidence security assessment | Findings with repro steps, remediation plan, confidence scores | Implementation owners, `code-review-implement` |
 | `pattern-librarian` | Audit pattern library & agent compliance | Updated pattern versions, compliance report, changelog entry | Agent owners, `docs-maintainer` |
 | `agent-architect` | Design or refactor agent prompts/system messages | JSON agent spec, pattern stack references, follow-up tasks | Implement new agent, update docs |
+| `tools-config-guardian` | Verify CLI configs, test MCP servers, check tool versions | Configuration health report, version comparison, breaking changes, recommendations | `docs-maintainer` (if updates needed) |
 
 ## Launch Protocol
 1. **Clarify scope** – Confirm the request maps to exactly one agent. Split work if necessary.
@@ -51,6 +52,14 @@
 - Every agent triggers `self-check-core` before responding—ensure it passes.
 - Capture command output or screenshots for each significant claim.
 - List unaddressed issues explicitly; silence implies completion.
+
+## Maintenance & Verification
+
+Run `tools-config-guardian` monthly or after tool updates to:
+- Verify Claude Code + Codex CLI configurations are valid
+- Test all MCP servers (TideWave, Ash AI, Playwright, Context7)
+- Check for tool version updates and breaking changes
+- Validate documentation accuracy and flow
 
 ## Need a New Agent?
 Launch `agent-architect` with:

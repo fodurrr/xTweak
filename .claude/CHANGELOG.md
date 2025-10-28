@@ -1,7 +1,31 @@
 # Claude CLI Change Log
 
 ## 2025-10-28
-- **Codex CLI Configuration Simplification (Phase 2):** Simplified configuration from `scripts/codex/local/` to project-local `.codex/config.toml`
+
+### Documentation Flow Refactoring
+- **Established one-way tree structure:** Removed circular links between documentation files
+- **Entry point hierarchy:** CLAUDE.md, AGENTS.md → docs/README.md → reference materials
+- **DEV_PREFERENCES.md priority:** Established as mandatory first read for all AI tools
+- **Created docs/README.md:** Central documentation hub linking to all guides and references
+- **Simplified navigation:** Entry points link down only, hubs never link back to entry points
+- **Files modified:** CLAUDE.md, AGENTS.md, docs/README.md (new), .claude/README.md, README.md, DEV_PREFERENCES.md (new)
+- **Result:** Clean information flow with no circular dependencies (entry → hub → references)
+
+### New Agent: tools-config-guardian
+- **Purpose:** Verify Claude Code and Codex CLI configurations stay current with latest tool versions
+- **Key features:**
+  - Configuration validation (JSON/TOML syntax, schema correctness)
+  - MCP server health checks (all 4 servers: TideWave, Ash AI, Playwright, Context7)
+  - Documentation accuracy validation (structure + content)
+  - Version tracking via web research (detect breaking changes)
+  - Generates timestamped reports in `.claude/agent-reports/`
+- **Usage:** Run monthly or after major tool updates
+- **Integration:** Can delegate to `docs-maintainer` for documentation fixes
+- **Pattern stack:** All 8 core patterns (placeholder-basics, phase-zero-context, mcp-tool-discipline, self-check-core, dual-example-bridge, context-handling, collaboration-handoff, error-recovery-loop)
+- **Updated:** AGENT_USAGE_GUIDE.md with new agent row and Maintenance section
+
+### Codex CLI Configuration Simplification (Phase 2)
+- **Simplified configuration:** From `scripts/codex/local/` to project-local `.codex/config.toml`
   - Created `.codex/config.toml` with all 21 profiles and MCP server configurations at project root
   - Removed obsolete files: `scripts/codex/config.xtweak.toml` (template), `scripts/codex/setup.sh` (setup script), `scripts/codex/local/` (entire directory)
   - Updated `.gitignore` to properly handle `.codex/` directory (keep config, ignore cache/sessions)
