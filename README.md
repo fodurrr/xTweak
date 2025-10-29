@@ -30,8 +30,8 @@ xTweak is built as an **Elixir umbrella application** with four independent apps
 
 ### Prerequisites
 
-- **Elixir** 1.18.1+
-- **Erlang/OTP** 27.2+
+- **Elixir** 1.19.1+ (upgraded October 2025)
+- **Erlang/OTP** 28.1+ (upgraded October 2025)
 - **PostgreSQL** 14+ (tested with 16)
 - **Node.js** 18+ (for asset compilation)
 
@@ -98,7 +98,7 @@ mix dialyzer
 
 ### Tech Stack
 
-- **Elixir** 1.18.1+ - Functional programming language
+- **Elixir** 1.19.1+ with **OTP** 28.1+ - Functional programming language with enhanced type checking
 - **Phoenix** 1.8+ with **LiveView** 1.1+ - Real-time web applications
 - **Ash Framework** 3.7+ - Resource-based application framework
 - **AshPostgres** 2.6+ - PostgreSQL data layer

@@ -1,0 +1,87 @@
+Phases 3-5: Dependency Update Strategy
+======================================
+
+## Current Status
+
+### Phase 3: Phoenix & LiveView ✅ COMPLETE
+- Phoenix: 1.8.1 (latest stable)
+- Phoenix LiveView: 1.1.16 (latest)
+- Phoenix HTML: 4.3.0 (latest)
+- Phoenix Live Dashboard: 0.8.7 (latest)
+- Phoenix Live Reload: 1.6.1 (latest)
+**Action: NONE NEEDED - All up-to-date**
+
+### Phase 4: Ash Framework ✅ COMPLETE
+- ash: 3.7.6 (latest)
+- ash_postgres: 2.6.23 (latest)
+- ash_authentication: 4.12.0 (latest)
+- ash_phoenix: 2.3.17 (latest)
+**Action: NONE NEEDED - All up-to-date**
+
+### Phase 5: Other Dependencies
+
+#### Low-Risk Update (RECOMMENDED):
+1. **ash_ai** (dev-only)
+   - Current: 0.2.14
+   - Target: 0.3.0
+   - Risk: LOW (dev dependency, minor version)
+   - Action: UPDATE
+
+#### Medium-Risk Updates (INVESTIGATE):
+2. **tailwind**
+   - Current: 0.2.4
+   - Target: 0.4.1
+   - Jump: 0.2 → 0.4 (two minor versions)
+   - Risk: MEDIUM (build tool, could affect CSS compilation)
+   - Action: INVESTIGATE breaking changes, then decide
+
+3. **gettext**
+   - Current: 0.26.2
+   - Target: 1.0.0
+   - Jump: MAJOR version
+   - Risk: MEDIUM-HIGH (i18n library, breaking changes expected)
+   - Action: INVESTIGATE breaking changes, then decide
+
+## Test Baseline (Before Updates)
+✅ All tests passing: 14/14
+- xtweak_docs: 2 tests
+- xtweak_ui: 1 test
+- xtweak_core: 9 tests (6 doctests + 3)
+- xtweak_web: 2 tests
+
+## Recommended Approach
+
+### Conservative (RECOMMENDED for production):
+1. Update ash_ai only (dev dependency, low risk)
+2. Document gettext and tailwind as "deferred updates"
+3. Plan separate upgrade cycles for gettext 1.0 and tailwind 0.4
+4. Focus on Elixir 1.19.1 modernization and performance gains
+
+### Aggressive (if time permits):
+1. Update ash_ai
+2. Research tailwind 0.2 → 0.4 breaking changes
+3. If tailwind safe, update and test
+4. Research gettext 1.0 breaking changes
+5. If gettext safe, update and test
+
+## Decision: CONSERVATIVE APPROACH
+
+Rationale:
+- Primary goal is Elixir 1.19.1 upgrade ✅ COMPLETE
+- Phoenix already on latest ✅ COMPLETE
+- Ash already on latest ✅ COMPLETE
+- All tests passing ✅ COMPLETE
+- Zero security vulnerabilities ✅ COMPLETE
+- Gettext and tailwind updates can be separate initiatives
+- Minimize risk by focusing on core platform upgrade
+
+## Actions Taken
+1. ✅ Update ash_ai: 0.2.14 → 0.3.0
+2. ⏸️ Defer gettext: 0.26.2 → 1.0.0 (track for future)
+3. ⏸️ Defer tailwind: 0.2.4 → 0.4.1 (track for future)
+
+## Future Tracking
+Create issues/tasks for:
+- [ ] Investigate and upgrade gettext to 1.0.0
+- [ ] Investigate and upgrade tailwind to 0.4.1
+- [ ] Review any other "Update not possible" dependencies

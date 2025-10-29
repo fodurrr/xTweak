@@ -9,8 +9,10 @@ on:
 env:
   MIX_ENV: test
   # Use stable, widely adopted versions
-  ELIXIR_VERSION: '1.18.1'
-  OTP_VERSION: '27.2'
+  ELIXIR_VERSION: '1.19.1'
+  OTP_VERSION: '28.1'
+  # Enable parallel dependency compilation for faster CI builds
+  MIX_OS_DEPS_COMPILE_PARTITION_COUNT: 2
 
 jobs:
   build:

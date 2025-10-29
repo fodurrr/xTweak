@@ -1,0 +1,10 @@
+==> xtweak_docs
+Generated xtweak_docs app
+==> xtweak_core
+Generated xtweak_core app
+==> xtweak_ui
+Generated xtweak_ui app
+==> xtweak_web
+Compiling 15 files (.ex)
+Generated xtweak_web app
+No vulnerabilities found.
