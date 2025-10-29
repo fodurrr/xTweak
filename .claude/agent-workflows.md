@@ -2,6 +2,35 @@
 
 Each flow assumes the **Core Pattern Stack** is loaded and `mcp-verify-first` has supplied verified context. Adjust as needed but keep patterns + quality gates intact.
 
+## Model Selection Strategy
+
+**Default Model Assignment**:
+- **Sonnet 4.5**: Research, planning, analysis, coordination, complex reasoning (17 agents)
+- **Haiku 4.5**: Bounded implementation tasks with clear patterns (6 agents)
+
+**Haiku Agents** (cost-optimized, auto-escalate on complexity):
+- `mcp-verify-first` - Structured MCP context gathering
+- `docs-maintainer` - Markdown editing and changelog updates
+- `code-review-implement` - Applying structured review feedback
+- `database-migration-specialist` - Schema-focused SQL generation
+- `pattern-librarian` - Pattern compliance auditing
+- `monitoring-setup` - Telemetry configuration
+
+**When Haiku Escalates**:
+- Compile errors requiring deep analysis
+- Test failures with unclear root cause
+- MCP server errors after retry
+- Pattern interpretation ambiguity
+- Complex architectural decisions
+
+**Escalation Process**:
+1. Haiku agent encounters complexity beyond its capabilities
+2. Agent outputs structured escalation message with context
+3. User re-runs same agent with `--model sonnet` flag
+4. Sonnet receives full context from Haiku's attempt
+
+See `.claude/MODEL_SELECTION_STRATEGY.md` for full rationale and cost analysis.
+
 ## Code Quality Pipeline
 - **Sequence**: `mcp-verify-first` → `code-reviewer` → `code-review-implement` → `code-reviewer`
 - **Why**: Separates diagnosis from execution, ensuring clean reports before and after fixes.
@@ -98,3 +127,132 @@ Each flow assumes the **Core Pattern Stack** is loaded and `mcp-verify-first` ha
 - **Highlights**:
   - Librarian updates `.claude/CHANGELOG.md` and identifies follow-up work.
   - Documentation team mirrors any pattern changes in developer guides.
+
+---
+
+## Decision Trees for Common Scenarios
+
+### New Feature Implementation
+```
+START
+  ↓
+Is context verified? → NO → Run mcp-verify-first (Haiku)
+  ↓ YES
+Does it need backend? → YES → ash-resource-architect (Sonnet)
+  ↓ NO                        ↓
+Does it need frontend? → YES → frontend-design-enforcer (Sonnet)
+  ↓ BOTH                      ↓
+                        test-builder (Sonnet)
+                              ↓
+                        code-reviewer (Sonnet)
+                              ↓
+                    Does review pass? → NO → code-review-implement (Haiku)
+                              ↓ YES                    ↓
+                        security-reviewer (Sonnet)     ↓
+                              ↓                         ↓
+                        docs-maintainer (Haiku) ←──────┘
+                              ↓
+                           DONE
+```
+
+### Bug Fix with Known Root Cause
+```
+START
+  ↓
+Is context verified? → NO → mcp-verify-first (Haiku)
+  ↓ YES
+Can I reproduce? → NO → test-builder (Sonnet) to create reproduction
+  ↓ YES
+Is fix straightforward? → YES → code-review-implement (Haiku)
+  ↓ NO                              ↓
+Domain agent (Sonnet)               ↓
+  ↓                                 ↓
+test-builder (Sonnet) ←─────────────┘
+  ↓
+code-reviewer (Sonnet)
+  ↓
+DONE
+```
+
+### Documentation Update
+```
+START
+  ↓
+Is scope clear? → NO → Ask user for clarification
+  ↓ YES
+docs-maintainer (Haiku)
+  ↓
+Did formatting succeed? → NO → Escalate to Sonnet
+  ↓ YES
+DONE
+```
+
+### Database Migration
+```
+START
+  ↓
+Is context verified? → NO → mcp-verify-first (Haiku)
+  ↓ YES
+database-migration-specialist (Haiku)
+  ↓
+Did migration generate? → NO → Escalate to Sonnet (complex schema)
+  ↓ YES
+test-builder (Sonnet) for validation
+  ↓
+release-coordinator (Sonnet)
+  ↓
+DONE
+```
+
+### Code Review Implementation
+```
+START (have review report)
+  ↓
+code-review-implement (Haiku)
+  ↓
+Did compile succeed? → NO → Escalate to Sonnet
+  ↓ YES
+Did tests pass? → NO → Escalate to Sonnet
+  ↓ YES
+code-reviewer (Sonnet) for verification
+  ↓
+DONE
+```
+
+### Pattern Compliance Audit
+```
+START
+  ↓
+pattern-librarian (Haiku)
+  ↓
+Found version conflicts? → YES → Escalate to Sonnet
+  ↓ NO
+docs-maintainer (Haiku) for changelog
+  ↓
+DONE
+```
+
+## Recognizing Escalation Signals
+
+**Visual Indicator**: All Haiku agents output escalation messages in this format:
+```markdown
+⚠️ HAIKU ESCALATION RECOMMENDED
+
+**Error Type**: [specific category]
+**Details**: [what went wrong]
+**What I Attempted**: [what was tried]
+**Why Escalation Needed**: [why Sonnet is required]
+**Suggested Action**: Re-run [agent-name] with Sonnet model
+**Context for Sonnet**: [specific context to preserve]
+```
+
+**When You See This**:
+1. Copy the escalation context
+2. Re-run: `@agent-name --model sonnet` (if Claude Code supports flag)
+3. Or manually invoke agent with Sonnet in a new conversation
+4. Paste escalation context for continuity
+
+**Cost vs Quality Decision**:
+- **Try Haiku first** when task is repetitive, well-structured, or follows established patterns
+- **Start with Sonnet** when task requires architectural decisions, complex reasoning, or involves ambiguous requirements
+- **Accept escalation** when Haiku encounters its limits - this is expected and intentional

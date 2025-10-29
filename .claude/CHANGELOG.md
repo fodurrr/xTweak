@@ -1,5 +1,78 @@
 # Claude CLI Change Log
 
+## 2025-10-29
+
+### Model Selection Strategy Implementation
+
+**Strategic Change:** Introduced cost optimization strategy converting 26% of agent fleet (6 agents) to Haiku 4.5 with structured escalation to Sonnet 4.5.
+
+**Philosophy:**
+- **Haiku 4.5:** Bounded implementation tasks with clear patterns (~90% cheaper than Sonnet)
+- **Sonnet 4.5:** Architecture, analysis, coordination, complex reasoning (baseline cost)
+- **Escalation:** Automatic via structured error messages when Haiku encounters complexity
+
+**Converted Agents (6):**
+1. `mcp-verify-first` v1.2.0 - Structured MCP context gathering
+2. `docs-maintainer` v1.1.0 - Markdown editing and changelog updates
+3. `code-review-implement` v1.2.0 - Applying structured review feedback
+4. `database-migration-specialist` v1.1.0 - Schema-focused SQL generation
+5. `pattern-librarian` v1.1.0 - Pattern compliance auditing
+6. `monitoring-setup` v1.1.0 - Telemetry configuration
+
+**New Pattern:**
+- `error-recovery-haiku` v1.0.0 - Haiku-specific error handling with escalation format
+
+**Updated Patterns:**
+- `self-check-core` v1.1.0 - Added model-specific workflow validation checkpoints
+
+**Documentation Updates:**
+- `.claude/MODEL_SELECTION_STRATEGY.md` (new) - Complete philosophy, agent assignments, cost analysis
+- `.claude/agent-workflows.md` - Added model selection overview, decision trees, escalation recognition
+- `.claude/AGENT_USAGE_GUIDE.md` - Added model selection matrix with cost factors and escalation patterns
+- `docs/claude/quick-reference.md` - Added model selection quick reference with agent cheat sheet
+
+**Expected Impact:**
+- 26% of agent fleet on Haiku (targeting 40-50% of execution volume)
+- 30-40% cost reduction with <10% escalation rate
+- Maintains quality through automatic escalation on complexity
+
+**Escalation Triggers:**
+- Compile errors requiring deep analysis
+- Test failures with unclear root cause
+- MCP server errors after retry
+- Pattern interpretation ambiguity
+- Complex architectural decisions
+
+**All Haiku agents now:**
+- Include `error-recovery-haiku@1.0.0` in pattern-stack
+- Document agent-specific escalation triggers
+- Provide structured escalation output format
+- Include pre-escalation checklist
+
+### New Agent: nuxt-ui-expert
+- **Purpose:** Read-only Nuxt UI component API research via MCP server
+- **Key features:**
+  - Queries Nuxt UI MCP server (`nuxt-ui-remote`) for component specifications
+  - Extracts props, slots, events, variants, sizes, and colors
+  - Returns dual-format output: markdown tables (human-readable) + JSON schema (machine-readable)
+  - Documents accessibility patterns (ARIA, keyboard navigation, screen reader support)
+  - Strict read-only mode: NO implementation recommendations or code generation
+- **MCP servers:** nuxt-ui-remote (primary), context7 (fallback)
+- **Pattern stack:** placeholder-basics, phase-zero-context, mcp-tool-discipline, self-check-core, dual-example-bridge
+- **Integration:** Designed to feed structured component data to `frontend-design-enforcer` for implementation
+- **Output template:** Standardized format with overview, props table, slots, events, variants, accessibility notes, and JSON schema
+- **Use cases:**
+  - Pre-implementation component API research
+  - Design system component comparison
+  - Accessibility pattern documentation
+  - Multi-agent workflows (research → implementation → testing)
+- **Updated files:**
+  - `.claude/agents/nuxt-ui-expert.md` (new agent)
+  - `.claude/AGENT_USAGE_GUIDE.md` (added to Quick Selection Matrix and Pattern Shortcuts)
+  - `docs/codex_profiles.md` (added xtweak-nuxt-ui-expert profile)
+  - `docs/claude/quick-reference.md` (added to Agent Cheat Sheet)
+  - `.claude/CHANGELOG.md` (this entry)
+
 ## 2025-10-28
 
 ### Documentation Flow Refactoring

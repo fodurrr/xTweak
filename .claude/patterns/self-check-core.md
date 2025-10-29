@@ -1,7 +1,7 @@
 ---
 title: Self-Check Core
-version: 1.0.0
-updated: 2025-10-02
+version: 1.1.0
+updated: 2025-10-29
 tags:
   - core
 ---
@@ -44,8 +44,43 @@ Provide a compact verification list every agent must run before returning result
 ```
 
 ## Extension Points
-- Append agent-specific checks (e.g., “LiveView UI visually verified?”) beneath the core list.
+- Append agent-specific checks (e.g., "LiveView UI visually verified?") beneath the core list.
 - For automation workflows, integrate with Todo lists generated via `TodoWrite`.
 
+## Model-Specific Workflow Validation
+
+### For Haiku Agents
+Before completing a Haiku agent execution, verify:
+
+1. **Stayed Within Scope?**
+   - Task remained bounded and implementation-focused
+   - No architectural decisions or ambiguous requirements encountered
+
+2. **Escalation Criteria Checked?**
+   - If compile errors: documented and escalated?
+   - If test failures: root cause clear or escalated?
+   - If MCP errors: retried once, then escalated?
+   - If pattern unclear: escalated rather than guessed?
+
+3. **Escalation Format Used?**
+   - If escalating, used structured `⚠️ HAIKU ESCALATION RECOMMENDED` format
+   - Provided specific context for Sonnet continuation
+
+### For Sonnet Agents
+Before completing a Sonnet agent execution, verify:
+
+1. **Judgment Calls Documented?**
+   - Architectural decisions explained with rationale
+   - Trade-offs considered and documented
+
+2. **Complexity Handled?**
+   - Ambiguous requirements clarified or addressed
+   - Complex patterns applied correctly
+
+3. **Handoff Ready?**
+   - If delegating to Haiku agent, scope is clear and bounded
+   - Provided structured context via `collaboration-handoff`
+
 ## Change Log
+- v1.1.0 (2025-10-29) – Added model-specific workflow validation for Haiku/Sonnet agents
 - v1.0.0 – Consolidated from legacy self-correction checklist pattern.

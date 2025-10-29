@@ -33,7 +33,7 @@
 * **Linux (Ubuntu & Fedora latest)**
 * **WSL2**
 * **Multi-agent AI coding:** Gemini CLI, Codex CLI, Claude Code, Kilo Code with GLM 4.5
-* **Elixir ecosystem:** Elixir, ASH Framework, Phoenix, Erlang BEAM & OTP, DaisyUI (for UI)
+* **Elixir ecosystem:** Elixir, ASH Framework, Phoenix, Erlang BEAM & OTP
 
 ---
 

@@ -24,7 +24,7 @@
 - **Umbrella apps**: `xtweak_core` (Ash domain logic), `xtweak_web` (Phoenix + LiveView), `xtweak_docs` (documentation), `xtweak_ui` (component library).
 - **Domain module**: `XTweak.Core`.
 - **Web namespace**: `XTweakWeb`.
-- **Frontend stack**: Tailwind CSS + DaisyUI, validated with Playwright MCP tools.
+- **Frontend stack**: Tailwind CSS (no component framework), validated with Playwright MCP tools.
 - **Data layer**: Ash Framework 3.7.6+ over Postgres—no direct Ecto schemas or Repo calls.
 - **Recent updates**: Dependency upgrade completed (30 packages), Newsletter resource added with authorization policies, Dialyzer cleanup completed, CVE-2025-48043 security fix applied.
 
@@ -48,7 +48,7 @@
 ## Tooling Cheat Sheet
 - **Tidewave MCP**: `project_eval`, `get_docs`, `get_logs`, `search_package_docs`, `get_ecto_schemas`, `execute_sql_query` (debug only).
 - **Ash AI MCP**: `list_ash_resources`, `list_generators`, `get_usage_rules` (discovers usage rules from deps).
-- **Context7 MCP**: `resolve-library-id`, `get-library-docs` (DaisyUI, Cytoscape, etc.).
+- **Context7 MCP**: `resolve-library-id`, `get-library-docs` (Nuxt UI reference, Cytoscape, etc.).
 - **Playwright MCP**: browser navigation, screenshots, console capture for UI verification.
 
 ## Elixir/Ash Framework Rules

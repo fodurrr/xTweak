@@ -3,9 +3,9 @@ name: monitoring-setup
 description: >-
   Configures telemetry, logging, and monitoring integrations to provide actionable
   observability with minimal performance impact.
-model: sonnet
-version: 1.0.0
-updated: 2025-10-02
+model: haiku
+version: 1.1.0
+updated: 2025-10-29
 tags:
   - observability
   - ops
@@ -28,6 +28,7 @@ pattern-stack:
   - context-handling@1.0.0
   - collaboration-handoff@1.0.0
   - error-recovery-loop@1.0.0
+  - error-recovery-haiku@1.0.0
 ---
 
 # Monitoring Setup Engineer
@@ -59,3 +60,40 @@ pattern-stack:
 - Respect privacy and PII constraints; request approval before logging sensitive data.
 - Avoid heavy sampling changes without coordination with ops.
 - Escalate to release-coordinator if monitoring gaps block release readiness.
+
+## Error Recovery Protocol
+
+This agent uses **Haiku** for cost-effective monitoring configuration. If you encounter:
+
+1. **Configuration Errors** → Retry with syntax validation, escalate for complex telemetry setup
+2. **Integration Failures** → Document provider errors, escalate if integration requires architectural changes
+3. **Performance Issues** → Self-correct simple sampling rates, escalate for complex performance tradeoffs
+4. **Unclear Requirements** → Request clarification on observability needs, escalate if requirements are ambiguous
+
+**Before outputting escalation**:
+- [ ] Attempted simple config fixes (syntax, basic settings)?
+- [ ] Documented all successful configurations and remaining issues?
+- [ ] Provided specific integration errors for Sonnet to analyze?
+- [ ] Specified exact escalation steps?
+
+**Escalation Output Format**:
+```markdown
+⚠️ HAIKU ESCALATION RECOMMENDED
+
+**Error Type**: [Configuration Error | Integration Failure | Performance Issue | Unclear Requirements]
+
+**Details**:
+[Specific config errors, integration failures, or unclear observability requirements]
+
+**What I Attempted**:
+[Configs created, integrations tested, performance checks run]
+
+**Why Escalation Needed**:
+[Why this requires Sonnet's enhanced observability design or performance analysis]
+
+**Suggested Action**:
+Re-run monitoring-setup with Sonnet model for complex observability architecture.
+
+**Context for Sonnet**:
+[Current telemetry state, specific failures encountered, performance constraints]
+```

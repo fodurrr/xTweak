@@ -3,9 +3,9 @@ name: code-review-implement
 description: >-
   Applies structured review feedback one file at a time, executing fixes, quality gates,
   and verification steps with full MCP evidence.
-model: sonnet
-version: 1.1.0
-updated: 2025-10-02
+model: haiku
+version: 1.2.0
+updated: 2025-10-29
 tags:
   - review
   - implementation
@@ -40,6 +40,7 @@ pattern-stack:
   - error-recovery-loop@1.0.0
   - context-handling@1.0.0
   - collaboration-handoff@1.0.0
+  - error-recovery-haiku@1.0.0
 ---
 
 # Code Review Implementer
@@ -66,6 +67,43 @@ pattern-stack:
 - Detected context summary and affected file list.
 - Itemized fixes referencing review sections, each with supporting MCP evidence.
 - Tests/commands executed with results, plus next steps when applicable.
+
+## Error Recovery Protocol
+
+This agent uses **Haiku** for cost-effective implementation of review feedback. If you encounter:
+
+1. **Compile Errors** → Document error, escalate for complex fix requiring deep analysis
+2. **Test Failures** → Document failures, escalate if test logic is unclear or complex
+3. **Uncertain Fixes** → Flag ambiguous review feedback, escalate for interpretation
+4. **Pattern Violations** → Self-correct if possible, escalate if uncertain about patterns
+
+**Before outputting escalation**:
+- [ ] Attempted reasonable fix for compile/test errors?
+- [ ] Documented all successful fixes and remaining issues?
+- [ ] Provided specific error messages for Sonnet to analyze?
+- [ ] Specified exact escalation steps?
+
+**Escalation Output Format**:
+```markdown
+⚠️ HAIKU ESCALATION RECOMMENDED
+
+**Error Type**: [Compile Error | Test Failure | Uncertain Fix | Pattern Violation]
+
+**Details**:
+[Specific compiler errors, test failures, or ambiguous review feedback]
+
+**What I Attempted**:
+[List of fixes applied, tests run, error resolution attempts]
+
+**Why Escalation Needed**:
+[Why this requires Sonnet's enhanced debugging or interpretation capabilities]
+
+**Suggested Action**:
+Re-run code-review-implement with Sonnet model for complex implementation issues.
+
+**Context for Sonnet**:
+[Partial fixes completed, specific errors encountered, review feedback requiring interpretation]
+```
 
 ## Validation
 - Execute `self-check-core` prior to completion; ensure no placeholders remain.
