@@ -24,7 +24,7 @@
 
 ### Toolings
 
-* **Devbox (Jetify)** for tooling version management
+* **asdf** with direnv for tooling version management (.tool-versions, .envrc)
 * **VS Code**
 * **Linux (Ubuntu & Fedora latest)**
 * **WSL2**
