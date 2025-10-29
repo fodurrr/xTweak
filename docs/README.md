@@ -22,6 +22,10 @@ Complete index of all project documentation, guides, and references.
 ### Frontend Development
 - [Frontend Design Principles](./frontend_design_principles/frontend-design-principles.md) – DaisyUI + Tailwind workflows
 
+### Template Usage & Setup
+- [Template Initialization Guide](./guides/template-initialization.md) – How to use xTweak as a project template
+- [Project Renaming Guide](./guides/project-renaming.md) – Rename xTweak to your project name
+
 ### Elixir/Ash Framework
 
 **Usage Rules** - Package-specific AI guidance (auto-discovered via MCP):
@@ -59,6 +63,9 @@ docs/
 │   └── igniter.md              ← Code generation
 ├── frontend_design_principles/
 │   └── frontend-design-principles.md
+├── guides/
+│   ├── template-initialization.md  ← Template setup guide
+│   └── project-renaming.md         ← Renaming guide
 └── codex_profiles.md           ← 21 Codex CLI profiles
 
 .claude/

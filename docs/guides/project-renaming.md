@@ -119,26 +119,9 @@ git add -A
 git commit -m "Rename project from XTweak to YourProject"
 ```
 
-## Future Improvements
+## Alternative: Mix Task (Future)
 
-The automated `mix xtweak.rename` task is ready and waiting for umbrella support in Igniter. Once that's available, you'll be able to use:
-
-```bash
-# Interactive mode
-mix xtweak.rename
-
-# Automated mode
-mix xtweak.rename --to MyProject --yes
-
-# Preview changes
-mix xtweak.rename --to MyProject --dry-run
-```
-
-See the task's built-in help for all options:
-
-```bash
-mix help xtweak.rename
-```
+A Mix task version may be available in the future once Igniter adds full umbrella support. The standalone script above works perfectly today and is the recommended approach.
 
 ## Checklist
 

@@ -312,7 +312,7 @@ If you want module names different from app atoms:
 ```bash
 # Modules: MyCompany.Project.*
 # Apps: :my_proj_core, :my_proj_web
-mix xtweak.rename --to MyCompany.Project --app-prefix my_proj
+elixir scripts/rename_project.exs --to MyCompany.Project --prefix my_proj
 ```
 
 ### Skipping Documentation
@@ -320,7 +320,7 @@ mix xtweak.rename --to MyCompany.Project --app-prefix my_proj
 If you want to keep references to xTweak in docs:
 
 ```bash
-mix xtweak.rename --to MyProject --skip-docs
+elixir scripts/rename_project.exs --to MyProject --skip-docs
 ```
 
 ### Skipping Database Rename
@@ -328,7 +328,7 @@ mix xtweak.rename --to MyProject --skip-docs
 If you want to keep `xtweak_dev` database names:
 
 ```bash
-mix xtweak.rename --to MyProject --skip-db
+elixir scripts/rename_project.exs --to MyProject --skip-db
 ```
 
 ### Automated/CI Usage
@@ -336,7 +336,7 @@ mix xtweak.rename --to MyProject --skip-db
 For scripts or CI pipelines:
 
 ```bash
-mix xtweak.rename --to MyProject --yes --skip-docs
+elixir scripts/rename_project.exs --to MyProject --yes --skip-docs
 ```
 
 ## Manual Steps After Rename
@@ -460,10 +460,10 @@ git clone https://github.com/yourusername/xTweak.git my-new-project
 If you encounter issues during rename:
 
 1. **Check this guide**: Most common issues are documented above
-2. **Run with dry-run**: `mix xtweak.rename --to MyProject --dry-run`
-3. **Check logs**: Look for error messages in the rename output
-4. **Search for references**: `grep -ri "xtweak" apps/ lib/ config/`
-5. **Use the agent**: Run Claude Code with the `project-renamer` agent
+2. **Run with dry-run**: `elixir scripts/rename_project.exs --to MyProject --dry-run`
+3. **Check script docs**: See `scripts/README.md` for detailed usage
+4. **Check logs**: Look for error messages in the rename output
+5. **Search for references**: `grep -ri "xtweak" apps/ lib/ config/`
 6. **Open an issue**: https://github.com/yourusername/xTweak/issues
 
 ## Pro Tips
@@ -487,15 +487,15 @@ cd acme
 # Fresh git
 rm -rf .git && git init
 
-# Install deps
-mix deps.get
-cd apps/xtweak_web/assets && npm install && cd ../../..
-
-# Dry run to preview
-mix xtweak.rename --to Acme --dry-run
+# Rename first (before installing deps)
+elixir scripts/rename_project.exs --to Acme --dry-run
 
 # Looks good! Apply it
-mix xtweak.rename --to Acme
+elixir scripts/rename_project.exs --to Acme
+
+# Install deps
+mix deps.get
+cd apps/acme_web/assets && npm install && cd ../../..
 
 # Post-rename cleanup
 mix deps.get

@@ -37,7 +37,7 @@ xTweak is built as an **Elixir umbrella application** with four independent apps
 
 ### Using xTweak as a Template
 
-xTweak is designed to be cloned and renamed for new projects. Use the built-in rename task:
+xTweak is designed to be cloned and renamed for new projects. Use the standalone rename script:
 
 ```bash
 # 1. Clone the template
@@ -47,13 +47,13 @@ cd my-new-project
 # 2. Initialize fresh git history
 rm -rf .git && git init
 
-# 3. Install dependencies
+# 3. Rename the project (interactive, runs before installing deps)
+elixir scripts/rename_project.exs
+
+# 4. Install dependencies
 mix deps.get
 
-# 4. Rename the project (interactive)
-mix xtweak.rename
-
-# 5. Follow the prompts and post-rename steps
+# 5. Follow the post-rename steps
 ```
 
 See the **[Template Initialization Guide](./docs/guides/template-initialization.md)** for detailed instructions.
