@@ -33,7 +33,7 @@ xtweak_web/
 ## Getting Started
 
 ### Prerequisites
-- Elixir 1.18.1+
+- Elixir 1.19.1+
 - Node.js 18+ (for asset compilation)
 - Running `xtweak_core` app (for domain logic)
 

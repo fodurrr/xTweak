@@ -88,3 +88,12 @@ config :swoosh, :api_client, false
 config :xtweak_core, :token_signing_secret, "dev_secret_for_token_signing_replace_in_production"
 
 # Libcluster configuration removed - no longer needed for template
+
+# Elixir 1.19.1: Improved IEx pretty printing with new defaults
+config :iex,
+  inspect: [
+    # Elixir 1.19.1 increased default limit from 50 to 100
+    limit: 100,
+    # Enable pretty printing for better readability
+    pretty: true
+  ]

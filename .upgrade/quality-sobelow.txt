@@ -1,0 +1,19 @@
+Checking Sobelow version...
+
+##############################################
+#                                            #
+#          Running Sobelow - v0.14.1         #
+#  Created by Griffin Byatt - @griffinbyatt  #
+#     NCC Group - https://nccgroup.trust     #
+#                                            #
+##############################################
+
+[31mConfig.CSP: Missing Content-Security-Policy - High Confidence[0m
+File: apps/xtweak_web/lib/xtweak_web_web/router.ex
+Pipeline: browser
+Line: 10
+
+-----------------------------------------------
+
+... SCAN COMPLETE ...
+
