@@ -7,7 +7,6 @@ defmodule Mix.Tasks.Helpers.ProjectRenamer do
   transformations for non-Elixir files.
   """
 
-  alias Igniter.Code.Common
   alias Sourceror.Zipper
 
   @type rename_config :: %{
@@ -331,8 +330,6 @@ defmodule Mix.Tasks.Helpers.ProjectRenamer do
   @spec rename_mix_files(Igniter.t(), rename_config()) :: Igniter.t()
   def rename_mix_files(igniter, config) do
     %{
-      from_module: from_base,
-      to_module: to_base,
       from_app_prefix: from_prefix,
       to_app_prefix: to_prefix
     } = config

@@ -102,7 +102,6 @@ defmodule Mix.Tasks.Xtweak.Rename do
 
   @impl Igniter.Mix.Task
   def igniter(igniter) do
-    argv = igniter.args.argv
     options = igniter.args.options
 
     # Get or prompt for configuration

@@ -2,7 +2,9 @@
 
 ## Overview
 
-xTweak is designed to be used as a template for new Elixir/Phoenix projects. This guide explains how to clone xTweak and rename it to your own project name using the built-in `mix xtweak.rename` task.
+xTweak is designed to be used as a template for new Elixir/Phoenix projects. This guide explains how to clone xTweak and rename it to your own project name using the standalone `rename_project.exs` script.
+
+✅ **Automated Renaming Available**: Use `elixir scripts/rename_project.exs` to rename the entire project safely and quickly.
 
 ## Quick Start
 
@@ -17,13 +19,20 @@ git init
 git add .
 git commit -m "Initial commit from xTweak template"
 
-# 3. Install dependencies
+# 3. Rename the project (before installing deps!)
+elixir scripts/rename_project.exs
+
+# 4. Install dependencies
 mix deps.get
 
-# 4. Rename the project
-mix xtweak.rename
+# 5. Create databases and run tests
+MIX_ENV=dev mix ash_postgres.create
+MIX_ENV=test mix ash_postgres.create
+mix test
 
-# 5. Follow prompts and next steps
+# 6. Commit renamed project
+git add -A
+git commit -m "Rename project to MyProject"
 ```
 
 ## Detailed Walkthrough
@@ -46,52 +55,52 @@ git add .
 git commit -m "Initial commit from xTweak template"
 ```
 
-### Step 3: Install Dependencies
-
-```bash
-mix deps.get
-cd apps/xtweak_web/assets && npm install && cd ../../..
-```
-
-### Step 4: Run the Rename Task
+### Step 3: Run the Rename Script
 
 #### Interactive Mode (Recommended)
 
-The interactive mode will prompt you for all necessary information:
+The interactive mode will prompt you for the project name:
 
 ```bash
-mix xtweak.rename
+elixir scripts/rename_project.exs
 ```
 
-You'll be asked:
+You'll be prompted for:
 - **New project name** (PascalCase, e.g., `MyProject`)
-- **Update documentation?** (yes/no)
-- **Rename databases?** (yes/no)
 
-The task will show you a summary of planned changes and ask for confirmation.
+The script will show you a summary of planned changes and ask for confirmation.
 
 #### Non-Interactive Mode
 
 If you know exactly what you want:
 
 ```bash
-mix xtweak.rename --to MyProject --yes
+elixir scripts/rename_project.exs --to MyProject --yes
 ```
 
 Options:
 - `--to` - Target project name (required)
-- `--app-prefix` - Custom app atom prefix (default: snake_case of project name)
+- `--prefix` - Custom app atom prefix (default: snake_case of project name)
 - `--skip-docs` - Don't update documentation files
-- `--skip-db` - Don't rename database names
 - `--dry-run` - Preview changes without applying
 - `--yes` - Skip confirmation prompts
+- `--from` - Source project name (default: XTweak)
 
 #### Preview Changes (Dry Run)
 
 See what will change without applying:
 
 ```bash
-mix xtweak.rename --to MyProject --dry-run
+elixir scripts/rename_project.exs --to MyProject --dry-run
+```
+
+### Step 4: Install Dependencies
+
+After renaming, install dependencies:
+
+```bash
+mix deps.get
+cd apps/myproject_web/assets && npm install && cd ../../..
 ```
 
 ### Step 5: Post-Rename Steps
