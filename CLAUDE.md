@@ -47,9 +47,31 @@
 
 ## Tooling Cheat Sheet
 - **Tidewave MCP**: `project_eval`, `get_docs`, `get_logs`, `search_package_docs`, `get_ecto_schemas`, `execute_sql_query` (debug only).
-- **Ash AI MCP**: `list_ash_resources`, `list_generators`, `get_usage_rules`.
+- **Ash AI MCP**: `list_ash_resources`, `list_generators`, `get_usage_rules` (discovers usage rules from deps).
 - **Context7 MCP**: `resolve-library-id`, `get-library-docs` (DaisyUI, Cytoscape, etc.).
 - **Playwright MCP**: browser navigation, screenshots, console capture for UI verification.
+
+## Elixir/Ash Framework Rules
+- **Core**: [docs/elixir_rules/ash.md](./docs/elixir_rules/ash.md) – Ash fundamentals (resources, actions, policies, relationships)
+- **Data Layer**: [docs/elixir_rules/ash_postgres.md](./docs/elixir_rules/ash_postgres.md) – Database configuration & migrations
+- **Background Jobs**: [docs/elixir_rules/ash_oban.md](./docs/elixir_rules/ash_oban.md) – Oban triggers & scheduled actions
+- **Web Integration**: [docs/elixir_rules/ash_phoenix.md](./docs/elixir_rules/ash_phoenix.md) – Phoenix forms & LiveView patterns
+- **AI Integration**: [docs/elixir_rules/ash_ai.md](./docs/elixir_rules/ash_ai.md) – Vectorization, embeddings & MCP setup
+- **Code Generation**: [docs/elixir_rules/igniter.md](./docs/elixir_rules/igniter.md) – Igniter framework & AST manipulation
+
+## Usage Rules (Automatic Discovery)
+
+Package usage rules are **automatically discovered** via the Ash AI MCP server (`mcp__ash_ai__get_usage_rules`). No manual sync required!
+
+**How it works**:
+- MCP server scans `deps/` for `usage-rules.md` files
+- Currently available: 17 rule files from ash, phoenix, igniter, and more
+- Agents read relevant rules on-demand based on task context
+- Always current with installed package versions
+
+**Human-readable copies** maintained in `docs/elixir_rules/` for reference.
+
+**Update documentation**: Run `mix docs.rules` after dependency upgrades.
 
 ## Quality Gates & Commands
 ```bash
@@ -72,6 +94,7 @@ mix ash_postgres.generate_migrations
 - `.claude/agent-workflows.md` – recommended multi-agent sequences.
 - `.claude/CHANGELOG.md` – pattern library and agent change log.
 - `.claude/agent-reports/` – detailed reports from agent executions (dependency audits, reviews, etc.).
+- `docs/elixir_rules/` – Elixir/Ash framework rules and conventions.
 - [docs/README.md](./docs/README.md) – Complete documentation index with all guides
 
 Stay pattern-first, cite MCP evidence, and keep responses sharp and scannable.

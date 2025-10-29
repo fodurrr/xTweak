@@ -4,6 +4,7 @@
 - Load the **Core Pattern Stack** before launching any agent: `placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`.
 - Start ambiguous requests with `mcp-verify-first`; it produces a verified context packet for downstream agents.
 - Each agent declares its patterns in front matter (`pattern-stack`). Reference those files for full instructions.
+- For Elixir/Ash implementation rules, consult `docs/elixir_rules/` before generating code.
 
 ## Quick Selection Matrix
 
@@ -47,6 +48,27 @@
 - **Runtime debugging**: `beam-runtime-specialist` for OTP tracing and supervision advice.
 - **Testing**: `test-builder` + `error-recovery-loop` for flaky tests.
 - **Security sweeps**: `security-reviewer` (confidence-based findings only).
+- **Framework rules**: Reference `docs/elixir_rules/ash.md` for core patterns, `docs/elixir_rules/ash_postgres.md` for data layer, `docs/elixir_rules/igniter.md` for generators.
+
+## Usage Rules Integration
+
+**Automatic Discovery via MCP:**
+- Tool: `mcp__ash_ai__get_usage_rules`
+- Returns: All usage rules from installed packages with file paths
+- Agents should call this tool to discover available rules, then read relevant files
+
+**Available Rules (17 files):**
+- Core: ash, ash_postgres, ash_phoenix, ash_authentication, ash_json_api, ash_ai
+- Tools: igniter, spark, reactor, usage_rules (general elixir/otp)
+- Phoenix: main + 5 sub-rules (ecto, elixir, html, liveview, phoenix)
+
+**When to use:**
+- `ash-resource-architect`: Read ash.md, ash_postgres.md before designing resources
+- `frontend-design-enforcer`: Read phoenix/liveview.md, ash_phoenix.md for LiveView work
+- `code-reviewer`: Reference relevant rules for framework compliance checks
+- Any agent working with Ash/Phoenix: Discover and read contextually relevant rules
+
+**Human documentation:** `docs/elixir_rules/` contains curated copies for reference.
 
 ## Validation Expectations
 - Every agent triggers `self-check-core` before responding—ensure it passes.

@@ -22,6 +22,24 @@ Complete index of all project documentation, guides, and references.
 ### Frontend Development
 - [Frontend Design Principles](./frontend_design_principles/frontend-design-principles.md) – DaisyUI + Tailwind workflows
 
+### Elixir/Ash Framework
+
+**Usage Rules** - Package-specific AI guidance (auto-discovered via MCP):
+- [Ash Framework](./elixir_rules/ash.md) – Core rules & patterns
+- [AshPostgres](./elixir_rules/ash_postgres.md) – Database layer
+- [AshOban](./elixir_rules/ash_oban.md) – Background jobs
+- [AshPhoenix](./elixir_rules/ash_phoenix.md) – Web integration
+- [AshAI](./elixir_rules/ash_ai.md) – AI capabilities
+- [Igniter](./elixir_rules/igniter.md) – Code generation
+- [Usage Rules Guide](./elixir_rules/README.md) – How usage rules work
+
+**Note:** These files are synced from package usage rules. Update with `mix docs.rules` after dependency changes.
+
+**Additional available rules** (auto-discovered, not yet synced to docs):
+- Phoenix sub-rules: ecto, elixir, html, liveview, phoenix
+- General: usage_rules (elixir/otp), spark, reactor
+- Auth: ash_authentication, ash_json_api
+
 ---
 
 ## 📂 Documentation Structure
@@ -32,6 +50,13 @@ docs/
 ├── claude/
 │   ├── pattern-guide.md        ← Pattern combinations
 │   └── quick-reference.md      ← One-minute checklist
+├── elixir_rules/
+│   ├── ash.md                  ← Core Ash rules
+│   ├── ash_postgres.md         ← Database layer
+│   ├── ash_oban.md             ← Background jobs
+│   ├── ash_phoenix.md          ← Web integration
+│   ├── ash_ai.md               ← AI integration
+│   └── igniter.md              ← Code generation
 ├── frontend_design_principles/
 │   └── frontend-design-principles.md
 └── codex_profiles.md           ← 21 Codex CLI profiles
@@ -68,3 +93,8 @@ scripts/codex/
 
 **Frontend**:
 - Design principles → [frontend-design-principles.md](./frontend_design_principles/frontend-design-principles.md)
+
+**Elixir/Ash Framework**:
+- Core rules → [elixir_rules/ash.md](./elixir_rules/ash.md)
+- Database → [elixir_rules/ash_postgres.md](./elixir_rules/ash_postgres.md)
+- Code generation → [elixir_rules/igniter.md](./elixir_rules/igniter.md)

@@ -32,6 +32,7 @@ defmodule XTweak.MixProject do
       {:ash_postgres, "~> 2.6.23"},
       {:ash, "~> 3.7.6"},
       {:igniter, "~> 0.4"},
+      {:usage_rules, "~> 0.1", only: [:dev]},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
@@ -55,6 +56,10 @@ defmodule XTweak.MixProject do
       # Ash-specific commands
       "ash.generate": ["ash_postgres.generate_migrations"],
       "ash.gen": ["ash_postgres.generate_migrations"],
+
+      # Usage rules documentation sync
+      "docs.rules": ["usage_rules.sync --folder-only docs/elixir_rules --all --merge-sub-rules"],
+      "docs.rules.list": ["usage_rules.sync --list"],
 
       # Quality & CI checks
       quality: ["format", "credo --strict", "compile"],
