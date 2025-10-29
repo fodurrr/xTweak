@@ -35,9 +35,32 @@ xTweak is built as an **Elixir umbrella application** with four independent apps
 - **PostgreSQL** 14+ (tested with 16)
 - **Node.js** 18+ (for asset compilation)
 
-### Development Setup
+### Using xTweak as a Template
 
-1. **Clone the template:**
+xTweak is designed to be cloned and renamed for new projects. Use the built-in rename task:
+
+```bash
+# 1. Clone the template
+git clone <your_repository_url> my-new-project
+cd my-new-project
+
+# 2. Initialize fresh git history
+rm -rf .git && git init
+
+# 3. Install dependencies
+mix deps.get
+
+# 4. Rename the project (interactive)
+mix xtweak.rename
+
+# 5. Follow the prompts and post-rename steps
+```
+
+See the **[Template Initialization Guide](./docs/guides/template-initialization.md)** for detailed instructions.
+
+### Development Setup (If Not Renaming)
+
+1. **Clone the repository:**
    ```bash
    git clone <your_repository_url>
    cd xtweak

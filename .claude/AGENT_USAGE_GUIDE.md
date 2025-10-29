@@ -32,6 +32,7 @@
 | `pattern-librarian` | Audit pattern library & agent compliance | Updated pattern versions, compliance report, changelog entry | Agent owners, `docs-maintainer` |
 | `agent-architect` | Design or refactor agent prompts/system messages | JSON agent spec, pattern stack references, follow-up tasks | Implement new agent, update docs |
 | `tools-config-guardian` | Verify CLI configs, test MCP servers, check tool versions | Configuration health report, version comparison, breaking changes, recommendations | `docs-maintainer` (if updates needed) |
+| `project-renamer` | Rename xTweak template to new project name | Renamed files, validation results, database setup guide, next steps | `test-builder`, `code-reviewer` |
 
 ## Launch Protocol
 1. **Clarify scope** – Confirm the request maps to exactly one agent. Split work if necessary.
@@ -48,6 +49,7 @@
 - **Runtime debugging**: `beam-runtime-specialist` for OTP tracing and supervision advice.
 - **Testing**: `test-builder` + `error-recovery-loop` for flaky tests.
 - **Security sweeps**: `security-reviewer` (confidence-based findings only).
+- **Template initialization**: `project-renamer` for renaming entire xTweak project when using as template.
 - **Framework rules**: Reference `docs/elixir_rules/ash.md` for core patterns, `docs/elixir_rules/ash_postgres.md` for data layer, `docs/elixir_rules/igniter.md` for generators.
 
 ## Usage Rules Integration
