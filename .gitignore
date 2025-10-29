@@ -76,6 +76,11 @@ temp/
 *.tmp
 *.temp
 
+# Test output and crash dumps
+catch_output
+*.output
+*_output
+
 # Database
 *.sqlite
 *.sqlite3

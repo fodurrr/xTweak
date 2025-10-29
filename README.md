@@ -35,6 +35,11 @@ xTweak is built as an **Elixir umbrella application** with four independent apps
 - **PostgreSQL** 14+ (tested with 16)
 - **Node.js** 18+ (for asset compilation)
 
+**Version Management Options:**
+- Use [Devbox](https://www.jetpack.io/devbox/) (recommended): `devbox shell` at project root
+- OR use [asdf](https://asdf-vm.com/)/[mise](https://mise.jdx.dev/)/[rtx](https://github.com/jdx/rtx): Versions in `.tool-versions`
+- OR install manually: See required versions above
+
 ### Using xTweak as a Template
 
 xTweak is designed to be cloned and renamed for new projects. Use the standalone rename script:

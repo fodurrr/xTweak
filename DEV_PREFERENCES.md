@@ -24,7 +24,11 @@
 
 ### Toolings
 
-* **asdf** with direnv for tooling version management (.tool-versions, .envrc)
+* **Devbox** (Nix-based) for Peter's local tooling
+  - Elixir 1.19.1 + Erlang OTP 28 via Nix flakes (see `flakes/elixir/`)
+  - Defined in `devbox.json` at project root
+  - Note: `.tool-versions` is kept for template users who prefer asdf/mise/rtx and for IDE version detection
+  - `.envrc` is used for Mix environment variables (parallel compilation), not version management
 * **VS Code**
 * **Linux (Ubuntu & Fedora latest)**
 * **WSL2**

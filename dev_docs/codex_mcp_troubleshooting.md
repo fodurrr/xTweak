@@ -137,31 +137,6 @@ command = "npx"
 args = ["@playwright/mcp"]
 ```
 
-## Rollback to Proxy-Based Configuration
-
-If you need to roll back to the legacy proxy configuration:
-
-1. **Restore proxy scripts**:
-   ```bash
-   cp scripts/mcp/archive/*.bak scripts/mcp/
-   rename 's/\.bak$//' scripts/mcp/*.bak
-   ```
-
-2. **Update config**:
-   ```toml
-   [mcp_servers.tidewave]
-   command = "node"
-   args = ["/absolute/path/to/scripts/mcp/tidewave-stdio-proxy.js"]
-   env = { TIDEWAVE_BASE_URL = "http://127.0.0.1:4000/tidewave/mcp" }
-
-   [mcp_servers.ash_ai]
-   command = "node"
-   args = ["/absolute/path/to/scripts/mcp/ashai-stdio-proxy.js"]
-   env = { ASHAI_BASE_URL = "http://127.0.0.1:4000/ash_ai/mcp" }
-   ```
-
-3. **Verify**: Run `codex mcp list` to confirm servers are detected
-
 ---
 
 ## Getting Help

@@ -1,2 +1,5 @@
+# Elixir and Erlang version requirements for xTweak
+# Used by asdf/mise/rtx version managers and IDE tooling (VS Code ElixirLS, IntelliJ)
+# Peter uses Devbox (see devbox.json), but this file helps template users and enables IDE auto-detection
 elixir 1.19.1-otp-28
 erlang 28.1.1
