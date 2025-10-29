@@ -91,7 +91,7 @@ defmodule XTweakWebWeb.CoreComponents do
   end
 
   @doc """
-  Renders toast notifications using Daisy UI Toast components.
+  Renders toast notifications using Tailwind CSS.
 
   ## Examples
 
@@ -140,7 +140,7 @@ defmodule XTweakWebWeb.CoreComponents do
   end
 
   @doc """
-  Shows the toast group with standard titles and content using Daisy UI Toast components.
+  Shows the toast group with standard titles and content using Tailwind CSS.
 
   ## Examples
 

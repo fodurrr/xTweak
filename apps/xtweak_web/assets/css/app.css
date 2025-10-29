@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Import xTweak UI theme - single source of truth */
+@import "../../../xtweak_ui/assets/css/theme.css";
+
 /* Responsive design enhancements */
 @import "./responsive.css";
 

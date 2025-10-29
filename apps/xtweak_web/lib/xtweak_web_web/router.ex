@@ -20,6 +20,9 @@ defmodule XTweakWebWeb.Router do
     get "/", PageController, :home
     post "/subscribe", PageController, :subscribe
     get "/weather", PageController, :weather
+
+    # xTweak UI Showcase
+    live "/showcase", ShowcaseLive
   end
 
   # Other scopes may use custom stacks.

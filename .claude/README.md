@@ -78,7 +78,6 @@ The `permissions.allow` array includes:
 - `WebFetch(domain:hex.pm)` - Hex package manager
 - `WebFetch(domain:hexdocs.pm)` - Hex documentation
 - `WebFetch(domain:github.com)` - GitHub
-- `WebFetch(domain:daisyui.com)` - DaisyUI docs
 - `WebSearch` - General web search
 
 **MCP Tools**:

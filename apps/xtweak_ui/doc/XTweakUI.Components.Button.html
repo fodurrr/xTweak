@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.39.1">
+    <meta name="project" content="xtweak_ui v0.1.0">
+
+
+    <title>XTweakUI.Components.Button — xtweak_ui v0.1.0</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-ZFNMEJKT.css" />
+
+    <script defer src="dist/sidebar_items-57301C14.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-HBZYRXZS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="XTweakUI.html" class="sidebar-projectName" translate="no">
+xtweak_ui
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.1.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras=""></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of xtweak_ui</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">XTweakUI.Components.Button</span> 
+      <small class="app-vsn" translate="no">(xtweak_ui v0.1.0)</small>
+
+    </h1>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Button component with multiple variants, sizes, and states.</p><p>Ported from Nuxt UI's UButton component.</p><h2 id="module-examples" class="section-heading"><a href="#module-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="c1"># Basic button</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="nc">Click</span><span class="w"> </span><span class="n">me</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># With color and variant</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s">&quot;primary&quot;</span><span class="w"> </span><span class="n">variant</span><span class="o">=</span><span class="s">&quot;solid&quot;</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Submit</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># With size</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="s">&quot;lg&quot;</span><span class="o">&gt;</span><span class="nc">Large</span><span class="w"> </span><span class="nc">Button</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># Loading state</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">loading</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Submit</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># With icon</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">icon</span><span class="o">=</span><span class="s">&quot;hero-arrow-right&quot;</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Next</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># Disabled</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">disabled</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Disabled</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># Block (full width)</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">block</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Full</span><span class="w"> </span><span class="nc">Width</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span></code></pre><h2 id="module-accessibility" class="section-heading"><a href="#module-accessibility" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Accessibility</span></h2><ul><li>Keyboard navigable (Tab, Enter/Space)</li><li>ARIA disabled state when disabled</li><li>Focus visible styles</li><li>Screen reader compatible</li></ul><h2 id="module-nuxt-ui-reference" class="section-heading"><a href="#module-nuxt-ui-reference" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Nuxt UI Reference</span></h2><p><a href="https://ui.nuxt.com/components/button">https://ui.nuxt.com/components/button</a></p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#button/1" data-no-tooltip="" translate="no">button(assigns)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Renders a button component.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+
+    <div class="functions-list">
+<section class="detail" id="button/1">
+
+  <div class="detail-header">
+    <a href="#button/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">button(assigns)</h1>
+
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+<p>Renders a button component.</p><h2 id="button/1-attributes" class="section-heading"><a href="#button/1-attributes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Attributes</span></h2><ul><li><code class="inline">label</code> (<code class="inline">:string</code>) - Button label (alternative to inner_block). Defaults to <code class="inline">nil</code>.</li><li><code class="inline">color</code> (<code class="inline">:string</code>) - Button color (primary, secondary, success, warning, error, neutral). Defaults to <code class="inline">&quot;primary&quot;</code>.</li><li><code class="inline">variant</code> (<code class="inline">:string</code>) - Visual variant (solid, outline, soft, ghost, link). Defaults to <code class="inline">&quot;solid&quot;</code>.</li><li><code class="inline">size</code> (<code class="inline">:string</code>) - Button size (xs, sm, md, lg, xl). Defaults to <code class="inline">&quot;md&quot;</code>.</li><li><code class="inline">loading</code> (<code class="inline">:boolean</code>) - Show loading spinner. Defaults to <code class="inline">false</code>.</li><li><code class="inline">disabled</code> (<code class="inline">:boolean</code>) - Disable button. Defaults to <code class="inline">false</code>.</li><li><code class="inline">icon</code> (<code class="inline">:string</code>) - Leading icon (Heroicons name, e.g., 'hero-check'). Defaults to <code class="inline">nil</code>.</li><li><code class="inline">leading_icon</code> (<code class="inline">:string</code>) - Alias for icon (leading icon). Defaults to <code class="inline">nil</code>.</li><li><code class="inline">trailing_icon</code> (<code class="inline">:string</code>) - Trailing icon. Defaults to <code class="inline">nil</code>.</li><li><code class="inline">block</code> (<code class="inline">:boolean</code>) - Full width button. Defaults to <code class="inline">false</code>.</li><li><code class="inline">square</code> (<code class="inline">:boolean</code>) - Square button (equal padding). Defaults to <code class="inline">false</code>.</li><li><code class="inline">type</code> (<code class="inline">:string</code>) - Button type (button, submit, reset). Defaults to <code class="inline">&quot;button&quot;</code>.</li><li><code class="inline">class</code> (<code class="inline">:string</code>) - Additional CSS classes. Defaults to <code class="inline">&quot;&quot;</code>.</li><li>Global attributes are accepted. Additional HTML attributes. Supports all globals plus: <code class="inline">[&quot;phx-click&quot;, &quot;phx-target&quot;, &quot;form&quot;, &quot;name&quot;, &quot;value&quot;, &quot;href&quot;, &quot;target&quot;]</code>.</li></ul><h2 id="button/1-slots" class="section-heading"><a href="#button/1-slots" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Slots</span></h2><ul><li><code class="inline">inner_block</code> - Button content.</li></ul>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+      <p>
+
+          <span class="line">
+            <a href="https://hex.pm/packages/xtweak_ui/0.1.0" class="footer-hex-package">Hex Package</a>
+
+            <a href="https://preview.hex.pm/preview/xtweak_ui/0.1.0">Hex Preview</a>
+
+          </span>
+
+        <span class="line">
+          <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+            Search HexDocs
+          </button>
+
+            <a href="xtweak_ui.epub" title="ePub version">
+              Download ePub version
+            </a>
+
+        </span>
+      </p>
+
+      <p class="built-using">
+        Built using
+        <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.39.1) for the
+
+          <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+      </p>
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

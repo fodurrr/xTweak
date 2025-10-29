@@ -62,7 +62,8 @@ defmodule XTweakWeb.MixProject do
       {:bandit, "~> 1.5"},
       {:tidewave, "~> 0.4", only: [:dev]},
       {:ash_ai, "~> 0.2", only: [:dev]},
-      {:xtweak_core, in_umbrella: true}
+      {:xtweak_core, in_umbrella: true},
+      {:xtweak_ui, in_umbrella: true}
     ]
   end
 

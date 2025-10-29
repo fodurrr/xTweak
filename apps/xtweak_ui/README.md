@@ -1,32 +1,60 @@
-# XTweakUI
+# xTweak UI
 
-Reusable Phoenix LiveView component library for the xTweak infrastructure template.
+Component library for Phoenix LiveView, inspired by Nuxt UI.
 
 ## Description
 
-This app contains shared UI components built with Phoenix LiveView and styled with DaisyUI. These components provide a consistent design system across all xTweak web applications.
+A production-ready UI component library for Phoenix LiveView applications. xTweak UI ports the elegant API and design patterns from [Nuxt UI](https://ui.nuxt.com/) to the Elixir/Phoenix ecosystem, providing 100+ components with a consistent, modern design system.
 
 ## Features
 
-- **Reusable Components**: Button, Card, Modal, Alert, and more
-- **DaisyUI Integration**: Semantic CSS classes with theme support
-- **LiveView Native**: Built for Phoenix LiveView with slots and assigns
+- **100+ Components**: Comprehensive library covering all common UI patterns
+- **Nuxt UI-Inspired API**: Familiar, intuitive component interfaces
+- **Pure Tailwind CSS**: Utility-first CSS with OKLCH color space for perceptual uniformity
+- **Theme System**: Centralized theming with CSS variables (inspired by Nuxt UI's app.config.ts)
+- **Dark Mode**: Built-in light/dark theme support via data attributes
+- **LiveView Native**: Built specifically for Phoenix LiveView with slots and assigns
 - **Type-Safe**: Leverages Phoenix.Component for compile-time validation
-- **Accessible**: ARIA attributes and keyboard navigation included
+- **Accessible**: WCAG AA compliant with ARIA attributes and keyboard navigation
+- **ExDoc Documentation**: Comprehensive documentation with examples
 
 ## Components
 
-### Button
-Flexible button component with multiple variants and sizes.
+### Sprint 1: Core Components (Completed)
+
+#### Button
+Full-featured button component with Nuxt UI API compatibility.
 
 ```elixir
-<.button variant="primary" size="lg">
-  Click Me
+# Basic button
+<.button>Click me</.button>
+
+# With color and variant
+<.button color="primary" variant="solid" size="md">
+  Submit
+</.button>
+
+# Loading state
+<.button loading>
+  Submit
+</.button>
+
+# With icons (Heroicons)
+<.button icon="hero-check" color="success">
+  Save
+</.button>
+
+# Full width
+<.button block>
+  Full Width Button
 </.button>
 ```
 
-**Variants**: primary, secondary, accent, ghost, link, info, success, warning, error
-**Sizes**: xs, sm, md (default), lg
+**Colors**: primary, secondary, neutral, success, warning, error
+**Variants**: solid, outline, soft, ghost, link
+**Sizes**: xs, sm, md (default), lg, xl
+
+See the [Nuxt UI Button reference](https://ui.nuxt.com/components/button) for API inspiration.
 
 ### Card
 Container component with header, body, and actions slots.
@@ -80,6 +108,121 @@ def deps do
 end
 ```
 
+### CSS Integration
+
+xTweak UI uses a theme system based on CSS variables and Tailwind CSS. To properly integrate the styling into your Phoenix application:
+
+#### For Umbrella Apps
+
+**Step 1: Import Theme Variables**
+
+In your application's CSS file, import the xTweak UI theme:
+
+```css
+/* apps/your_app/assets/css/app.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Import xTweak UI theme variables */
+@import "../../../xtweak_ui/assets/css/theme.css";
+
+/* Your app-specific styles below */
+```
+
+**Step 2: Configure Tailwind Content Scanning**
+
+Update your Tailwind config to scan xTweak UI components for CSS classes:
+
+```javascript
+// apps/your_app/assets/tailwind.config.js
+module.exports = {
+  content: [
+    "./js/**/*.js",
+    "../lib/your_app_web/**/*.*ex",
+    "../../xtweak_ui/lib/**/*.{ex,exs,heex}"  // Scan UI library components
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Map CSS variables to Tailwind utilities
+        primary: {
+          50: 'var(--color-primary-50)',
+          100: 'var(--color-primary-100)',
+          200: 'var(--color-primary-200)',
+          300: 'var(--color-primary-300)',
+          400: 'var(--color-primary-400)',
+          500: 'var(--color-primary-500)',
+          600: 'var(--color-primary-600)',
+          700: 'var(--color-primary-700)',
+          800: 'var(--color-primary-800)',
+          900: 'var(--color-primary-900)',
+        },
+        gray: {
+          50: 'var(--color-gray-50)',
+          100: 'var(--color-gray-100)',
+          200: 'var(--color-gray-200)',
+          300: 'var(--color-gray-300)',
+          400: 'var(--color-gray-400)',
+          500: 'var(--color-gray-500)',
+          600: 'var(--color-gray-600)',
+          700: 'var(--color-gray-700)',
+          800: 'var(--color-gray-800)',
+          900: 'var(--color-gray-900)',
+        },
+        'ui-bg': {
+          default: 'var(--ui-bg-default)',
+          elevated: 'var(--ui-bg-elevated)',
+          accented: 'var(--ui-bg-accented)',
+        },
+        'ui-text': {
+          default: 'var(--ui-text-default)',
+          dimmed: 'var(--ui-text-dimmed)',
+          muted: 'var(--ui-text-muted)',
+          highlighted: 'var(--ui-text-highlighted)',
+        },
+        'ui-border': {
+          default: 'var(--ui-border-default)',
+          accented: 'var(--ui-border-accented)',
+        }
+      }
+    }
+  }
+}
+```
+
+**Step 3: Rebuild Assets**
+
+```bash
+cd apps/your_app/assets
+npm run build
+```
+
+#### For Published Hex Package
+
+When xTweak UI is published to Hex, use the dependency path instead:
+
+```css
+/* apps/your_app/assets/css/app.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Import xTweak UI theme from deps */
+@import "../../../deps/xtweak_ui/assets/css/theme.css";
+```
+
+The Tailwind content configuration remains the same (paths resolve correctly for both umbrella and hex packages).
+
+#### Why This Approach?
+
+This integration pattern:
+- ✅ **Single source of truth** - Theme variables defined once in xTweak UI
+- ✅ **Tree-shaking** - Only CSS for components you use is included
+- ✅ **Optimal bundle size** - Single CSS file with no duplication
+- ✅ **Works everywhere** - Same pattern for umbrella projects and hex packages
+- ✅ **Maintainable** - Theme updates in xTweak UI automatically reflect in your app
+
 ### Importing Components
 
 In your LiveView module:
@@ -121,21 +264,13 @@ end
 
 ### Theming
 
-Components use DaisyUI theme variables. Customize in your `tailwind.config.js`:
+Components use CSS variable-based theming. Customize in your theme configuration via CSS variables or Elixir config:
 
-```javascript
-module.exports = {
-  daisyui: {
-    themes: [
-      {
-        mytheme: {
-          "primary": "#570df8",
-          "secondary": "#f000b8",
-          // ... more colors
-        },
-      },
-    ],
-  },
+```css
+:root {
+  --color-primary-500: oklch(60% 0.20 240);
+  --color-secondary-500: oklch(50% 0.18 300);
+  /* ... more colors */
 }
 ```
 
@@ -199,7 +334,7 @@ When creating new components:
 
 1. **Use slots** for flexible content areas
 2. **Provide sensible defaults** for all attributes
-3. **Support DaisyUI variants** where applicable
+3. **Support Tailwind variants** where applicable
 4. **Include documentation** with examples
 5. **Add tests** for component rendering
 6. **Follow accessibility** best practices (ARIA, keyboard nav)
@@ -208,7 +343,6 @@ When creating new components:
 
 - **Phoenix.Component** - Component framework
 - **Phoenix.LiveView** - Real-time updates
-- **DaisyUI** - CSS component library
 - **Tailwind CSS** - Utility classes
 
 ## Documentation
@@ -228,7 +362,7 @@ When adding components:
 2. Include comprehensive tests
 3. Document all attributes and slots
 4. Provide usage examples
-5. Follow DaisyUI naming conventions
+5. Use semantic naming and clear APIs
 
 ---
 

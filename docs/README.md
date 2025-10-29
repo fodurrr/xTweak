@@ -20,7 +20,7 @@ Complete index of all project documentation, guides, and references.
 - [Migration Guide](../scripts/codex/MIGRATION.md) – Migration history
 
 ### Frontend Development
-- [Frontend Design Principles](./frontend_design_principles/frontend-design-principles.md) – DaisyUI + Tailwind workflows
+- [Frontend Design Principles](./frontend_design_principles/frontend-design-principles.md) – Pure Tailwind + Phoenix Component workflows
 
 ### Template Usage & Setup
 - [Template Initialization Guide](./guides/template-initialization.md) – How to use xTweak as a project template

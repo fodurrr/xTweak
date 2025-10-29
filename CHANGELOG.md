@@ -59,6 +59,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - xtweak_ui: Reusable UI components
 - User authentication with AshAuthentication
 - Newsletter resource with authorization policies
-- DaisyUI + Tailwind CSS styling
+- Pure Tailwind CSS styling with CSS variable-based theming
 - PostgreSQL database with Ash resources
 - Comprehensive AI development guides (Claude Code, Codex, etc.)

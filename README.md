@@ -1,6 +1,6 @@
 # xTweak - Elixir Umbrella Template
 
-A minimal, clean Elixir umbrella project template with Phoenix LiveView, Ash Framework, and DaisyUI. Perfect for starting new projects with a solid foundation.
+A minimal, clean Elixir umbrella project template with Phoenix LiveView, Ash Framework, and Tailwind CSS. Perfect for starting new projects with a solid foundation.
 
 ## 🤖 AI Development Setup
 
@@ -22,7 +22,7 @@ This project is optimized for AI-assisted development. **Start with these guides
 xTweak is built as an **Elixir umbrella application** with four independent apps:
 
 - **`xtweak_core`** - Business logic with Ash Framework (User authentication, Newsletter)
-- **`xtweak_web`** - Phoenix LiveView web interface with DaisyUI styling
+- **`xtweak_web`** - Phoenix LiveView web interface with Tailwind CSS
 - **`xtweak_docs`** - Documentation app with markdown rendering
 - **`xtweak_ui`** - Reusable UI component library for Phoenix applications
 
@@ -121,7 +121,7 @@ mix dialyzer
 - **User Authentication**: Built with Ash Authentication
 - **Newsletter Subscription**: Simple example with Ash resources
 - **Weather Demo Page**: Sample functionality to demonstrate structure
-- **Theme Switching**: Dark/light mode with DaisyUI
+- **Theme Switching**: Dark/light mode with CSS variables
 - **Component Library**: Reusable UI components (Button, Card, Modal, Alert)
 
 ### Tech Stack
@@ -131,7 +131,6 @@ mix dialyzer
 - **Ash Framework** 3.7+ - Resource-based application framework
 - **AshPostgres** 2.6+ - PostgreSQL data layer
 - **PostgreSQL** 14+ - Primary database
-- **DaisyUI** 4+ - Semantic CSS component library
 - **Tailwind CSS** 3+ - Utility-first CSS framework
 
 ## 🗄️ Database Schema
@@ -266,7 +265,7 @@ This template is pre-configured for AI-assisted development with Claude Code:
 ### MCP Server Integration
 - **Ash AI** (`mcp__ash_ai__*`) - Ash Framework assistance, resource listings, generators
 - **TideWave** (`mcp__tidewave__*`) - Elixir development tools, project evaluation, docs
-- **Context7** (`mcp__context7__*`) - Library documentation (DaisyUI, Cytoscape, etc.)
+- **Context7** (`mcp__context7__*`) - Library documentation (Cytoscape, Tailwind, etc.)
 - **Playwright** (`mcp__playwright__*`) - Browser automation for UI verification
 
 ### Pattern-Based Development
@@ -277,10 +276,10 @@ This template is pre-configured for AI-assisted development with Claude Code:
 
 ## 🎨 Theming & Styling
 
-The template uses DaisyUI with multiple built-in themes:
+The template uses pure Tailwind CSS with CSS variable-based theming:
 - Automatic dark/light mode switching
 - Pre-configured theme switcher component
-- Semantic component classes
+- Semantic color tokens via CSS variables
 - Responsive design utilities
 
 ## 📄 License

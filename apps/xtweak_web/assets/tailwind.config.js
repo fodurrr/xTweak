@@ -9,121 +9,59 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/xtweak_web_web.ex",
-    "../lib/xtweak_web_web/**/*.*ex"
+    "../lib/xtweak_web_web/**/*.*ex",
+    // Include xtweak_ui components
+    "../../xtweak_ui/lib/**/*.{ex,exs,heex}"
   ],
   theme: {
     extend: {
       colors: {
         brand: "#FD4F00",
+        // xTweak UI CSS variables
+        primary: {
+          50: 'var(--color-primary-50)',
+          100: 'var(--color-primary-100)',
+          200: 'var(--color-primary-200)',
+          300: 'var(--color-primary-300)',
+          400: 'var(--color-primary-400)',
+          500: 'var(--color-primary-500)',
+          600: 'var(--color-primary-600)',
+          700: 'var(--color-primary-700)',
+          800: 'var(--color-primary-800)',
+          900: 'var(--color-primary-900)',
+        },
+        gray: {
+          50: 'var(--color-gray-50)',
+          100: 'var(--color-gray-100)',
+          200: 'var(--color-gray-200)',
+          300: 'var(--color-gray-300)',
+          400: 'var(--color-gray-400)',
+          500: 'var(--color-gray-500)',
+          600: 'var(--color-gray-600)',
+          700: 'var(--color-gray-700)',
+          800: 'var(--color-gray-800)',
+          900: 'var(--color-gray-900)',
+        },
+        'ui-bg': {
+          default: 'var(--ui-bg-default)',
+          elevated: 'var(--ui-bg-elevated)',
+          accented: 'var(--ui-bg-accented)',
+        },
+        'ui-text': {
+          default: 'var(--ui-text-default)',
+          dimmed: 'var(--ui-text-dimmed)',
+          muted: 'var(--ui-text-muted)',
+          highlighted: 'var(--ui-text-highlighted)',
+        },
+        'ui-border': {
+          default: 'var(--ui-border-default)',
+          accented: 'var(--ui-border-accented)',
+        }
       }
     },
   },
-  daisyui: {
-    themes: [
-      {
-        "xpando-light-sophisticated": // xpando-light-sophisticated
-        {
-          "primary": "oklch(65.7% 0.224 353.4)", // Your vibrant pink
-          "secondary": "oklch(69.8% 0.158 238.2)", // Your electric blue
-          "accent": "oklch(82.1% 0.164 88.7)",   // Your golden yellow
-
-          "neutral": "oklch(58% 0.02 240)",       // A cool-toned mid-grey
-
-          "base-100": "oklch(98% 0.01 240)",      // Very light, cool blue/grey background
-          "base-200": "oklch(94% 0.015 240)",     // Slightly darker shade
-          "base-300": "oklch(90% 0.02 240)",      // Even darker shade
-
-          "base-content": "oklch(29% 0.03 255)",  // Dark slate blue text, works well with cool tones
-
-          "info": "oklch(69.8% 0.158 238.2)",     // Your brand blue
-          "success": "oklch(68% 0.18 160)",        // A clear, accessible green
-          "warning": "oklch(82.1% 0.164 88.7)",   // Your brand yellow
-          "error": "oklch(66% 0.21 25)"           // A strong, unambiguous red
-        },
-        "xpando-light-crisp": // xpando-light-crisp
-        {
-          "primary": "oklch(65.7% 0.224 353.4)", // Your vibrant pink
-          "secondary": "oklch(69.8% 0.158 238.2)", // Your electric blue
-          "accent": "oklch(82.1% 0.164 88.7)",   // Your golden yellow
-
-          "neutral": "oklch(55% 0.01 262)",       // A neutral mid-grey for borders/secondary text
-
-          "base-100": "oklch(99% 0.003 297)",     // Clean Off-White Background
-          "base-200": "oklch(96% 0.006 297)",     // Slightly darker for hover/cards
-          "base-300": "oklch(92% 0.009 297)",     // Even darker for active states
-
-          "base-content": "oklch(22.3% 0.011 261.2)", // High-contrast near-black text
-
-          "info": "oklch(69.8% 0.158 238.2)",     // Re-using your brand blue for consistency
-          "success": "oklch(68% 0.18 160)",        // A clear, accessible green
-          "warning": "oklch(82.1% 0.164 88.7)",   // Re-using your brand yellow
-          "error": "oklch(66% 0.21 25)"           // A strong, unambiguous red
-        },
-        "xpando-light-warm": // xpando-light-warm
-        {
-          "primary": "oklch(65.7% 0.224 353.4)", // Your vibrant pink
-          "secondary": "oklch(69.8% 0.158 238.2)", // Your electric blue
-          "accent": "oklch(82.1% 0.164 88.7)",   // Your golden yellow
-
-          "neutral": "oklch(60% 0.02 80)",        // A warm-toned grey for secondary elements
-
-          "base-100": "oklch(99% 0.007 90)",      // Very light, warm cream background
-          "base-200": "oklch(95% 0.012 90)",      // Slightly darker warm shade
-          "base-300": "oklch(91% 0.018 90)",      // Even darker warm shade
-
-          "base-content": "oklch(30% 0.03 70)",   // Dark, warm sepia/brown text
-
-          "info": "oklch(69.8% 0.158 238.2)",     // Your brand blue (provides nice contrast)
-          "success": "oklch(68% 0.18 160)",        // A clear, accessible green
-          "warning": "oklch(82.1% 0.164 88.7)",   // Your brand yellow (harmonizes perfectly)
-          "error": "oklch(66% 0.21 25)"           // A strong, unambiguous red
-        },
-        "light": // Light theme - improved readability and visual appeal
-        {
-          "primary": "oklch(58% 0.18 349.761)",     // More saturated pink for better brand recognition
-          "secondary": "oklch(62% 0.12 230.318)",   // Richer blue with better contrast
-          "accent": "oklch(65% 0.22 65)",           // Much more vibrant orange-gold with higher saturation
-          "neutral": "oklch(45% 0.02 280)",         // Much darker neutral for good contrast when used as background
-
-          "base-100": "oklch(96% 0.007 340)",       // Subtle warm pink tint, sophisticated and modern
-          "base-200": "oklch(92% 0.010 340)",       // Gentle pink tint for cards and sections
-          "base-300": "oklch(86% 0.014 340)",       // More defined pink-tinted backgrounds
-
-          "base-content": "oklch(15% 0.02 250)",    // Much darker text for excellent readability (WCAG AAA)
-
-          "info": "oklch(52% 0.15 232.661)",        // Stronger info blue
-          "success": "oklch(48% 0.15 160)",         // Darker, more accessible green
-          "warning": "oklch(62% 0.18 85)",          // More vibrant warning orange
-          "error": "oklch(52% 0.18 25)"            // Stronger error red
-        },
-        "dark": // Dark theme using synthwave colors - lightened base colors for better readability
-        {
-          "primary": "oklch(71% 0.202 349.761)",
-          "secondary": "oklch(82% 0.111 230.318)",
-          "accent": "oklch(75% 0.183 55.934)",
-          "neutral": "oklch(38% 0.20 277.023)",
-          "base-100": "oklch(19% 0.08 281.288)",      // Main background - darker to complement navbar
-          "base-200": "oklch(24% 0.08 281.288)",      // Cards/sections - good contrast with base-100
-          "base-300": "oklch(30% 0.08 281.288)",      // Borders/dividers - lighter for definition
-          "base-content": "oklch(78% 0.115 274.713)",
-          "info": "oklch(74% 0.16 232.661)",
-          "success": "oklch(77% 0.152 181.912)",
-          "warning": "oklch(90% 0.182 98.111)",
-          "error": "oklch(73.7% 0.121 32.639)"
-        }
-      }
-    ],
-    darkTheme: "dark",
-    base: true,
-    styled: true,
-    utils: true,
-    prefix: "",
-    logs: true,
-    themeRoot: ":root",
-  },
   plugins: [
     require("@tailwindcss/forms"),
-    require("daisyui"),
     // Allows prefixing tailwind classes with LiveView classes to add rules
     // only when LiveView classes are applied, for example:
     //

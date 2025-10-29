@@ -29,7 +29,7 @@ You never run MCP commands manually; Claude does it. Your job is to give clear i
 ## Prompting Tips for Developers
 
 1. **Be explicit about the kind of work.** Phrases like “implement a new Ash resource,” “build a LiveView page,” or “write tests” help Claude pick the right agent chain.
-2. **Mention constraints or priorities.** Example: “Use DaisyUI components,” “focus on authorization,” or “keep the API backward compatible.”
+2. **Mention constraints or priorities.** Example: "Use Tailwind utilities," "focus on authorization," or "keep the API backward compatible."
 3. **Ask for the artifacts you care about.** If you want code diffs, UI screenshots, or a test plan, say so—agents already know how to fetch them.
 4. **Let Claude know the next step.** When Claude hands off a summary, tell it whether you want to proceed to the next agent (“okay, run the UI pass”) or wrap up.
 
@@ -41,7 +41,7 @@ You never run MCP commands manually; Claude does it. Your job is to give clear i
 | --- | --- |
 | Verified ground truth | `mcp-verify-first` |
 | Ash resource design | `ash-resource-architect` |
-| LiveView / DaisyUI implementation | `frontend-design-enforcer` |
+| LiveView / Tailwind implementation | `frontend-design-enforcer` |
 | Cytoscape graph work | `cytoscape-expert` |
 | Documentation & changelog updates | `docs-maintainer` |
 | Release readiness | `release-coordinator` |
@@ -65,7 +65,7 @@ You never run MCP commands manually; Claude does it. Your job is to give clear i
 ### A. New Feature Slice (Backend + Frontend)
 1. Request: “Implement a reputation leaderboard page with Ash resource changes and LiveView UI.”
 2. Claude runs `mcp-verify-first`, proposes a plan, and begins with `ash-resource-architect` if backend changes are needed.
-3. You approve the plan. Claude executes backend updates, then moves to `frontend-design-enforcer` (pulling component/theming guidance from `daisyui-expert` and utility strategy from `tailwind-strategist`), followed by `test-builder` and `code-reviewer`/`code-review-implement` as required.
+3. You approve the plan. Claude executes backend updates, then moves to `frontend-design-enforcer` (pulling utility strategy from `tailwind-strategist`), followed by `test-builder` and `code-reviewer`/`code-review-implement` as required.
 4. Each stage ends with a hand-off summary so you can stop, adjust, or continue.
 
 ### B. Pure Frontend Tweak

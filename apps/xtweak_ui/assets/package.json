@@ -1,0 +1,16 @@
+{
+  "name": "xtweak_ui_assets",
+  "version": "0.1.0",
+  "description": "Asset build pipeline for xTweak UI",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:css",
+    "build:css": "tailwindcss -i css/app.css -o ../priv/static/assets/app.css",
+    "watch": "tailwindcss -i css/app.css -o ../priv/static/assets/app.css --watch",
+    "deploy": "NODE_ENV=production tailwindcss -i css/app.css -o ../priv/static/assets/app.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "tailwindcss": "^3.4.3"
+  }
+}

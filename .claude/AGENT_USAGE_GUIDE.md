@@ -1,4 +1,4 @@
-# Agent Usage Guide (Updated October 2, 2025)
+# Agent Usage Guide (Updated October 29, 2025)
 
 ## Read This First
 - Load the **Core Pattern Stack** before launching any agent: `placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`.
@@ -6,16 +6,60 @@
 - Each agent declares its patterns in front matter (`pattern-stack`). Reference those files for full instructions.
 - For Elixir/Ash implementation rules, consult `docs/elixir_rules/` before generating code.
 
+## Model Selection Strategy
+
+**Purpose**: Optimize cost while maintaining quality by using appropriate model for each task type.
+
+### Quick Decision Guide
+
+**Use Haiku 4.5 agents (⚡ cost-optimized) for:**
+- Structured context gathering with MCP tools
+- Applying documented review feedback
+- Straightforward markdown/changelog editing
+- Schema-focused SQL migration generation
+- Pattern compliance auditing
+- Configuration-focused telemetry setup
+
+**Use Sonnet 4.5 agents (🧠 quality-focused) for:**
+- Architecture and design decisions
+- Complex reasoning and analysis
+- Research and planning
+- Code review and security assessment
+- Coordination between agents
+- Ambiguous requirements
+
+### Model Assignments by Agent
+
+| Agent | Model | Cost Factor | Escalation Pattern |
+| --- | --- | --- | --- |
+| **Haiku Agents (6)** |
+| `mcp-verify-first` | Haiku 4.5 | ~90% cheaper | MCP errors, incomplete context → Sonnet |
+| `docs-maintainer` | Haiku 4.5 | ~90% cheaper | Complex formatting, merge conflicts → Sonnet |
+| `code-review-implement` | Haiku 4.5 | ~90% cheaper | Compile/test failures, unclear feedback → Sonnet |
+| `database-migration-specialist` | Haiku 4.5 | ~90% cheaper | Complex backfills, data safety issues → Sonnet |
+| `pattern-librarian` | Haiku 4.5 | ~90% cheaper | Pattern interpretation ambiguity → Sonnet |
+| `monitoring-setup` | Haiku 4.5 | ~90% cheaper | Complex observability design → Sonnet |
+| **Sonnet Agents (18)** |
+| All others | Sonnet 4.5 | Baseline | N/A (no escalation) |
+
+**Expected Impact**:
+- 26% of agent fleet on Haiku (targeting 40-50% of execution volume)
+- 30-40% cost reduction with <10% escalation rate
+- Automatic escalation on complexity via structured error messages
+
+See `.claude/MODEL_SELECTION_STRATEGY.md` for full philosophy and `.claude/agent-workflows.md` for decision trees.
+
 ## Quick Selection Matrix
 
 | Agent | Primary Use | Key Outputs | Core Follow-ups |
 | --- | --- | --- | --- |
 | `mcp-verify-first` | Gather ground truth before work begins | Detected app/domain map, evidence log, recommended next steps | Any implementation or review agent |
 | `ash-resource-architect` | Design/extend Ash resources, actions, policies | Resource plan, generator usage, code snippets, migration/test checklist | `test-builder`, `code-reviewer` |
-| `frontend-design-enforcer` | Coordinate LiveView UX, accessibility, and integration tasks | HEEx/JS updates, validation evidence, integration TODOs | `daisyui-expert`, `tailwind-strategist`, `test-builder` |
+| `frontend-design-enforcer` | Coordinate LiveView UX, accessibility, and integration tasks | HEEx/JS updates, validation evidence, integration TODOs | `heex-template-expert`, `tailwind-strategist`, `test-builder` |
+| `heex-template-expert` | Generate/refactor HEEx templates with modern directives | Production-grade components, accessibility-compliant markup, Ash form integration | `frontend-design-enforcer`, `test-builder`, `code-reviewer` |
 | `cytoscape-expert` | Graph visualizations with Cytoscape.js + LiveView | Resource updates, JS hooks, performance guidance, UI validation artifacts | `test-builder`, `code-reviewer` |
-| `daisyui-expert` | Component/theming research for DaisyUI | Component snippets, theming guidance, accessibility notes | `frontend-design-enforcer` |
-| `tailwind-strategist` | Tailwind strategy, utility audits, responsive plans | Usage audit, config recommendations, layout playbooks | `frontend-design-enforcer` |
+| `nuxt-ui-expert` | Read-only Nuxt UI component API research | Component specs (props/slots/events), markdown + JSON output, accessibility docs | `frontend-design-enforcer`, `heex-template-expert` |
+| `tailwind-strategist` | Tailwind strategy, utility audits, responsive plans | Usage audit, config recommendations, layout playbooks | `frontend-design-enforcer`, `heex-template-expert` |
 | `docs-maintainer` | Sync developer docs & changelog with recent changes | Updated Markdown, changelog snippets, doc debt Todo list | Review/merge, `release-coordinator` |
 | `release-coordinator` | Run release readiness checks and compile notes | Readiness dashboard, changelog draft, risk register | `docs-maintainer`, `dependency-auditor` |
 | `dependency-auditor` | Audit deps for updates & security issues | Prioritized findings, upgrade plan, evidence bundle | `test-builder`, `release-coordinator` |
@@ -43,7 +87,8 @@
 
 ## Pattern Shortcuts by Agent
 - **Ash resource work**: `ash-resource-architect` + `ash-resource-template` pattern.
-- **LiveView UI**: `frontend-design-enforcer` orchestrates builds; pull component/theming support from `daisyui-expert` and utility/layout strategy from `tailwind-strategist`.
+- **LiveView UI**: `frontend-design-enforcer` orchestrates builds; `heex-template-expert` generates/refactors templates with modern directives; pull component research from `nuxt-ui-expert` and utility/layout strategy from `tailwind-strategist`.
+- **HEEx refactoring**: `heex-template-expert` converts legacy EEx (`<%= if %>`) to modern directives (`:if`), enforces accessibility.
 - **Graph UI**: `cytoscape-expert` + `ash-resource-template` for nodes/edges.
 - **Runtime debugging**: `beam-runtime-specialist` for OTP tracing and supervision advice.
 - **Testing**: `test-builder` + `error-recovery-loop` for flaky tests.

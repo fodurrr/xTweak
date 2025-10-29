@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.39.1">
+    <meta name="project" content="xtweak_ui v0.1.0">
+
+
+    <title>xTweak UI — xtweak_ui v0.1.0</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-ZFNMEJKT.css" />
+
+    <script defer src="dist/sidebar_items-57301C14.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-HBZYRXZS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="XTweakUI.html" class="sidebar-projectName" translate="no">
+xtweak_ui
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.1.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras=""></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of xtweak_ui</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>xTweak UI</h1>
+
+
+  </div>
+
+
+<p>Component library for Phoenix LiveView, inspired by Nuxt UI.</p><h2 id="description" class="section-heading"><a href="#description" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Description</span></h2><p>A production-ready UI component library for Phoenix LiveView applications. xTweak UI ports the elegant API and design patterns from <a href="https://ui.nuxt.com/">Nuxt UI</a> to the Elixir/Phoenix ecosystem, providing 100+ components with a consistent, modern design system.</p><h2 id="features" class="section-heading"><a href="#features" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Features</span></h2><ul><li><strong>100+ Components</strong>: Comprehensive library covering all common UI patterns</li><li><strong>Nuxt UI-Inspired API</strong>: Familiar, intuitive component interfaces</li><li><strong>Pure Tailwind CSS</strong>: Utility-first CSS with OKLCH color space for perceptual uniformity</li><li><strong>Theme System</strong>: Centralized theming with CSS variables (inspired by Nuxt UI's app.config.ts)</li><li><strong>Dark Mode</strong>: Built-in light/dark theme support via data attributes</li><li><strong>LiveView Native</strong>: Built specifically for Phoenix LiveView with slots and assigns</li><li><strong>Type-Safe</strong>: Leverages Phoenix.Component for compile-time validation</li><li><strong>Accessible</strong>: WCAG AA compliant with ARIA attributes and keyboard navigation</li><li><strong>ExDoc Documentation</strong>: Comprehensive documentation with examples</li></ul><h2 id="components" class="section-heading"><a href="#components" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Components</span></h2><h3 id="sprint-1-core-components-completed" class="section-heading"><a href="#sprint-1-core-components-completed" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Sprint 1: Core Components (Completed)</span></h3><h4>Button</h4><p>Full-featured button component with Nuxt UI API compatibility.</p><pre><code class="makeup elixir" translate="no"><span class="c1"># Basic button</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="nc">Click</span><span class="w"> </span><span class="n">me</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># With color and variant</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s">&quot;primary&quot;</span><span class="w"> </span><span class="n">variant</span><span class="o">=</span><span class="s">&quot;solid&quot;</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="s">&quot;md&quot;</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Submit</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># Loading state</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">loading</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Submit</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># With icons (Heroicons)</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">icon</span><span class="o">=</span><span class="s">&quot;hero-check&quot;</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s">&quot;success&quot;</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Save</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+
+</span><span class="c1"># Full width</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="w"> </span><span class="n">block</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Full</span><span class="w"> </span><span class="nc">Width</span><span class="w"> </span><span class="nc">Button</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span></code></pre><p><strong>Colors</strong>: primary, secondary, neutral, success, warning, error
+<strong>Variants</strong>: solid, outline, soft, ghost, link
+<strong>Sizes</strong>: xs, sm, md (default), lg, xl</p><p>See the <a href="https://ui.nuxt.com/components/button">Nuxt UI Button reference</a> for API inspiration.</p><h3 id="card" class="section-heading"><a href="#card" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Card</span></h3><p>Container component with header, body, and actions slots.</p><pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">card</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="ss">:header</span><span class="o">&gt;</span><span class="nc">Card</span><span class="w"> </span><span class="nc">Title</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:header</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="ss">:body</span><span class="o">&gt;</span><span class="w">
+    </span><span class="nc">Card</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="n">goes</span><span class="w"> </span><span class="n">here</span><span class="w">
+  </span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:body</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="ss">:actions</span><span class="o">&gt;</span><span class="w">
+    </span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="nc">Action</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:actions</span><span class="o">&gt;</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">card</span><span class="o">&gt;</span></code></pre><h3 id="modal" class="section-heading"><a href="#modal" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Modal</span></h3><p>Dialog overlay with backdrop and close functionality.</p><pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">modal</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;my-modal&quot;</span><span class="w"> </span><span class="n">show</span><span class="o">=</span><span class="p" data-group-id="0725926986-1">{</span><span class="na">@show_modal</span><span class="p" data-group-id="0725926986-1">}</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="ss">:title</span><span class="o">&gt;</span><span class="nc">Modal</span><span class="w"> </span><span class="nc">Title</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:title</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="ss">:body</span><span class="o">&gt;</span><span class="w">
+    </span><span class="nc">Modal</span><span class="w"> </span><span class="n">content</span><span class="w">
+  </span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:body</span><span class="o">&gt;</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">modal</span><span class="o">&gt;</span></code></pre><h3 id="alert" class="section-heading"><a href="#alert" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Alert</span></h3><p>Notification component with multiple severity levels.</p><pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">alert</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;success&quot;</span><span class="o">&gt;</span><span class="w">
+  </span><span class="nc">Operation</span><span class="w"> </span><span class="n">completed</span><span class="w"> </span><span class="n">successfully!</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">alert</span><span class="o">&gt;</span></code></pre><p><strong>Types</strong>: info, success, warning, error</p><h2 id="usage" class="section-heading"><a href="#usage" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Usage</span></h2><h3 id="installation" class="section-heading"><a href="#installation" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Installation</span></h3><p>Add to your Phoenix app's dependencies in <code class="inline">mix.exs</code>:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="5557645251-1">do</span><span class="w">
+  </span><span class="p" data-group-id="5557645251-2">[</span><span class="w">
+    </span><span class="p" data-group-id="5557645251-3">{</span><span class="ss">:xtweak_ui</span><span class="p">,</span><span class="w"> </span><span class="ss">in_umbrella</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="5557645251-3">}</span><span class="w">
+  </span><span class="p" data-group-id="5557645251-2">]</span><span class="w">
+</span><span class="k" data-group-id="5557645251-1">end</span></code></pre><h3 id="css-integration" class="section-heading"><a href="#css-integration" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">CSS Integration</span></h3><p>xTweak UI uses a theme system based on CSS variables and Tailwind CSS. To properly integrate the styling into your Phoenix application:</p><h4>For Umbrella Apps</h4><p><strong>Step 1: Import Theme Variables</strong></p><p>In your application's CSS file, import the xTweak UI theme:</p><pre><code class="css">/* apps/your_app/assets/css/app.css */
+@import &quot;tailwindcss/base&quot;;
+@import &quot;tailwindcss/components&quot;;
+@import &quot;tailwindcss/utilities&quot;;
+
+/* Import xTweak UI theme variables */
+@import &quot;../../../xtweak_ui/assets/css/theme.css&quot;;
+
+/* Your app-specific styles below */</code></pre><p><strong>Step 2: Configure Tailwind Content Scanning</strong></p><p>Update your Tailwind config to scan xTweak UI components for CSS classes:</p><pre><code class="javascript">// apps/your_app/assets/tailwind.config.js
+module.exports = {
+  content: [
+    &quot;./js/**/*.js&quot;,
+    &quot;../lib/your_app_web/**/*.*ex&quot;,
+    &quot;../../xtweak_ui/lib/**/*.{ex,exs,heex}&quot;  // Scan UI library components
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Map CSS variables to Tailwind utilities
+        primary: {
+          50: 'var(--color-primary-50)',
+          100: 'var(--color-primary-100)',
+          200: 'var(--color-primary-200)',
+          300: 'var(--color-primary-300)',
+          400: 'var(--color-primary-400)',
+          500: 'var(--color-primary-500)',
+          600: 'var(--color-primary-600)',
+          700: 'var(--color-primary-700)',
+          800: 'var(--color-primary-800)',
+          900: 'var(--color-primary-900)',
+        },
+        gray: {
+          50: 'var(--color-gray-50)',
+          100: 'var(--color-gray-100)',
+          200: 'var(--color-gray-200)',
+          300: 'var(--color-gray-300)',
+          400: 'var(--color-gray-400)',
+          500: 'var(--color-gray-500)',
+          600: 'var(--color-gray-600)',
+          700: 'var(--color-gray-700)',
+          800: 'var(--color-gray-800)',
+          900: 'var(--color-gray-900)',
+        },
+        'ui-bg': {
+          default: 'var(--ui-bg-default)',
+          elevated: 'var(--ui-bg-elevated)',
+          accented: 'var(--ui-bg-accented)',
+        },
+        'ui-text': {
+          default: 'var(--ui-text-default)',
+          dimmed: 'var(--ui-text-dimmed)',
+          muted: 'var(--ui-text-muted)',
+          highlighted: 'var(--ui-text-highlighted)',
+        },
+        'ui-border': {
+          default: 'var(--ui-border-default)',
+          accented: 'var(--ui-border-accented)',
+        }
+      }
+    }
+  }
+}</code></pre><p><strong>Step 3: Rebuild Assets</strong></p><pre><code class="makeup bash" translate="no"><span class="">cd apps/your_app/assets
+</span><span class="">npm run build
+</span></code></pre><h4>For Published Hex Package</h4><p>When xTweak UI is published to Hex, use the dependency path instead:</p><pre><code class="css">/* apps/your_app/assets/css/app.css */
+@import &quot;tailwindcss/base&quot;;
+@import &quot;tailwindcss/components&quot;;
+@import &quot;tailwindcss/utilities&quot;;
+
+/* Import xTweak UI theme from deps */
+@import &quot;../../../deps/xtweak_ui/assets/css/theme.css&quot;;</code></pre><p>The Tailwind content configuration remains the same (paths resolve correctly for both umbrella and hex packages).</p><h4>Why This Approach?</h4><p>This integration pattern:</p><ul><li>✅ <strong>Single source of truth</strong> - Theme variables defined once in xTweak UI</li><li>✅ <strong>Tree-shaking</strong> - Only CSS for components you use is included</li><li>✅ <strong>Optimal bundle size</strong> - Single CSS file with no duplication</li><li>✅ <strong>Works everywhere</strong> - Same pattern for umbrella projects and hex packages</li><li>✅ <strong>Maintainable</strong> - Theme updates in xTweak UI automatically reflect in your app</li></ul><h3 id="importing-components" class="section-heading"><a href="#importing-components" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Importing Components</span></h3><p>In your LiveView module:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.MyLive</span><span class="w"> </span><span class="k" data-group-id="4122929953-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:live_view</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">XTweakUI.Components</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="4122929953-2">(</span><span class="n">assigns</span><span class="p" data-group-id="4122929953-2">)</span><span class="w"> </span><span class="k" data-group-id="4122929953-3">do</span><span class="w">
+    </span><span class="sx">~H&quot;&quot;&quot;
+    &lt;.card&gt;
+      &lt;:header&gt;Welcome&lt;/:header&gt;
+      &lt;:body&gt;
+        &lt;.button variant=&quot;primary&quot;&gt;Get Started&lt;/.button&gt;
+      &lt;/:body&gt;
+    &lt;/.card&gt;
+    &quot;&quot;&quot;</span><span class="w">
+  </span><span class="k" data-group-id="4122929953-3">end</span><span class="w">
+</span><span class="k" data-group-id="4122929953-1">end</span></code></pre><p>Or import globally in <code class="inline">my_app_web.ex</code>:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmacro</span><span class="w"> </span><span class="nf">live_view</span><span class="w"> </span><span class="k" data-group-id="5802506063-1">do</span><span class="w">
+  </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="5802506063-2">do</span><span class="w">
+    </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.LiveView</span><span class="p">,</span><span class="w">
+      </span><span class="ss">layout</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5802506063-3">{</span><span class="nc">MyAppWeb.Layouts</span><span class="p">,</span><span class="w"> </span><span class="ss">:app</span><span class="p" data-group-id="5802506063-3">}</span><span class="w">
+
+    </span><span class="kn">use</span><span class="w"> </span><span class="nc">XTweakUI.Components</span><span class="w">  </span><span class="c1"># Add this line</span><span class="w">
+
+    </span><span class="k">unquote</span><span class="p" data-group-id="5802506063-4">(</span><span class="n">html_helpers</span><span class="p" data-group-id="5802506063-5">(</span><span class="p" data-group-id="5802506063-5">)</span><span class="p" data-group-id="5802506063-4">)</span><span class="w">
+  </span><span class="k" data-group-id="5802506063-2">end</span><span class="w">
+</span><span class="k" data-group-id="5802506063-1">end</span></code></pre><h2 id="customization" class="section-heading"><a href="#customization" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Customization</span></h2><h3 id="theming" class="section-heading"><a href="#theming" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Theming</span></h3><p>Components use CSS variable-based theming. Customize in your theme configuration via CSS variables or Elixir config:</p><pre><code class="css">:root {
+  --color-primary-500: oklch(60% 0.20 240);
+  --color-secondary-500: oklch(50% 0.18 300);
+  /* ... more colors */
+}</code></pre><h3 id="extending-components" class="section-heading"><a href="#extending-components" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Extending Components</span></h3><p>Components are defined in <code class="inline">/lib/xtweak_ui/components/</code>. To add new components:</p><ol><li>Create a new file in <code class="inline">lib/xtweak_ui/components/</code></li><li>Define your component using <a href="https://hexdocs.pm/phoenix_live_view/1.1.16/Phoenix.Component.html"><code class="inline">Phoenix.Component</code></a></li><li>Add it to <code class="inline">lib/xtweak_ui/components.ex</code></li></ol><p>Example:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># lib/xtweak_ui/components/badge.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">XTweakUI.Components.Badge</span><span class="w"> </span><span class="k" data-group-id="9128683914-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Component</span><span class="w">
+
+  </span><span class="n">attr</span><span class="w"> </span><span class="ss">:variant</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="p">,</span><span class="w"> </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;neutral&quot;</span><span class="w">
+  </span><span class="n">attr</span><span class="w"> </span><span class="ss">:class</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="p">,</span><span class="w"> </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">
+  </span><span class="n">slot</span><span class="w"> </span><span class="ss">:inner_block</span><span class="p">,</span><span class="w"> </span><span class="ss">required</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">badge</span><span class="p" data-group-id="9128683914-2">(</span><span class="n">assigns</span><span class="p" data-group-id="9128683914-2">)</span><span class="w"> </span><span class="k" data-group-id="9128683914-3">do</span><span class="w">
+    </span><span class="sx">~H&quot;&quot;&quot;
+    &lt;span class={[&quot;badge&quot;, &quot;badge-#{@variant}&quot;, @class]}&gt;
+      &lt;%= render_slot(@inner_block) %&gt;
+    &lt;/span&gt;
+    &quot;&quot;&quot;</span><span class="w">
+  </span><span class="k" data-group-id="9128683914-3">end</span><span class="w">
+</span><span class="k" data-group-id="9128683914-1">end</span></code></pre><p>Then expose it:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># lib/xtweak_ui/components.ex</span><span class="w">
+</span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">__using__</span><span class="p" data-group-id="4897956845-1">(</span><span class="c">_opts</span><span class="p" data-group-id="4897956845-1">)</span><span class="w"> </span><span class="k" data-group-id="4897956845-2">do</span><span class="w">
+  </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="4897956845-3">do</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">XTweakUI.Components.Button</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">XTweakUI.Components.Card</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">XTweakUI.Components.Modal</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">XTweakUI.Components.Alert</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">XTweakUI.Components.Badge</span><span class="w">  </span><span class="c1"># Add new component</span><span class="w">
+  </span><span class="k" data-group-id="4897956845-3">end</span><span class="w">
+</span><span class="k" data-group-id="4897956845-2">end</span></code></pre><h2 id="testing" class="section-heading"><a href="#testing" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Testing</span></h2><pre><code class="makeup bash" translate="no"><span class=""># Run component tests
+</span><span class="">mix test apps/xtweak_ui/test
+</span><span class="">
+</span><span class=""># Run specific test file
+</span><span class="">mix test apps/xtweak_ui/test/xtweak_ui/components/button_test.exs
+</span></code></pre><h2 id="component-guidelines" class="section-heading"><a href="#component-guidelines" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Component Guidelines</span></h2><p>When creating new components:</p><ol><li><strong>Use slots</strong> for flexible content areas</li><li><strong>Provide sensible defaults</strong> for all attributes</li><li><strong>Support Tailwind variants</strong> where applicable</li><li><strong>Include documentation</strong> with examples</li><li><strong>Add tests</strong> for component rendering</li><li><strong>Follow accessibility</strong> best practices (ARIA, keyboard nav)</li></ol><h2 id="dependencies" class="section-heading"><a href="#dependencies" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Dependencies</span></h2><ul><li><strong>Phoenix.Component</strong> - Component framework</li><li><strong>Phoenix.LiveView</strong> - Real-time updates</li><li><strong>Tailwind CSS</strong> - Utility classes</li></ul><h2 id="documentation" class="section-heading"><a href="#documentation" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Documentation</span></h2><p>Generate component documentation:</p><pre><code class="makeup bash" translate="no"><span class="">mix docs
+</span></code></pre><p>View the generated docs at <code class="inline">doc/index.html</code>.</p><h2 id="contributing" class="section-heading"><a href="#contributing" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Contributing</span></h2><p>When adding components:</p><ol><li>Match the existing code style</li><li>Include comprehensive tests</li><li>Document all attributes and slots</li><li>Provide usage examples</li><li>Use semantic naming and clear APIs</li></ol><hr class="thin"/><p><strong>Note</strong>: This component library is designed for the xTweak infrastructure template. Adapt and extend it to fit your project's needs.</p>
+
+</div>
+
+<div class="bottom-actions" id="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+    <footer class="footer">
+      <p>
+
+          <span class="line">
+            <a href="https://hex.pm/packages/xtweak_ui/0.1.0" class="footer-hex-package">Hex Package</a>
+
+            <a href="https://preview.hex.pm/preview/xtweak_ui/0.1.0">Hex Preview</a>
+
+              (<a href="https://preview.hex.pm/preview/xtweak_ui/0.1.0/show/README.md">current file</a>)
+
+          </span>
+
+        <span class="line">
+          <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+            Search HexDocs
+          </button>
+
+            <a href="xtweak_ui.epub" title="ePub version">
+              Download ePub version
+            </a>
+
+        </span>
+      </p>
+
+      <p class="built-using">
+        Built using
+        <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.39.1) for the
+
+          <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+      </p>
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

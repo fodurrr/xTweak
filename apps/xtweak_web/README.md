@@ -6,7 +6,6 @@ Phoenix LiveView web interface for the xTweak infrastructure template.
 
 This is the web app in the xTweak umbrella application. It contains:
 - Phoenix Framework with LiveView
-- DaisyUI component styling
 - Tailwind CSS utilities
 - Cytoscape.js for graph visualizations
 - Real-time user interface components
@@ -23,7 +22,7 @@ xtweak_web/
 │       ├── live/          # LiveView modules
 │       └── router.ex      # Route definitions
 ├── assets/                # Frontend assets
-│   ├── css/              # Stylesheets (Tailwind + DaisyUI)
+│   ├── css/              # Stylesheets (Tailwind CSS)
 │   ├── js/               # JavaScript (including Cytoscape hooks)
 │   └── vendor/           # Third-party JS libraries
 └── test/
@@ -67,10 +66,10 @@ xtweak_web/
 - Server-rendered HTML with minimal JavaScript
 - Built-in form handling and validation
 
-### DaisyUI Theming
-- Semantic component classes
+### Theme System
+- CSS variable-based theming
 - Dark/light mode support
-- Multiple theme variants
+- Semantic color tokens
 - Accessible by default
 
 ### Cytoscape Integration
@@ -163,7 +162,6 @@ Key considerations:
 - LiveView docs: https://hexdocs.pm/phoenix_live_view
 
 ### Project Resources
-- DaisyUI docs: https://daisyui.com/
 - Tailwind docs: https://tailwindcss.com/
 - Cytoscape docs: https://js.cytoscape.org/
 

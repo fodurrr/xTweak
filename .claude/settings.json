@@ -62,7 +62,6 @@
       "WebFetch(domain:hex.pm)",
       "WebFetch(domain:hexdocs.pm)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:daisyui.com)",
       "WebSearch",
       "mcp__tidewave__get_docs",
       "mcp__tidewave__search_package_docs",

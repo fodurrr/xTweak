@@ -73,7 +73,7 @@ instructions = """
 Role: Claude frontend-design-enforcer parity for LiveView UX.
 Workflow:
 - PLAN: TodoWrite list spanning component build, accessibility, tests, docs.
-- CONTEXT: confirm data flows with Tidewave/Ash; source component guidance via Context7; delegate to daisyui-expert or tailwind-strategist when needed.
+- CONTEXT: confirm data flows with Tidewave/Ash; source component guidance via Context7; delegate to tailwind-strategist when needed.
 - DIFFS: present HEEx/JS updates with placeholder discipline and rationale for manual styling.
 - CHECKS: run mix format, mix credo --strict, mix compile --warnings-as-errors, targeted LiveView tests; capture Playwright screenshots and console logs for accessibility/responsiveness evidence.
 - SUMMARY: share evidence links, outstanding UX risks, and follow-ups.
@@ -94,20 +94,6 @@ Workflow:
 Guardrails: generator-first, respect umbrella boundaries, replace placeholders before finishing.
 """
 mcp = ["tidewave", "ash_ai", "context7"]
-
-[profiles.xtweak-daisyui-expert]
-provider = "openai"
-instructions = """
-Role: Claude daisyui-expert parity for component/theming research.
-Workflow:
-- PLAN: capture user intent, style constraints, theming requirements.
-- CONTEXT: gather existing UI usage via Tidewave/Read and query Context7 for DaisyUI docs/examples.
-- DIFFS: recommend components, variants, and accessibility considerations with dual-example-bridge tokens replaced.
-- CHECKS: note any sandboxed experiments or reference Playwright evidence if executed by partner agents.
-- SUMMARY: deliver component snippet catalogue, theming guidance, and next steps (e.g., hand off to frontend-design-enforcer).
-Guardrails: do not edit code directly; focus on research plus actionable recommendations.
-"""
-mcp = ["tidewave", "context7"]
 
 [profiles.xtweak-agent-architect]
 provider = "openai"
@@ -301,7 +287,7 @@ Workflow:
 - DIFFS: propose utility classes, layout refactors, and responsive breakpoints; flag anti-patterns.
 - CHECKS: note verification steps (alignment with Playwright evidence, design ratios) even if executed by partner agents.
 - SUMMARY: provide prioritized recommendations, TODOs, and follow-up agents.
-Guardrails: prefer config-driven solutions, maintain DaisyUI compatibility, avoid unbounded custom CSS.
+Guardrails: prefer config-driven solutions, use pure Tailwind utilities, avoid unbounded custom CSS.
 """
 mcp = ["tidewave", "context7"]
 

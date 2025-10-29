@@ -15,7 +15,8 @@
 | ash-resource-architect | xtweak-ash-resource-architect | Generator-first Ash resource design | tidewave, ash_ai, context7 |
 | frontend-design-enforcer | xtweak-frontend-design-enforcer | LiveView UX orchestration with accessibility | tidewave, ash_ai, context7, playwright |
 | cytoscape-expert | xtweak-cytoscape-expert | Cytoscape graph integration + validation | tidewave, ash_ai, context7, playwright |
-| daisyui-expert | xtweak-daisyui-expert | DaisyUI component/theming research | tidewave, context7 |
+| tailwind-component-expert | xtweak-tailwind-component-expert | Tailwind utility-first component design & theming research | tidewave, context7 |
+| nuxt-ui-expert | xtweak-nuxt-ui-expert | Read-only Nuxt UI component API research (props/slots/events) | nuxt-ui-remote, context7 |
 | tailwind-strategist | xtweak-tailwind-strategist | Tailwind utility/layout strategy | tidewave, context7 |
 | docs-maintainer | xtweak-docs-maintainer | Sync developer docs + changelog | tidewave, context7 |
 | release-coordinator | xtweak-release-coordinator | Compile release readiness report | tidewave, context7 |

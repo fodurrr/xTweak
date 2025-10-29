@@ -1,106 +1,128 @@
 <nav
-  class="navbar bg-base-200 shadow-lg sticky top-0 z-50 px-4"
+  class="bg-white shadow-lg sticky top-0 z-50 px-4"
   role="navigation"
   aria-label="main navigation"
 >
-  <div class="navbar-start">
-    <a class="btn btn-ghost text-xl font-bold text-primary hover:text-primary-focus">
-      xTweak
-    </a>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="/weather">Weather Demo</a></li>
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <a href="/weather" class="btn btn-primary">Try Demo</a>
+  <div class="max-w-7xl mx-auto flex items-center justify-between h-16">
+    <div class="flex-shrink-0">
+      <a
+        href="/"
+        class="text-xl font-bold text-primary-600 hover:text-primary-700 transition-colors"
+      >
+        xTweak
+      </a>
+    </div>
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="#features" class="text-gray-700 hover:text-primary-600 transition-colors">
+        Features
+      </a>
+      <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors">About</a>
+      <a href="/weather" class="text-gray-700 hover:text-primary-600 transition-colors">
+        Weather Demo
+      </a>
+    </div>
+    <div class="flex-shrink-0">
+      <a
+        href="/weather"
+        class="inline-flex items-center justify-center px-4 py-2 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors"
+      >
+        Try Demo
+      </a>
+    </div>
   </div>
 </nav>
 
-<div class="hero min-h-screen bg-gradient-to-br from-primary via-secondary to-accent">
-  <div class="hero-content text-center">
-    <div class="max-w-md">
+<div class="min-h-screen bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 flex items-center justify-center">
+  <div class="text-center px-4">
+    <div class="max-w-md mx-auto">
       <h1 class="text-5xl font-bold text-white">xTweak</h1>
       <p class="py-6 text-xl text-white">
-        A minimal Elixir umbrella project template with Phoenix, Ash Framework, and DaisyUI
+        A minimal Elixir umbrella project template with Phoenix, Ash Framework, and pure Tailwind CSS
       </p>
-      <a href="/weather" class="btn btn-primary btn-lg">Get Started</a>
+      <a
+        href="/weather"
+        class="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold text-lg rounded-lg hover:bg-gray-50 transition-colors shadow-lg"
+      >
+        Get Started
+      </a>
     </div>
   </div>
 </div>
 
-<section id="features" class="py-20 bg-base-100">
+<section id="features" class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-12">Template Features</h2>
+    <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Template Features</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-base-200 shadow-xl">
-        <div class="card-body items-center text-center">
-          <h3 class="card-title">🚀 Three Apps</h3>
-          <p>Web app with auth, Documentation app, and UI component library</p>
+      <div class="bg-white rounded-lg shadow-xl p-6">
+        <div class="flex flex-col items-center text-center">
+          <h3 class="text-xl font-bold mb-3 text-gray-900">🚀 Three Apps</h3>
+          <p class="text-gray-600">
+            Web app with auth, Documentation app, and UI component library
+          </p>
         </div>
       </div>
 
-      <div class="card bg-base-200 shadow-xl">
-        <div class="card-body items-center text-center">
-          <h3 class="card-title">⚡ Modern Stack</h3>
-          <p>Phoenix LiveView, Ash Framework, Tailwind CSS, DaisyUI</p>
+      <div class="bg-white rounded-lg shadow-xl p-6">
+        <div class="flex flex-col items-center text-center">
+          <h3 class="text-xl font-bold mb-3 text-gray-900">⚡ Modern Stack</h3>
+          <p class="text-gray-600">Phoenix LiveView, Ash Framework, Tailwind CSS</p>
         </div>
       </div>
 
-      <div class="card bg-base-200 shadow-xl">
-        <div class="card-body items-center text-center">
-          <h3 class="card-title">🤖 AI Ready</h3>
-          <p>Pre-configured for Claude Code and MCP servers</p>
+      <div class="bg-white rounded-lg shadow-xl p-6">
+        <div class="flex flex-col items-center text-center">
+          <h3 class="text-xl font-bold mb-3 text-gray-900">🤖 AI Ready</h3>
+          <p class="text-gray-600">Pre-configured for Claude Code and MCP servers</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="about" class="py-20 bg-base-200">
+<section id="about" class="py-20 bg-white">
   <div class="container mx-auto px-4 text-center">
-    <h2 class="text-4xl font-bold mb-8">About xTweak</h2>
+    <h2 class="text-4xl font-bold mb-8 text-gray-900">About xTweak</h2>
     <div class="max-w-3xl mx-auto">
-      <p class="text-lg mb-6">
+      <p class="text-lg mb-6 text-gray-700">
         xTweak is a clean, minimal Elixir umbrella template designed to kickstart your next project.
         It comes with authentication, a weather demo page, and a component library ready to customize.
       </p>
-      <p class="text-lg">
+      <p class="text-lg text-gray-700">
         Perfect for developers who want a solid foundation without the bloat.
       </p>
     </div>
   </div>
 </section>
 
-<section id="newsletter" class="py-20 bg-base-100">
+<section id="newsletter" class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="max-w-md mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">Stay Updated</h2>
+      <h2 class="text-3xl font-bold mb-8 text-gray-900">Stay Updated</h2>
       <.form :let={f} for={@form} action={~p"/subscribe"} method="post">
-        <div class="form-control">
-          <div class="input-group">
-            <.input
-              field={f[:email]}
-              type="email"
-              placeholder="Enter your email"
-              required
-              class="input input-bordered w-full"
-            />
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-          </div>
+        <div class="flex gap-2">
+          <.input
+            field={f[:email]}
+            type="email"
+            placeholder="Enter your email"
+            required
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          />
+          <button
+            type="submit"
+            class="px-6 py-2 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors whitespace-nowrap"
+          >
+            Subscribe
+          </button>
         </div>
       </.form>
     </div>
   </div>
 </section>
 
-<footer class="footer footer-center p-10 bg-base-200 text-base-content">
-  <div>
-    <p class="font-bold">xTweak Template</p>
-    <p>© 2024 - Built with Elixir, Phoenix, and Ash Framework</p>
+<footer class="bg-gray-900 text-white py-10">
+  <div class="container mx-auto px-4 text-center">
+    <p class="font-bold text-lg mb-2">xTweak Template</p>
+    <p class="text-gray-400">© 2024 - Built with Elixir, Phoenix, and Ash Framework</p>
   </div>
 </footer>
