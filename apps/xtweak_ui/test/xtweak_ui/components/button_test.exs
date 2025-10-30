@@ -231,7 +231,7 @@ defmodule XTweakUI.Components.ButtonTest do
         """)
 
       assert html =~ "hero-check"
-      assert html =~ "mr-2"
+      assert html =~ "gap-2"
     end
 
     test "trailing icon renders correctly" do
@@ -243,7 +243,7 @@ defmodule XTweakUI.Components.ButtonTest do
         """)
 
       assert html =~ "hero-arrow-right"
-      assert html =~ "ml-2"
+      assert html =~ "gap-2"
     end
 
     test "icon attribute is alias for leading_icon" do
@@ -255,7 +255,7 @@ defmodule XTweakUI.Components.ButtonTest do
         """)
 
       assert html =~ "hero-check"
-      assert html =~ "mr-2"
+      assert html =~ "gap-2"
     end
 
     test "loading spinner hides leading icon" do

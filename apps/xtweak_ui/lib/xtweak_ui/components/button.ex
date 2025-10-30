@@ -86,26 +86,7 @@ defmodule XTweakUI.Components.Button do
   slot(:inner_block, doc: "Button content")
 
   def button(assigns) do
-    # Get theme config
-    theme_config = Theme.component_config(:button)
-    defaults = Theme.component_defaults(:button)
-
-    # Detect if button has only icon (no text content)
-    has_text_content =
-      assigns[:label] != nil || (assigns[:inner_block] && assigns[:inner_block] != [])
-
-    icon_only =
-      (assigns[:icon] || assigns[:leading_icon] || assigns[:trailing_icon]) && !has_text_content
-
-    # Apply defaults
-    assigns =
-      assigns
-      |> assign_new(:color, fn -> defaults[:color] || "primary" end)
-      |> assign_new(:variant, fn -> defaults[:variant] || "solid" end)
-      |> assign_new(:size, fn -> defaults[:size] || "md" end)
-      |> assign(:leading_icon, assigns[:icon] || assigns[:leading_icon])
-      |> assign(:icon_only, icon_only)
-      |> assign(:theme_config, theme_config)
+    assigns = prepare_button_assigns(assigns)
 
     ~H"""
     <button
@@ -178,7 +159,36 @@ defmodule XTweakUI.Components.Button do
     """
   end
 
-  # Private functions for class generation
+  # Private functions for assigns preparation and class generation
+
+  defp prepare_button_assigns(assigns) do
+    theme_config = Theme.component_config(:button)
+    defaults = Theme.component_defaults(:button)
+    icon_only = detect_icon_only_button(assigns)
+
+    assigns
+    |> apply_button_defaults(defaults)
+    |> assign(:leading_icon, assigns[:icon] || assigns[:leading_icon])
+    |> assign(:icon_only, icon_only)
+    |> assign(:theme_config, theme_config)
+  end
+
+  defp detect_icon_only_button(assigns) do
+    has_text_content = has_text_content?(assigns)
+    has_icon = assigns[:icon] || assigns[:leading_icon] || assigns[:trailing_icon]
+    has_icon && !has_text_content
+  end
+
+  defp has_text_content?(assigns) do
+    assigns[:label] != nil || (assigns[:inner_block] && assigns[:inner_block] != [])
+  end
+
+  defp apply_button_defaults(assigns, defaults) do
+    assigns
+    |> assign_new(:color, fn -> defaults[:color] || "primary" end)
+    |> assign_new(:variant, fn -> defaults[:variant] || "solid" end)
+    |> assign_new(:size, fn -> defaults[:size] || "md" end)
+  end
 
   defp variant_classes("solid", color) do
     case color do
