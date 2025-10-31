@@ -1,7 +1,3 @@
-<!-- ash_authentication-start -->
-## ash_authentication usage
-_Authentication extension for the Ash Framework._
-
 <!--
 SPDX-FileCopyrightText: 2022 Alembic Pty Ltd
 
@@ -380,4 +376,3 @@ end
 ```
 
 For more guidance, see the "Customizing Authentication Actions" section in the getting started guide.
-<!-- ash_authentication-end -->

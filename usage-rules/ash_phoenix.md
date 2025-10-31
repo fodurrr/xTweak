@@ -1,7 +1,3 @@
-<!-- ash_phoenix-start -->
-## ash_phoenix usage
-_Utilities for integrating Ash and Phoenix_
-
 <!--
 SPDX-FileCopyrightText: 2020 Zach Daniel
 
@@ -244,5 +240,3 @@ If you want to see what errors the form will see (that implement the protocl and
 2. **Leverage code interfaces**: Define code interfaces on your domains for a clean and consistent API to call your resource actions.
 
 3. **Update resources before editing**: When building forms for updating resources, load the resource with all required relationships using `Ash.load!/2` before creating the form.
-
-<!-- ash_phoenix-end -->

@@ -59,7 +59,9 @@ format:
 	mix format
 
 usage-rules:
-	./scripts/setup_usage_rules.sh
+	@echo "📋 Setting up usage_rules integration..."
+	@echo "🔗 Syncing usage rules from dependencies..."
+	mix usage_rules.sync usage-rules.md --all --link-to-folder usage-rules
 
 # Maintenance
 clean:

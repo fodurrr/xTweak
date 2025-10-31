@@ -1,7 +1,3 @@
-<!-- igniter-start -->
-## igniter usage
-_A code generation and project patching framework_
-
 # Rules for working with Igniter
 
 ## Understanding Igniter
@@ -32,5 +28,3 @@ Igniter is a code generation and project patching framework that enables semanti
 - **`Igniter.Code.Module`** - Working with module definitions and usage
 - **`Igniter.Code.String`** - Utilities for string literals
 - **`Igniter.Code.Tuple`** - Working with tuples
-
-<!-- igniter-end -->
