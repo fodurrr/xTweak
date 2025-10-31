@@ -4,18 +4,13 @@ A minimal, clean Elixir umbrella project template with Phoenix LiveView, Ash Fra
 
 ## 🤖 AI Development Setup
 
-This project is optimized for AI-assisted development. **Start with these guides:**
+This project is optimized for AI-assisted development.
 
-**Entry Points** (read in this order):
-1. 📋 [DEV_PREFERENCES.md](./DEV_PREFERENCES.md) – **Start here!** Mandatory user preferences
-2. 🎯 [CLAUDE.md](./CLAUDE.md) – Claude Code primary guide (pattern-first workflows)
-3. 📚 [AGENTS.md](./AGENTS.md) – Multi-tool standard (Codex, Cursor, Copilot, Jules, Aider)
+**For Humans (Peter):**
+- 🎯 [Human_docs/WORKFLOW_GUIDE.md](./Human_docs/WORKFLOW_GUIDE.md) – **Start here!** How to use slash commands and kick off workflows
 
-**Quick References**:
-- ⚡ [Quick Reference](./docs/claude/quick-reference.md) – One-minute checklist
-- 🎨 [Frontend Principles](./docs/frontend_design_principles/frontend-design-principles.md) – UI workflow
-- 🔧 [Codex Profiles](./docs/codex_profiles.md) – 21 agent profiles
-- 📖 [Complete Documentation Index](./docs/README.md) – All guides and references
+**For Claude Code (Automatic):**
+- Claude reads [CLAUDE.md](./CLAUDE.md) automatically - you just use slash commands from WORKFLOW_GUIDE.md
 
 ## 🏗️ Architecture
 
@@ -270,7 +265,7 @@ This template is pre-configured for AI-assisted development with Claude Code:
 
 ### Pattern-Based Development
 - Comprehensive pattern library in `.claude/patterns/`
-- Specialized agents for different tasks (see `.claude/AGENT_USAGE_GUIDE.md`)
+- Specialized agents for different tasks (see `.claude/README.md`)
 - Enforced quality gates and verification workflows
 - See `CLAUDE.md` for complete guidelines
 

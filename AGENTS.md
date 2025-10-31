@@ -2,7 +2,7 @@
 
 This file follows the **AGENTS.md open standard**, read automatically by **Codex CLI, Cursor, GitHub Copilot, Jules, Aider**, and 20+ other AI coding tools.
 
-> **📋 MANDATORY**: Read [DEV_PREFERENCES.md](./DEV_PREFERENCES.md) first – User preferences override all guidelines below.
+> **📋 MANDATORY**: Read [MANDATORY_AI_RULES.md](./MANDATORY_AI_RULES.md) first – These rules override all guidelines below.
 
 > **Claude Code Users**: You're in the wrong file. See [CLAUDE.md](./CLAUDE.md) for Claude-specific workflows.
 

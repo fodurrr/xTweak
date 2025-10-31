@@ -135,7 +135,7 @@ Create TodoWrite checklist for validation steps.
 Read these entry point files:
 - `CLAUDE.md` - Claude Code entry point
 - `AGENTS.md` - Codex/Cursor/Copilot/etc entry point
-- `DEV_PREFERENCES.md` - Mandatory user preferences
+- `MANDATORY_AI_RULES.md` - Mandatory AI rules
 - `README.md` - Human-facing overview
 
 **Verify one-way flow** (no circular links):
@@ -144,14 +144,14 @@ Read these entry point files:
 - Reference materials (Tier 3) should NEVER link up
 
 **Check mandatory patterns**:
-- CLAUDE.md must link to DEV_PREFERENCES.md first
-- AGENTS.md must link to DEV_PREFERENCES.md first
+- CLAUDE.md must link to MANDATORY_AI_RULES.md first
+- AGENTS.md must link to MANDATORY_AI_RULES.md first
 - No upward links from docs/README.md to CLAUDE.md or AGENTS.md
 
 #### Content Accuracy
 
 **Verify configuration documentation**:
-- `.claude/README.md` describes actual `.mcp.json` + `settings.json` structure
+- Configuration files documented in Human_docs/claude_cli_setup.md
 - `AGENTS.md` section on Codex CLI matches actual `.codex/config.toml`
 - `docs/codex_profiles.md` lists all 21 profiles found in config
 
@@ -241,10 +241,10 @@ Create report in `.claude/agent-reports/tools-config-check-[YYYY-MM-DD].md`:
 ### Structure
 - ✅/❌ One-way flow (entry → hub → references)
 - ✅/❌ No circular links
-- ✅/❌ DEV_PREFERENCES.md linked first
+- ✅/❌ MANDATORY_AI_RULES.md linked first
 
 ### Accuracy
-- ✅/❌ `.claude/README.md` matches actual config
+- ✅/❌ Configuration documentation accurate
 - ✅/❌ `AGENTS.md` Codex section accurate
 - ✅/❌ MCP server descriptions correct
 
@@ -318,7 +318,7 @@ Apply **collaboration-handoff**:
 ## Configuration Check for {YourProject}
 
 Entry Points:
-- `TOOLNAME.md` → `DEV_PREFERENCES.md` → `docs/README.md` → references
+- `TOOLNAME.md` → `MANDATORY_AI_RULES.md` → `docs/README.md` → references
 
 MCP Servers (check .mcp.json):
 - {Server1}: {transport} @ {url_or_command}
@@ -335,8 +335,8 @@ Health Check:
 ## Configuration Check for XTweak
 
 Entry Points:
-- `CLAUDE.md` → `DEV_PREFERENCES.md` (mandatory) → `docs/README.md` → references
-- `AGENTS.md` → `DEV_PREFERENCES.md` (mandatory) → `docs/README.md` → references
+- `CLAUDE.md` → `MANDATORY_AI_RULES.md` (mandatory) → `docs/README.md` → references
+- `AGENTS.md` → `MANDATORY_AI_RULES.md` (mandatory) → `docs/README.md` → references
 
 MCP Servers (check .mcp.json):
 - TideWave: HTTP @ http://127.0.0.1:4000/tidewave/mcp
@@ -359,11 +359,11 @@ codex mcp list → expect: 4 servers, 2 HTTP (streamable_http), 2 stdio
 Documentation Flow:
 ```
 CLAUDE.md (Tier 1)
-  ↓ 1. DEV_PREFERENCES.md
-  ↓ 2. docs/claude/quick-reference.md
-  ↓ 3. docs/README.md (Tier 2)
+  ↓ 1. MANDATORY_AI_RULES.md
+  ↓ 2. .claude/README.md
+  ↓ 3. AI_docs/README.md (Tier 2)
       ↓ .claude/patterns/README.md (Tier 3)
-      ↓ .claude/AGENT_USAGE_GUIDE.md (Tier 3)
+      ↓ usage-rules/ (Tier 3)
       ✗ NEVER links back to CLAUDE.md
 ```
 

@@ -445,7 +445,7 @@ For converting existing Sonnet agent to Haiku:
 - [ ] Update self-check to include escalation trigger check
 - [ ] Test with 10 typical scenarios
 - [ ] Verify escalation rate <10%
-- [ ] Document in MODEL_SELECTION_STRATEGY.md
+- [ ] Document in README.md (Model Selection Strategy section)
 - [ ] Note in CHANGELOG.md
 
 ---

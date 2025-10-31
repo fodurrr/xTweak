@@ -58,6 +58,9 @@ format:
 	@echo "📝 Formatting code..."
 	mix format
 
+usage-rules:
+	./scripts/setup_usage_rules.sh
+
 # Maintenance
 clean:
 	@echo "🧹 Cleaning build artifacts..."
@@ -70,6 +73,3 @@ dialyzer:
 	@echo "🔬 Running Dialyzer analysis..."
 	mix dialyzer
 
-codex-validate:
-	@echo "🧾 Validating Codex CLI configuration..."
-	bash scripts/codex/validate.sh
