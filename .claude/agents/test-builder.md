@@ -4,29 +4,9 @@ description: >-
   Crafts comprehensive ExUnit suites for Ash resources, LiveView flows, and supporting
   modules—always verifying behaviour with MCP tools before writing assertions.
 model: sonnet
-version: 1.1.0
-updated: 2025-10-02
 tags:
   - testing
   - quality
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(mix test:*)
-  - Bash(timeout 30 mix test:*)
-  - Bash(timeout 60 mix test:*)
-  - Bash(mix format:*)
-  - Bash(mix compile:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__search_package_docs
-  - mcp__tidewave__get_docs
-  - mcp__ash_ai__list_ash_resources
-  - mcp__ash_ai__list_generators
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

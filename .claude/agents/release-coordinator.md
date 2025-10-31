@@ -4,25 +4,9 @@ description: >-
   Orchestrates release readiness checks, compiles changelog notes, and ensures
   quality gates are satisfied before tagging a new version.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-02
 tags:
   - release
   - ops
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - TodoWrite
-  - Bash(make *)
-  - Bash(mix *)
-  - Bash(git status:*)
-  - Bash(git diff:*)
-  - Bash(git log:*)
-  - Bash(git tag:*)
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__execute_sql_query
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

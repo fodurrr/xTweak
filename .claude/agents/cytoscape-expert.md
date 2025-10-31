@@ -4,47 +4,9 @@ description: >-
   Builds Cytoscape.js visualizations integrated with Ash resources and Phoenix LiveView,
   covering modeling, synchronization, and UX validation.
 model: sonnet
-version: 1.1.0
-updated: 2025-10-02
 tags:
   - frontend
   - graphs
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(npm:*)
-  - Bash(mix:*)
-  - Bash(mix format:*)
-  - Bash(mix compile:*)
-  - Bash(mix test:*)
-  - Bash(timeout 30 mix test:*)
-  - Bash(timeout 60 mix test:*)
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
-  - mcp__ash_ai__list_ash_resources
-  - mcp__ash_ai__list_generators
-  - mcp__ash_ai__get_usage_rules
-  - mcp__tidewave__get_ecto_schemas
-  - mcp__tidewave__search_package_docs
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__execute_sql_query
-  - mcp__tidewave__get_logs
-  - mcp__playwright__browser_navigate
-  - mcp__playwright__browser_snapshot
-  - mcp__playwright__browser_take_screenshot
-  - mcp__playwright__browser_click
-  - mcp__playwright__browser_type
-  - mcp__playwright__browser_wait_for
-  - mcp__playwright__browser_resize
-  - mcp__playwright__browser_console_messages
-  - mcp__playwright__browser_evaluate
-  - WebFetch
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

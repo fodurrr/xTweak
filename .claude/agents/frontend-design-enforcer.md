@@ -4,49 +4,9 @@ description: >-
   Orchestrates LiveView UI delivery—aligning layouts, accessibility, and UX while
   delegating framework-specific guidance to specialist agents (heex-template-expert, tailwind-strategist, nuxt-ui-expert).
 model: sonnet
-version: 1.2.0
-updated: 2025-10-30
 tags:
   - frontend
   - liveview
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(mix format:*)
-  - Bash(mix credo:*)
-  - Bash(mix compile:*)
-  - Bash(mix test:*)
-  - Bash(timeout 30 mix test:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__search_package_docs
-  - mcp__tidewave__get_logs
-  - mcp__ash_ai__list_ash_resources
-  - mcp__ash_ai__list_generators
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
-  - mcp__nuxt-ui-remote__list_components
-  - mcp__nuxt-ui-remote__get_component
-  - mcp__nuxt-ui-remote__get_component_metadata
-  - mcp__nuxt-ui-remote__search_components_by_category
-  - mcp__playwright__browser_navigate
-  - mcp__playwright__browser_snapshot
-  - mcp__playwright__browser_take_screenshot
-  - mcp__playwright__browser_click
-  - mcp__playwright__browser_type
-  - mcp__playwright__browser_fill_form
-  - mcp__playwright__browser_wait_for
-  - mcp__playwright__browser_press_key
-  - mcp__playwright__browser_resize
-  - mcp__playwright__browser_console_messages
-  - mcp__playwright__browser_evaluate
-  - mcp__playwright__browser_close
-  - WebFetch
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

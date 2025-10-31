@@ -4,41 +4,9 @@ description: >-
   Enforces MCP-first discovery across every task type, proving assumptions with
   live tooling before implementation, design, or testing proceeds.
 model: haiku
-version: 1.2.0
-updated: 2025-10-29
 tags:
   - verification
   - safety
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(mix format:*)
-  - Bash(mix credo:*)
-  - Bash(mix compile:*)
-  - Bash(mix test:*)
-  - Bash(timeout 30 mix test:*)
-  - Bash(timeout 60 mix test:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__search_package_docs
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__get_ecto_schemas
-  - mcp__tidewave__execute_sql_query
-  - mcp__ash_ai__list_ash_resources
-  - mcp__ash_ai__list_generators
-  - mcp__ash_ai__get_usage_rules
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
-  - mcp__nuxt-ui-remote__list_components
-  - mcp__nuxt-ui-remote__get_component
-  - mcp__nuxt-ui-remote__get_component_metadata
-  - mcp__nuxt-ui-remote__search_components_by_category
-  - WebFetch
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

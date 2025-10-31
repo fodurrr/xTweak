@@ -1,6 +1,5 @@
 ---
 title: Placeholder Basics
-updated: 2025-10-02
 tags:
   - core
 ---

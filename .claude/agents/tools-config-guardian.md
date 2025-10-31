@@ -5,29 +5,11 @@ description: >-
   validates documentation accuracy and flow, and detects breaking changes in tooling versions.
   Run monthly or after major tool updates.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-28
 tags:
   - configuration
   - verification
   - documentation
   - tooling
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(codex:*)
-  - Bash(codex mcp:*)
-  - Bash(which:*)
-  - Bash(cat:*)
-  - Bash(python3 -m json.tool:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_logs
-  - mcp__ash_ai__list_ash_resources
-  - WebFetch
-  - WebSearch
-  - Task(subagent_type=docs-maintainer)
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

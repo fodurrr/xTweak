@@ -4,24 +4,9 @@ description: >-
   Keeps developer documentation, changelog entries, and onboarding guides synchronized with
   approved code changes while providing evidence-backed summaries.
 model: haiku
-version: 1.1.0
-updated: 2025-10-29
 tags:
   - docs
   - knowledge
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - WebSearch
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__search_package_docs
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

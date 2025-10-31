@@ -4,33 +4,9 @@ description: >-
   Applies structured review feedback one file at a time, executing fixes, quality gates,
   and verification steps with full MCP evidence.
 model: haiku
-version: 1.2.0
-updated: 2025-10-29
 tags:
   - review
   - implementation
-allowed-tools:
-  - Read
-  - Edit
-  - TodoWrite
-  - Bash(mix format:*)
-  - Bash(mix credo:*)
-  - Bash(mix compile:*)
-  - Bash(mix test:*)
-  - Bash(timeout 30 mix test:*)
-  - Bash(timeout 60 mix test:*)
-  - Bash(git status:*)
-  - Bash(git diff:*)
-  - Bash(date:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__get_ecto_schemas
-  - mcp__tidewave__search_package_docs
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
-  - mcp__ash_ai__list_ash_resources
-  - WebFetch
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

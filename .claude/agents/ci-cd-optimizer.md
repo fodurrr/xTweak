@@ -4,24 +4,9 @@ description: >-
   Tunes and troubleshoots CI/CD workflows, ensuring coverage, speed, and
   reliability across pipelines.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-02
 tags:
   - ci
   - automation
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - TodoWrite
-  - Bash(gh run list:*)
-  - Bash(gh run view:*)
-  - Bash(gh workflow view:*)
-  - Bash(mix test:*)
-  - Bash(mix format:*)
-  - Bash(mix credo:*)
-  - WebSearch
-  - mcp__tidewave__get_logs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

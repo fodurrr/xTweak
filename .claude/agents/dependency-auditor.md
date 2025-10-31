@@ -4,24 +4,9 @@ description: >-
   Reviews Elixir and JS dependencies for updates and vulnerabilities, proposing
   safe upgrade plans backed by automated evidence.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-02
 tags:
   - dependencies
   - security
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - TodoWrite
-  - Bash(mix deps:*)
-  - Bash(mix hex.outdated:*)
-  - Bash(mix sobelow:*)
-  - Bash(npm outdated:*)
-  - Bash(npm audit:*)
-  - WebSearch
-  - mcp__tidewave__search_package_docs
-  - mcp__context7__get-library-docs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

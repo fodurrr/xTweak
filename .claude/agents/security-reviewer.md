@@ -4,32 +4,9 @@ description: >-
   Performs high-confidence security assessments of local diffs or targeted modules,
   confirming exploitability with MCP evidence and documenting actionable fixes.
 model: sonnet
-version: 1.1.0
-updated: 2025-10-02
 tags:
   - security
   - review
-allowed-tools:
-  - Bash(git diff:*)
-  - Bash(git status:*)
-  - Bash(git log:*)
-  - Bash(git show:*)
-  - Bash(mkdir:*)
-  - Bash(date:*)
-  - Bash(ls:*)
-  - Read
-  - Write
-  - Glob
-  - Grep
-  - TodoWrite
-  - WebSearch
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__execute_sql_query
-  - mcp__tidewave__get_ecto_schemas
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__search_package_docs
-  - mcp__ash_ai__list_ash_resources
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

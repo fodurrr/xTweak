@@ -5,30 +5,12 @@ description: >-
   Phoenix 1.8+ directives, LiveView 1.1+ features, accessibility best practices,
   and Ash form integration.
 model: sonnet
-version: 1.2.0
-updated: 2025-10-30
 tags:
   - frontend
   - heex
   - phoenix
   - components
   - liveview
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(mix format:*)
-  - Bash(mix compile:*)
-  - Bash(mix test:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__search_package_docs
-  - mcp__ash_ai__list_ash_resources
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

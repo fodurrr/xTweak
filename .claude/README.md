@@ -440,18 +440,18 @@ This guide explains how to combine the reusable patterns in `.claude/patterns/` 
 | `collaboration-handoff` | Package results for the next teammate | All agents ending a session |
 
 ### How Agents Reference Patterns
-- Each agent lists `pattern-stack` in front matter with pattern names (no versions)
+- Each agent lists `pattern-stack` in front matter with pattern names
 - Use the short "Pattern:" callouts inside prompts to reinforce critical steps
+- Git history tracks all pattern changes (no need for manual version/timestamp tracking)
 
 ### Updating Patterns
 1. Edit the pattern file (keep it under ~200 lines, focused on single responsibility)
-2. Update `updated` metadata timestamp
-3. Update agents' `pattern-stack` if the dependency set changes (adding/removing patterns)
-4. Run `scripts/check_claude_patterns.exs` to ensure compliance (if available)
+2. Update agents' `pattern-stack` if the dependency set changes (adding/removing patterns)
+3. Run `scripts/check_claude_patterns.exs` to ensure compliance (if available)
 
 ### Compliance Script
 If `scripts/check_claude_patterns.exs` exists, it performs lightweight validation:
-- Confirms every agent includes `updated` and `pattern-stack`
+- Confirms every agent includes `pattern-stack`
 - Flags patterns referenced without matching files
 - Lists agents missing the core stack
 

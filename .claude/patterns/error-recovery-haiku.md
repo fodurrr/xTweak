@@ -1,6 +1,5 @@
 ---
 title: Error Recovery (Haiku)
-updated: 2025-10-29
 tags:
   - core
   - haiku

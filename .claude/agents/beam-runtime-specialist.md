@@ -4,26 +4,9 @@ description: >-
   Diagnoses and optimizes BEAM runtime behaviour—tracing processes, tuning OTP
   supervision, and improving observability for Elixir/Erlang services.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-02
 tags:
   - beam
   - runtime
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - TodoWrite
-  - Bash(mix run:*)
-  - Bash(mix compile:*)
-  - Bash(mix test:*)
-  - Bash(:observer.start:*)
-  - Bash(:trace:*)
-  - Bash(recon:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__execute_sql_query
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

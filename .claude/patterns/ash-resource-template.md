@@ -1,6 +1,5 @@
 ---
 title: Ash Resource Template
-updated: 2025-10-02
 tags:
   - ash
   - specialized

@@ -5,32 +5,10 @@ description: >-
   component specifications (props, slots, events, variants) in both markdown
   tables and JSON schema formats for consumption by implementation agents.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-29
 tags:
   - frontend
   - nuxt-ui
   - research
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - TodoWrite
-  - mcp__nuxt-ui-remote__list_components
-  - mcp__nuxt-ui-remote__get_component
-  - mcp__nuxt-ui-remote__get_component_metadata
-  - mcp__nuxt-ui-remote__list_composables
-  - mcp__nuxt-ui-remote__list_templates
-  - mcp__nuxt-ui-remote__get_template
-  - mcp__nuxt-ui-remote__list_documentation_pages
-  - mcp__nuxt-ui-remote__get_documentation_page
-  - mcp__nuxt-ui-remote__list_getting_started_guides
-  - mcp__nuxt-ui-remote__get_migration_guide
-  - mcp__nuxt-ui-remote__list_examples
-  - mcp__nuxt-ui-remote__get_example
-  - mcp__nuxt-ui-remote__search_components_by_category
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

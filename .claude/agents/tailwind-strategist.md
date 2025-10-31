@@ -4,21 +4,9 @@ description: >-
   Audits and plans Tailwind CSS usage—utility strategy, responsive layout,
   design tokens, and build performance improvements.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-02
 tags:
   - frontend
   - tailwind
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - WebSearch
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

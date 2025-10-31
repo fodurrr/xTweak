@@ -4,21 +4,9 @@ description: >-
   Configures telemetry, logging, and monitoring integrations to provide actionable
   observability with minimal performance impact.
 model: haiku
-version: 1.1.0
-updated: 2025-10-29
 tags:
   - observability
   - ops
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - WebSearch
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__project_eval
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

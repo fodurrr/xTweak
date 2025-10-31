@@ -4,19 +4,9 @@ description: >-
   Maintains the Claude pattern library, ensuring versions, documentation, and
   agent references stay accurate and discoverable.
 model: haiku
-version: 1.1.0
-updated: 2025-10-29
 tags:
   - meta
   - patterns
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

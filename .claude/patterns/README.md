@@ -1,6 +1,5 @@
 ---
 title: Pattern Library Index
-updated: 2025-10-31
 ---
 
 # Claude Pattern Library
@@ -32,9 +31,11 @@ Patterns are the contract between agents and documentation. Every agent declares
 - Patterns declare assumptions, inputs, and outputs. Agents reference them with the `## Pattern Stack` section to stay discoverable.
 - Keep patterns concise (under ~200 lines) and move examples to `dual-example-bridge.md` unless they are domain-specific.
 - Patterns supersede duplicated prose inside agents—link to them, do not restate them.
+- Git history provides full change tracking (no manual versioning needed).
 
 ## Maintenance Checklist
 
-- Update pattern `updated` timestamps when content changes.
+- Keep patterns focused on single responsibility.
 - Remove unused patterns after confirming no agents reference them.
 - Keep at least one example agent referencing every specialized pattern so new authors can discover usage quickly.
+- Update agent `pattern-stack` declarations when adding/removing pattern dependencies.

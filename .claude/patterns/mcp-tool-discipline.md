@@ -1,6 +1,5 @@
 ---
 title: MCP Tool Discipline
-updated: 2025-10-31
 tags:
   - core
 ---

@@ -4,20 +4,9 @@ description: >-
   Designs high-performance Claude Code agents tailored to the repository’s conventions,
   enforcing pattern-first prompts, MCP verification, and concise personas.
 model: sonnet
-version: 1.1.0
-updated: 2025-10-02
 tags:
   - meta
   - prompt-engineering
-allowed-tools:
-  - Read
-  - Grep
-  - Glob
-  - TodoWrite
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__search_package_docs
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

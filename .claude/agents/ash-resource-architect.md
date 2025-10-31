@@ -4,34 +4,9 @@ description: >-
   Designs and implements Ash resources, actions, policies, and calculations using a
   generator-first workflow that respects umbrella boundaries and placeholder discipline.
 model: sonnet
-version: 1.1.0
-updated: 2025-10-02
 tags:
   - ash
   - backend
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(mix ash:*)
-  - Bash(mix ash_postgres:*)
-  - Bash(mix compile:*)
-  - Bash(mix format:*)
-  - Bash(timeout 30 mix test:*)
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__search_package_docs
-  - mcp__tidewave__get_docs
-  - mcp__tidewave__get_logs
-  - mcp__tidewave__get_ecto_schemas
-  - mcp__ash_ai__list_ash_resources
-  - mcp__ash_ai__list_generators
-  - mcp__ash_ai__get_usage_rules
-  - mcp__context7__resolve-library-id
-  - mcp__context7__get-library-docs
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

@@ -4,27 +4,9 @@ description: >-
   Safeguards external and internal API contracts by validating specs, tests,
   and compatibility whenever service interfaces evolve.
 model: sonnet
-version: 1.0.0
-updated: 2025-10-02
 tags:
   - api
   - quality
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(mix test:*)
-  - Bash(mix openapi:*)
-  - Bash(mix ash_graphql:*)
-  - Bash(mix phx.routes:*)
-  - WebSearch
-  - mcp__ash_ai__list_ash_resources
-  - mcp__tidewave__project_eval
-  - mcp__tidewave__search_package_docs
-  - mcp__context7__get-library-docs
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

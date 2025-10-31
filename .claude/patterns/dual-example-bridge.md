@@ -1,6 +1,5 @@
 ---
 title: Dual Example Bridge
-updated: 2025-10-02
 tags:
   - core
 ---

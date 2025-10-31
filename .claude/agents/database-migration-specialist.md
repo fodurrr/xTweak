@@ -4,26 +4,9 @@ description: >-
   Designs, validates, and documents complex Ash/Postgres migrations and data
   backfills with zero-downtime and rollback strategies.
 model: haiku
-version: 1.1.0
-updated: 2025-10-29
 tags:
   - database
   - migrations
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - TodoWrite
-  - Bash(mix ash_postgres:*)
-  - Bash(mix ecto:*)
-  - Bash(mix migrate:*)
-  - Bash(mix rollback:*)
-  - mcp__tidewave__execute_sql_query
-  - mcp__tidewave__get_ecto_schemas
-  - mcp__tidewave__project_eval
-  - WebSearch
 pattern-stack:
   - placeholder-basics
   - phase-zero-context

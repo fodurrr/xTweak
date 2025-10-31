@@ -1,6 +1,5 @@
 ---
 title: Context Handling
-updated: 2025-10-02
 tags:
   - specialized
   - collaboration
