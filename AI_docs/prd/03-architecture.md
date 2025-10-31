@@ -29,7 +29,7 @@
 xTweak UI is a Phoenix component library that ports the Nuxt UI component API to Elixir/Phoenix LiveView. The architecture prioritizes:
 
 - **API Parity**: 100% compatibility with Nuxt UI component APIs
-- **Zero Dependencies**: Pure Tailwind CSS, no component frameworks (no DaisyUI)
+- **Zero Dependencies**: Pure Tailwind CSS utilities only
 - **Hex.pm Distribution**: Standalone package with minimal footprint
 - **Developer Experience**: MCP-driven development workflow
 
@@ -55,11 +55,11 @@ xTweak UI is a Phoenix component library that ports the Nuxt UI component API to
 
 ### 1.3 Design Constraints
 
-**CRITICAL**: No DaisyUI Dependency
-- ❌ Cannot use DaisyUI classes (`btn`, `btn-primary`)
+**CRITICAL**: Pure Tailwind Approach
 - ✅ Must use pure Tailwind utilities
 - ✅ Custom CSS variables for theming
-- **Rationale**: Clean API, no framework lock-in, easier UnoCSS migration later
+- ✅ Zero external styling dependencies
+- **Rationale**: Clean API, lightweight bundle, matches Nuxt UI philosophy
 
 ---
 
@@ -88,7 +88,7 @@ xTweak/
 - Purpose: Marketing website, landing pages
 - Technology: Phoenix LiveView, Tailwind CSS
 - Dependencies: `xtweak_core` for data access
-- Styling: CAN use other frameworks (DaisyUI, etc.) for non-component pages
+- Styling: Plain HTML + Tailwind initially, migrates to xTweak UI components as available
 - **Key Distinction**: Uses xtweak_ui components, but isolated from library internals
 
 **xtweak_docs** (Documentation Site):
@@ -1278,19 +1278,7 @@ let liveSocket = new LiveSocket("/live", Socket, {
 
 ## Appendix A: Key Architecture Decisions
 
-### A.1 Why No DaisyUI?
-
-**Decision**: Do NOT use DaisyUI classes in xtweak_ui components.
-
-**Rationale**:
-1. **Clean Slate**: Nuxt UI uses pure Tailwind, we match their approach
-2. **API Clarity**: DaisyUI uses `class="btn btn-primary"`, Nuxt UI uses `color="primary" variant="solid"` (different paradigms)
-3. **Zero Dependencies**: Users shouldn't need DaisyUI installed
-4. **Future-Proof**: Easier to migrate to UnoCSS later (Phase 3+)
-
-**Note**: `xtweak_web` CAN still use DaisyUI for marketing pages—separation of concerns.
-
-### A.2 Why Alpine.js (Phase 1)?
+### A.1 Why Alpine.js (Phase 1)?
 
 **Decision**: Use Alpine.js for client-side interactivity in Phase 1.
 

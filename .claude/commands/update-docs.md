@@ -43,12 +43,10 @@ Update documentation that isn't part of the PRD workflow: README files, framewor
 
 **Actions**:
 
-**For framework-rules**:
+**For usage-rules**:
 ```bash
 # Sync usage rules from deps
-bash scripts/setup_usage_rules.sh
-# Or manually:
-# mix usage_rules.sync usage-rules.md ash phoenix ash_postgres --link-to-folder usage-rules
+# mix usage_rules.sync usage-rules.md --all --link-to-folder usage-rules
 # Read new patterns
 # Update usage-rules/[framework].md with xTweak-specific patterns
 ```

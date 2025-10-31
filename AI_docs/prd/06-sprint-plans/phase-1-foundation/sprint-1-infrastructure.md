@@ -12,9 +12,9 @@
 
 ### Primary Goals
 1. **Theme System**: Elixir module + CSS variables (Nuxt UI's app.config.ts approach)
-2. **Asset Pipeline**: Configure Tailwind CSS (pure, no UI frameworks)
+2. **Asset Pipeline**: Configure Tailwind CSS (pure utilities)
 3. **First Component**: Button (fresh Nuxt UI port)
-4. **Documentation Showcase**: Live demo with plain HTML structure
+4. **Documentation Showcase**: Live demo with Tailwind-based HTML structure
 
 ### Success Criteria
 - [x] Theme switching works (light/dark) via CSS variables
@@ -1195,7 +1195,7 @@ end
 **Deliverables**:
 - [x] Showcase LiveView with Button demos
 - [x] Theme switcher working
-- [x] Clean, simple HTML structure (no external UI frameworks)
+- [x] Clean, simple HTML structure with Tailwind utilities
 - [x] Routing configured
 - [x] Tests passing
 
@@ -1236,7 +1236,7 @@ end
 ### Asset Pipeline
 - [x] Directory structure created
 - [x] package.json with build scripts
-- [x] Tailwind config (pure, no UI frameworks)
+- [x] Tailwind config (pure utilities only)
 - [x] Mix aliases working
 - [x] Initial build successful
 - [x] README documentation

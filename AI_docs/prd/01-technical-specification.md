@@ -1122,29 +1122,29 @@ NODE_ENV=production npx tailwindcss -i css/app.css -o ../priv/static/assets/app.
 
 ### 3.3 CSS Framework Strategy: Pure Tailwind
 
-**Decision**: xTweak UI uses ONLY pure Tailwind CSS utilities, NO component frameworks
+**Decision**: xTweak UI uses ONLY pure Tailwind CSS utilities
 
 #### Rationale
 
 1. **Clean Slate Philosophy**
    - Goal: Port Nuxt UI API exactly to Phoenix
-   - Component frameworks (DaisyUI, etc.) provide their own abstractions
    - Nuxt UI uses pure Tailwind utilities → xTweak UI matches this approach
+   - Build component library from the ground up with predictable, utility-first styling
 
 2. **Zero Dependencies**
    - xTweak UI should be standalone and lightweight
-   - Users shouldn't need additional CSS frameworks installed
+   - No additional CSS frameworks required
    - Easier to migrate to UnoCSS later (Phase 3+)
 
 3. **API Clarity**
    - Nuxt UI: `color="primary" variant="solid"` (attribute-driven)
-   - Component frameworks: `class="btn btn-primary"` (class-driven, different paradigm)
    - xTweak UI follows Nuxt UI's attribute-driven approach
+   - Component props directly control styling behavior
 
 4. **Bundle Size Control**
    - Pure Tailwind + CSS variables: ~60KB gzipped (purged)
-   - Adding component frameworks: +20-40KB additional overhead
    - Goal: Minimize bundle size for Hex package users
+   - No framework overhead
 
 #### Implementation Approach
 
@@ -1152,11 +1152,11 @@ NODE_ENV=production npx tailwindcss -i css/app.css -o ../priv/static/assets/app.
 - ✅ Pure Tailwind utilities only (`bg-primary-500`, `text-white`, `hover:bg-primary-600`)
 - ✅ Custom CSS variables for theming (`--color-primary`, `--color-bg-default`)
 - ✅ Component-specific styles via Tailwind `@apply` (minimal usage)
-- ❌ NO component framework classes (`btn`, `btn-primary`, `card`, etc.)
+- ✅ Gradual component rollout as they're ported from Nuxt UI
 
 **Other xTweak Apps** (Internal Development):
-- `xtweak_web`: CAN use other styling approaches for marketing pages (independent of library)
-- `xtweak_docs`: Uses pure Tailwind + xTweak UI components (showcase consistency)
+- `xtweak_web`: Uses plain HTML + Tailwind initially, migrates to xTweak UI components as available
+- `xtweak_docs`: Showcases xTweak UI components with pure Tailwind base
 - `xtweak_core`: No CSS dependencies (backend only)
 
 #### CSS Architecture Pattern
@@ -1212,7 +1212,7 @@ module.exports = {
       }
     }
   },
-  plugins: [] // NO component framework plugins
+  plugins: [] // Pure Tailwind, no plugins
 }
 ```
 

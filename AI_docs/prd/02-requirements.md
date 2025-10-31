@@ -992,9 +992,9 @@ THEN table:
 
 **C-2: Pure Tailwind CSS Requirement**
 - xTweak UI components MUST use pure Tailwind utilities only
-- NO component framework dependencies (DaisyUI, Flowbite, etc.)
+- Zero external styling dependencies
 - Custom CSS variables for theming (runtime-switchable)
-- Rationale: Zero dependencies, matches Nuxt UI philosophy, lightweight bundle
+- Rationale: Lightweight bundle, matches Nuxt UI philosophy, standalone package
 
 **C-3: Component Approach**
 - Cannot reuse existing Button/Card/Alert/Modal components
