@@ -1,6 +1,5 @@
 ---
 title: Self-Check Core
-version: 1.1.0
 updated: 2025-10-29
 tags:
   - core
@@ -34,7 +33,7 @@ Provide a compact verification list every agent must run before returning result
 ## Snippet
 
 ```markdown
-> Pattern: self-check-core (v1.0.0)
+> Pattern: self-check-core
 > - Phase Zero done?
 > - Placeholders replaced?
 > - MCP evidence cited?
@@ -82,5 +81,5 @@ Before completing a Sonnet agent execution, verify:
    - Provided structured context via `collaboration-handoff`
 
 ## Change Log
-- v1.1.0 (2025-10-29) – Added model-specific workflow validation for Haiku/Sonnet agents
-- v1.0.0 – Consolidated from legacy self-correction checklist pattern.
+- (2025-10-29) – Added model-specific workflow validation for Haiku/Sonnet agents
+- – Consolidated from legacy self-correction checklist pattern.

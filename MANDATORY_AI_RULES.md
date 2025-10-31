@@ -5,7 +5,9 @@
 * **NEVER** assume feature availability or facts in any topic.
 * **ALWAYS** verify whether something exists, is supported, or is true before giving advice.
 * **ALWAYS** use first the available MCP servers then other methods
-* **ALWAYS** use Tidwave MCP server for all Elixir Modules and Libraries documentations and Context7 MCP server for other cases.
+* **ALWAYS** use Tidewave MCP server for all Elixir modules and libraries documentation
+* **ALWAYS** use Nuxt UI MCP server for component API research and design system specifications
+* **ALWAYS** use Context7 MCP server for non-Elixir libraries when specific MCP unavailable
 * **NEVER** commit changes unless explicitly asked by Peter. Do not add "commit changes" tasks to todo lists.
 
 ---

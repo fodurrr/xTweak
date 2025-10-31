@@ -19,13 +19,13 @@ allowed-tools:
   - mcp__context7__resolve-library-id
   - mcp__context7__get-library-docs
 pattern-stack:
-  - placeholder-basics@1.0.0
-  - phase-zero-context@1.0.0
-  - mcp-tool-discipline@1.0.0
-  - self-check-core@1.1.0
-  - dual-example-bridge@1.0.0
-  - context-handling@1.0.0
-  - collaboration-handoff@1.0.0
+  - placeholder-basics
+  - phase-zero-context
+  - mcp-tool-discipline
+  - self-check-core
+  - dual-example-bridge
+  - context-handling
+  - collaboration-handoff
 ---
 
 # Agent Architect
@@ -87,13 +87,13 @@ Ensure `identifier` is lowercase, hyphenated, and 2–4 words.
 # Generic pattern
 identifier: ash-resource-reviewer
 systemPrompt: |
-  Pattern: placeholder-basics (v1.0.0)
+  Pattern: placeholder-basics
   ...
 
 # XTweak adaptation
 identifier: xtweak-ash-resource-reviewer
 systemPrompt: |
-  Pattern: placeholder-basics (v1.0.0)
+  Pattern: placeholder-basics
   {YourApp} → XTweak, {YourApp}.Domain → XTweak.Core
 ```
 

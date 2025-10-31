@@ -1,6 +1,5 @@
 ---
 title: Error Recovery Loop
-version: 1.0.0
 updated: 2025-10-02
 tags:
   - specialized
@@ -30,7 +29,7 @@ Guide agents through diagnosing failures, applying safe retries, and documenting
 ## Snippet
 
 ```markdown
-> Pattern: error-recovery-loop (v1.0.0)
+> Pattern: error-recovery-loop
 > 1. Capture failure details
 > 2. Classify severity (critical / non-critical)
 > 3. Form hypothesis backed by MCP evidence
@@ -44,4 +43,4 @@ Guide agents through diagnosing failures, applying safe retries, and documenting
 - Use alongside `TodoWrite` to track outstanding remediation items.
 
 ## Change Log
-- v1.0.0 – New pattern responding to gap analysis highlighting missing error handling guidance.
+- – New pattern responding to gap analysis highlighting missing error handling guidance.

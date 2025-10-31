@@ -59,7 +59,8 @@ See [.claude/README.md](./.claude/README.md) for complete workflows.
 
 - **Tidewave MCP**: `project_eval`, `get_docs`, `get_logs`, `search_package_docs`, `get_ecto_schemas`, `execute_sql_query` (debug only).
 - **Ash AI MCP**: `list_ash_resources`, `list_generators`, `get_usage_rules` (discovers usage rules from deps).
-- **Context7 MCP**: `resolve-library-id`, `get-library-docs` (Nuxt UI reference, Cytoscape, etc.).
+- **Context7 MCP**: `resolve-library-id`, `get-library-docs` (fallback for non-Elixir libraries when specific MCP unavailable).
+- **Nuxt UI MCP**: `list_components`, `get_component`, `get_component_metadata`, `search_components_by_category` (component API research, design system specs).
 - **Playwright MCP**: browser navigation, screenshots, console capture for UI verification.
 
 ## Elixir/Ash Framework Rules
@@ -111,8 +112,8 @@ mix ash_postgres.generate_migrations
 ## Reference Material
 
 - `.claude/README.md` – **Single reference** for agents (matrix, workflows, model strategy, patterns)
-- `.claude/patterns/README.md` – Pattern library index with version metadata
-- `.claude/CHANGELOG.md` – Pattern library and agent change log
+- `.claude/patterns/README.md` – Pattern library index
+- `.claude/patterns/mcp-tool-discipline.md` – Pattern change log tracked in individual pattern files
 - `.claude/commands/` – PRD-centric slash commands (5 commands)
 - `AI_docs/prd/06-sprint-plans/` – Sprint plans with REPORTS.md (agent execution logs)
 - `/usage-rules.md` and `/usage-rules/` – Framework rules and xTweak-specific patterns

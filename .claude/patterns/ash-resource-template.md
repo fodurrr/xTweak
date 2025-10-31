@@ -1,6 +1,5 @@
 ---
 title: Ash Resource Template
-version: 1.0.0
 updated: 2025-10-02
 tags:
   - ash
@@ -116,4 +115,4 @@ end
 - Pair with `test-builder` agent to create matching test coverage.
 
 ## Change Log
-- v1.0.0 – Renamed and updated from legacy ash-resource pattern; added version metadata and XTweak example.
+- – Renamed and updated from legacy ash-resource pattern; added version metadata and XTweak example.

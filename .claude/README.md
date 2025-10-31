@@ -34,7 +34,8 @@
 ### MCP Command Highlights
 - `mcp__tidewave__project_eval` – Verify modules, run Ash queries, inspect configs
 - `mcp__ash_ai__list_ash_resources` / `list_generators` – Discover resources and scaffolds
-- `mcp__context7__get-library-docs` – Fetch Nuxt UI, Cytoscape, or dependency docs quickly
+- `mcp__nuxt-ui-remote__list_components` / `get_component` – Research UI component APIs and design specs
+- `mcp__context7__get-library-docs` – Fetch docs for non-Elixir libraries (fallback when specific MCP unavailable)
 - `mcp__tidewave__get_logs level: "error"` – Catch runtime issues after executing code
 
 ### Quality Gates
@@ -236,10 +237,12 @@ Each flow assumes the **Core Pattern Stack** is loaded and `mcp-verify-first` ha
 - `code-review-implement` must log commands and remaining todos via `collaboration-handoff`
 
 ### Frontend Delivery
-**Sequence**: `mcp-verify-first` → (optional `ash-resource-architect`) → `frontend-design-enforcer` → `heex-template-expert` / `tailwind-strategist` (as needed) → `test-builder` → (`security-reviewer` for auth-sensitive UI)
+**Sequence**: `mcp-verify-first` → (optional `ash-resource-architect`) → `nuxt-ui-expert` (component research) → `frontend-design-enforcer` → `heex-template-expert` / `tailwind-strategist` (as needed) → `test-builder` → (`security-reviewer` for auth-sensitive UI)
 
 **Highlights**:
-- Enforcer drives integration; specialists supply component/theme and utility/layout guidance
+- Research phase: `nuxt-ui-expert` provides component specs (props/slots/events) in markdown + JSON
+- Coordination phase: `frontend-design-enforcer` drives integration using component specs
+- Implementation phase: Specialists (`heex-template-expert`, `tailwind-strategist`) generate code
 - Use Playwright for screenshots/accessibility; coordinate monitoring if instrumentation changes
 
 ### Graph Visualization (Cytoscape)
@@ -437,19 +440,18 @@ This guide explains how to combine the reusable patterns in `.claude/patterns/` 
 | `collaboration-handoff` | Package results for the next teammate | All agents ending a session |
 
 ### How Agents Reference Patterns
-- Each agent lists `pattern-stack` in front matter with `pattern@version` entries
-- When updating a pattern, bump its version and update every agent referencing it
+- Each agent lists `pattern-stack` in front matter with pattern names (no versions)
 - Use the short "Pattern:" callouts inside prompts to reinforce critical steps
 
 ### Updating Patterns
 1. Edit the pattern file (keep it under ~200 lines, focused on single responsibility)
-2. Update `version` and `updated` metadata; describe the change in `.claude/CHANGELOG.md`
-3. Notify agents by updating their `pattern-stack` if the dependency set changes
-4. Run `scripts/check_claude_patterns.exs` to ensure compliance
+2. Update `updated` metadata timestamp
+3. Update agents' `pattern-stack` if the dependency set changes (adding/removing patterns)
+4. Run `scripts/check_claude_patterns.exs` to ensure compliance (if available)
 
 ### Compliance Script
-`scripts/check_claude_patterns.exs` performs lightweight validation:
-- Confirms every agent includes `version`, `updated`, and `pattern-stack`
+If `scripts/check_claude_patterns.exs` exists, it performs lightweight validation:
+- Confirms every agent includes `updated` and `pattern-stack`
 - Flags patterns referenced without matching files
 - Lists agents missing the core stack
 

@@ -1,7 +1,6 @@
 ---
 title: MCP Tool Discipline
-version: 1.0.0
-updated: 2025-10-02
+updated: 2025-10-31
 tags:
   - core
 ---
@@ -33,7 +32,7 @@ Ensure agents treat MCP tooling as the source of truth. Prevents assumption-driv
 ## Implementation Template
 
 ```markdown
-> Pattern: mcp-tool-discipline (v1.0.0)
+> Pattern: mcp-tool-discipline
 > - All claims must cite MCP evidence (commands + results).
 > - Prefer generators; only code manually after verifying none apply.
 > - Run quality gates (`mix format`, `mix credo --strict`, `mix compile --warnings-as-errors`, targeted `mix test`) before completion.
@@ -41,14 +40,17 @@ Ensure agents treat MCP tooling as the source of truth. Prevents assumption-driv
 ```
 
 ## Recommended Tool Checklist
-- `mcp__tidewave__project_eval`
-- `mcp__tidewave__get_docs`
-- `mcp__tidewave__search_package_docs`
-- `mcp__tidewave__get_logs`
-- `mcp__ash_ai__list_ash_resources`
-- `mcp__ash_ai__list_generators`
-- `mcp__tidewave__get_ecto_schemas`
-- Optional: Playwright MCP commands when validating UI.
+- `mcp__tidewave__project_eval` - Evaluate Elixir code, inspect modules, run Ash queries
+- `mcp__tidewave__get_docs` - Get documentation for Elixir modules and functions
+- `mcp__tidewave__search_package_docs` - Search Hex documentation for dependencies
+- `mcp__tidewave__get_logs` - Retrieve application logs (use `level: "error"` for diagnostics)
+- `mcp__ash_ai__list_ash_resources` - Discover all Ash resources in the project
+- `mcp__ash_ai__list_generators` - List available Ash generators before manual implementation
+- `mcp__tidewave__get_ecto_schemas` - List Ecto schemas (legacy, prefer Ash resources)
+- `mcp__context7__resolve-library-id` + `get-library-docs` - Get up-to-date docs for non-Elixir libraries (fallback when specific MCP unavailable)
+- `mcp__nuxt-ui-remote__list_components` + `get_component` + `get_component_metadata` - Research UI component APIs and design system specifications
+- Optional: `mcp__playwright__*` commands when validating UI in browser
 
 ## Change Log
-- v1.0.0 – Extracted from CLAUDE.md critical principles and MCP enforcement sections.
+- 2025-10-31 – Removed version numbers from pattern system; added Nuxt UI MCP and Context7 MCP to recommended tool checklist
+- 2025-10-02 – Extracted from CLAUDE.md critical principles and MCP enforcement sections

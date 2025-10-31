@@ -27,6 +27,12 @@ allowed-tools:
   - mcp__tidewave__get_logs
   - mcp__ash_ai__list_ash_resources
   - mcp__ash_ai__list_generators
+  - mcp__context7__resolve-library-id
+  - mcp__context7__get-library-docs
+  - mcp__nuxt-ui-remote__list_components
+  - mcp__nuxt-ui-remote__get_component
+  - mcp__nuxt-ui-remote__get_component_metadata
+  - mcp__nuxt-ui-remote__search_components_by_category
   - mcp__playwright__browser_navigate
   - mcp__playwright__browser_snapshot
   - mcp__playwright__browser_take_screenshot
@@ -42,14 +48,14 @@ allowed-tools:
   - WebFetch
   - WebSearch
 pattern-stack:
-  - placeholder-basics@1.0.0
-  - phase-zero-context@1.0.0
-  - mcp-tool-discipline@1.0.0
-  - self-check-core@1.1.0
-  - dual-example-bridge@1.0.0
-  - context-handling@1.0.0
-  - collaboration-handoff@1.0.0
-  - error-recovery-loop@1.0.0
+  - placeholder-basics
+  - phase-zero-context
+  - mcp-tool-discipline
+  - self-check-core
+  - dual-example-bridge
+  - context-handling
+  - collaboration-handoff
+  - error-recovery-loop
 ---
 
 # Frontend Design Enforcer

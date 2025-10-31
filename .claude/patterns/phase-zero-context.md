@@ -1,6 +1,5 @@
 ---
 title: Phase Zero Context
-version: 1.0.0
 updated: 2025-10-02
 tags:
   - core
@@ -48,7 +47,7 @@ Guarantee every agent discovers the real project structure before producing guid
 ## Snippet
 
 ```markdown
-> Pattern: phase-zero-context (v1.0.0)
+> Pattern: phase-zero-context
 > 1. `ls apps/`
 > 2. `mcp__ash_ai__list_ash_resources`
 > 3. `mcp__tidewave__project_eval` with detected modules
@@ -56,4 +55,4 @@ Guarantee every agent discovers the real project structure before producing guid
 ```
 
 ## Change Log
-- v1.0.0 – Consolidated from legacy Phase 0 detection pattern with clarified optional steps.
+- – Consolidated from legacy Phase 0 detection pattern with clarified optional steps.

@@ -1,6 +1,5 @@
 ---
 title: Context Handling
-version: 1.0.0
 updated: 2025-10-02
 tags:
   - specialized
@@ -32,7 +31,7 @@ Provide explicit guidance for managing long-running conversations, Todo lists, a
 ## Snippet
 
 ```markdown
-> Pattern: context-handling (v1.0.0)
+> Pattern: context-handling
 > - Maintain Todo list via TodoWrite.
 > - Summarize progress + open issues at checkpoints.
 > - Provide hand-off notes before pausing.
@@ -40,4 +39,4 @@ Provide explicit guidance for managing long-running conversations, Todo lists, a
 ```
 
 ## Change Log
-- v1.0.0 – Introduced to formalize context management expectations for agents performing multi-step tasks.
+- – Introduced to formalize context management expectations for agents performing multi-step tasks.

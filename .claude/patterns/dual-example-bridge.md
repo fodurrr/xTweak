@@ -1,6 +1,5 @@
 ---
 title: Dual Example Bridge
-version: 1.0.0
 updated: 2025-10-02
 tags:
   - core
@@ -45,7 +44,7 @@ end
 ## Usage Tips
 - Pair with `placeholder-basics` so readers already understand the placeholder system.
 - Use language-specific fences (` ```elixir`, ` ```bash`, etc.) to preserve formatting.
-- Reference the pattern in agent text as `Pattern: dual-example-bridge (v1.0.0)` for traceability.
+- Reference the pattern in agent text as `Pattern: dual-example-bridge` for traceability.
 
 ## Change Log
-- v1.0.0 – Migrated from legacy dual-example pattern with consistent naming and metadata.
+- – Migrated from legacy dual-example pattern with consistent naming and metadata.

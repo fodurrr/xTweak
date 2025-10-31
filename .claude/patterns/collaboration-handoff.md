@@ -1,6 +1,5 @@
 ---
 title: Collaboration Handoff
-version: 1.0.0
 updated: 2025-10-02
 tags:
   - specialized
@@ -22,7 +21,7 @@ Enable agents to package results for teammates or future sessions, ensuring cont
 ## Snippet
 
 ```markdown
-> Pattern: collaboration-handoff (v1.0.0)
+> Pattern: collaboration-handoff
 > - Provide summary + artifact list.
 > - Enumerate outstanding issues with owners if known.
 > - Record validation results (tests, lint, etc.).
@@ -34,4 +33,4 @@ Enable agents to package results for teammates or future sessions, ensuring cont
 - Mirror structure in changelog entries so documentation stays aligned.
 
 ## Change Log
-- v1.0.0 – New pattern covering collaboration gaps identified during discovery.
+- – New pattern covering collaboration gaps identified during discovery.

@@ -1,6 +1,5 @@
 ---
 title: Placeholder Basics
-version: 1.0.0
 updated: 2025-10-02
 tags:
   - core
@@ -36,11 +35,11 @@ Explain once how placeholder syntax works so agents never copy literal project n
 Paste or adapt the following snippet when referencing the pattern:
 
 ```markdown
-> Pattern: placeholder-basics (v1.0.0)
+> Pattern: placeholder-basics
 > - Examples use `{Placeholder}` tokens to stay project-agnostic.
 > - Complete Phase Zero to detect actual names, then replace all tokens.
 > - Never output `MyApp`, `my_app_core`, or other literals after detection.
 ```
 
 ## Change Log
-- v1.0.0 – Initial extraction from legacy placeholder header content.
+- – Initial extraction from legacy placeholder header content.

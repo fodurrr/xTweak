@@ -23,14 +23,14 @@ allowed-tools:
   - WebSearch
   - mcp__tidewave__get_logs
 pattern-stack:
-  - placeholder-basics@1.0.0
-  - phase-zero-context@1.0.0
-  - mcp-tool-discipline@1.0.0
-  - self-check-core@1.1.0
-  - dual-example-bridge@1.0.0
-  - context-handling@1.0.0
-  - error-recovery-loop@1.0.0
-  - collaboration-handoff@1.0.0
+  - placeholder-basics
+  - phase-zero-context
+  - mcp-tool-discipline
+  - self-check-core
+  - dual-example-bridge
+  - context-handling
+  - error-recovery-loop
+  - collaboration-handoff
 ---
 
 # CI/CD Optimizer

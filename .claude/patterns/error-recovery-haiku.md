@@ -1,6 +1,5 @@
 ---
 title: Error Recovery (Haiku)
-version: 1.0.0
 updated: 2025-10-29
 tags:
   - core
