@@ -17,6 +17,10 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-haiku
+required-usage-rules:
+  - ash
+  - ash_phoenix
+  - heex
 ---
 
 # Code Review Implementer

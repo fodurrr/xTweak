@@ -37,5 +37,3 @@ Provide explicit guidance for managing long-running conversations, Todo lists, a
 > - Recommend context reset if project or repo changes.
 ```
 
-## Change Log
-- – Introduced to formalize context management expectations for agents performing multi-step tasks.

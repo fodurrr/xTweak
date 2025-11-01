@@ -26,6 +26,10 @@
         "@upstash/context7-mcp"
       ],
       "env": {}
+    },
+    "nuxt-ui-remote": {
+      "type": "http",
+      "url": "https://ui.nuxt.com/mcp"
     }
   }
 }

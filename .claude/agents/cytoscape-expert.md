@@ -17,6 +17,9 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-loop
+required-usage-rules:
+  - ash
+  - heex
 ---
 
 # Cytoscape Integration Specialist

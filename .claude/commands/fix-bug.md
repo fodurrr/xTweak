@@ -10,6 +10,40 @@ You are the **emergency bug fix coordinator** using specialized agents for rapid
 
 Fix a critical bug, production issue, or urgent problem that cannot wait for sprint planning. This command provides a systematic TDD approach: reproduce, analyze, fix, verify.
 
+## 🚨 MANDATORY: Pre-Task Protocol
+
+**BEFORE Step 1 (Context Gathering), you MUST run the Mandatory Pre-Task Protocol from CLAUDE.md**:
+
+1. ✅ **Phase Zero Detection**
+   - `ls apps/` → detect umbrella structure
+   - `mcp__ash_ai__list_ash_resources` → identify domain
+   - `mcp__tidewave__project_eval` → verify modules
+   - Store context for session
+
+2. ✅ **Load Architecture Rules**
+   Based on bug type, read:
+   - Backend bugs: `/usage-rules/ash.md`, `/usage-rules/ash_postgres.md`
+   - LiveView bugs: `/usage-rules/heex.md`, `/usage-rules/ash_phoenix.md`
+   - All bugs: `/usage-rules.md` (overview)
+
+3. ✅ **Load Core Patterns**
+   Read: `placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`, `error-recovery-loop`
+
+4. ✅ **Output Confirmation**
+   ```markdown
+   🔍 Pre-Task Protocol Complete (fix-bug)
+   - Bug Type: [classification]
+   - Apps: xtweak_core, xtweak_web, xtweak_ui
+   - Domain: XTweak.Core
+   - Rules Loaded: [list files]
+   - Patterns Loaded: [list patterns]
+   - Proceeding to Step 1 (Context Gathering)...
+   ```
+
+**If any step fails**: STOP and request clarification.
+
+---
+
 ## Input Format
 
 ```

@@ -113,5 +113,3 @@ end
 - Generate migrations via `mix ash_postgres.generate_migrations` and review diffs.
 - Pair with `test-builder` agent to create matching test coverage.
 
-## Change Log
-- – Renamed and updated from legacy ash-resource pattern; added version metadata and XTweak example.

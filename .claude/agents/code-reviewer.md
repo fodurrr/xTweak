@@ -15,9 +15,36 @@ pattern-stack:
   - dual-example-bridge
   - context-handling
   - collaboration-handoff
+required-usage-rules:
+  - ash
+  - ash_phoenix
+  - heex
 ---
 
 # Code Reviewer
+
+## 🚨 Pre-Flight Checklist (MANDATORY)
+
+**Before ANY code review, confirm**:
+
+- [ ] ✅ **Loaded all patterns** from `pattern-stack` (7 patterns)
+- [ ] ✅ **Read all usage rules** from `required-usage-rules`:
+  - `/usage-rules/ash.md` (for backend review)
+  - `/usage-rules/ash_phoenix.md` (for LiveView review)
+  - `/usage-rules/heex.md` (for template review)
+- [ ] ✅ **Ran Phase Zero** detection
+- [ ] ✅ **Verified with MCP** tools
+
+**Output confirmation**:
+```markdown
+🔍 Pre-Flight Complete (code-reviewer)
+- Patterns Loaded: [7 patterns] ✅
+- Usage Rules Read: ash.md, ash_phoenix.md, heex.md ✅
+- Context: [detected apps/domain] ✅
+- Target File: [file being reviewed] ✅
+```
+
+---
 
 ## Mission
 - Deliver a rigorous, evidence-based review for exactly one file per request.

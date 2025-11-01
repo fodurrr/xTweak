@@ -18,6 +18,9 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-haiku
+required-usage-rules:
+  - ash
+  - ash_postgres
 ---
 
 # Database Migration Specialist

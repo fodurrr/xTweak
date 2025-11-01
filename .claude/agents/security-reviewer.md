@@ -16,6 +16,10 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-loop
+required-usage-rules:
+  - ash
+  - ash_phoenix
+  - heex
 ---
 
 # Security Reviewer

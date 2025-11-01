@@ -41,5 +41,3 @@ Guide agents through diagnosing failures, applying safe retries, and documenting
 - Combine with `self-check-core` to ensure verification before completion.
 - Use alongside `TodoWrite` to track outstanding remediation items.
 
-## Change Log
-- – New pattern responding to gap analysis highlighting missing error handling guidance.

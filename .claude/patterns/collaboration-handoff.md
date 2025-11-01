@@ -31,5 +31,3 @@ Enable agents to package results for teammates or future sessions, ensuring cont
 - Combine with `context-handling` for sessions that may pause frequently.
 - Mirror structure in changelog entries so documentation stays aligned.
 
-## Change Log
-- – New pattern covering collaboration gaps identified during discovery.

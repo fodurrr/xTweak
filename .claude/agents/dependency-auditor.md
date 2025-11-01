@@ -16,6 +16,8 @@ pattern-stack:
   - error-recovery-loop
   - context-handling
   - collaboration-handoff
+required-usage-rules:
+  - usage_rules
 ---
 
 # Dependency Auditor

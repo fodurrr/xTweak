@@ -42,7 +42,11 @@ See `.mcp.json` (project root) for server definitions:
 - **ash_ai**: Ash Framework generators (HTTP: `http://127.0.0.1:4000/ash_ai/mcp`)
 - **playwright**: Browser automation (stdio: `npx @playwright/mcp --browser msedge`)
 - **context7**: Library documentation (stdio: `npx -y @upstash/context7-mcp`)
-
+- **Nuxt UI**: Nuxt UI component framework MCP Server:
+```bash
+  # --scope project makes usre it is added only locally to the current prject
+  claude mcp add --scope project --transport http nuxt-ui-remote https://ui.nuxt.com/mcp
+```
 ### MCP Server Enablement
 
 In `settings.json`:

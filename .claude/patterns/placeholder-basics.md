@@ -40,5 +40,3 @@ Paste or adapt the following snippet when referencing the pattern:
 > - Never output `MyApp`, `my_app_core`, or other literals after detection.
 ```
 
-## Change Log
-- – Initial extraction from legacy placeholder header content.

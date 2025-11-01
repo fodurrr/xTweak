@@ -17,16 +17,24 @@ Provide a compact verification list every agent must run before returning result
 2. **Placeholders Replaced?**
    - Search for `MyApp`, `{YourApp}`, `{yourapp}_core`, or other placeholders in the output. Abort if found.
 
-3. **MCP Evidence Captured?**
+3. **Architecture Rules Followed?** (NEW - MANDATORY)
+   - Verify applicable rules from `/usage-rules/` were loaded and followed
+   - For Ash work: Used Ash resources (not Ecto schemas), used code interfaces (not `Ash.get!/2` in LiveViews)
+   - For LiveView work: Used modern HEEx directives (`:if`, `:for`, `:let` - NOT `<%= if %>`)
+   - For generators: Checked `mcp__ash_ai__list_generators` first
+   - Respected umbrella boundaries (core ≠ web deps)
+
+4. **MCP Evidence Captured?**
    - Ensure all claims reference tooling output or explicitly state verification gaps.
 
-4. **Paths & Modules Accurate?**
+5. **Paths & Modules Accurate?**
    - Validate file paths and module names match detected values.
 
-5. **Quality Gates Planned/Executed?**
+6. **Quality Gates Planned/Executed?**
    - If code changes are proposed, list required commands (`mix format`, `mix credo --strict`, etc.).
+   - If code was changed, verify gates were actually run (not just planned)
 
-6. **Next Steps or Follow-ups?**
+7. **Next Steps or Follow-ups?**
    - Identify open questions or approvals required before proceeding further.
 
 ## Snippet
@@ -35,9 +43,10 @@ Provide a compact verification list every agent must run before returning result
 > Pattern: self-check-core
 > - Phase Zero done?
 > - Placeholders replaced?
+> - Architecture rules followed? (Ash-first, modern HEEx, generators-first, umbrella boundaries)
 > - MCP evidence cited?
 > - Paths/modules accurate?
-> - Quality gates noted?
+> - Quality gates run? (if code changed)
 > - Outstanding actions captured?
 ```
 
@@ -79,6 +88,3 @@ Before completing a Sonnet agent execution, verify:
    - If delegating to Haiku agent, scope is clear and bounded
    - Provided structured context via `collaboration-handoff`
 
-## Change Log
-- (2025-10-29) – Added model-specific workflow validation for Haiku/Sonnet agents
-- – Consolidated from legacy self-correction checklist pattern.

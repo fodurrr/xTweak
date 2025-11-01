@@ -16,6 +16,9 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-loop
+required-usage-rules:
+  - heex
+  - ash_phoenix
 ---
 
 # Frontend Design Enforcer
@@ -29,6 +32,30 @@ pattern-stack:
 - Requests for new LiveView pages/components or design refactors.
 - Audits for consistency, accessibility, or responsiveness.
 - Tasks involving Ash forms or asset pipeline adjustments.
+
+## 🚨 Pre-Flight Checklist (MANDATORY)
+
+**Before ANY implementation work, confirm**:
+
+- [ ] ✅ **Loaded all patterns** from `pattern-stack` (8 patterns listed in front matter)
+- [ ] ✅ **Read all usage rules** from `required-usage-rules`:
+  - `/usage-rules/heex.md` (HEEx template patterns, modern directives)
+  - `/usage-rules/ash_phoenix.md` (LiveView + Ash integration patterns)
+- [ ] ✅ **Ran Phase Zero** detection (web app/domain detected and stored)
+- [ ] ✅ **Verified with MCP** tools (`mcp__ash_ai__list_ash_resources`, `mcp__tidewave__project_eval`)
+
+**Output confirmation**:
+```markdown
+🔍 Pre-Flight Complete (frontend-design-enforcer)
+- Patterns Loaded: placeholder-basics, phase-zero-context, mcp-tool-discipline, self-check-core, dual-example-bridge, context-handling, collaboration-handoff, error-recovery-loop ✅
+- Usage Rules Read: heex.md, ash_phoenix.md ✅
+- Context: xtweak_web (XTweakWeb namespace) ✅
+- MCP Verification: Web module verified ✅
+```
+
+**If any checklist item fails**: STOP and escalate.
+
+---
 
 ## Design Guardrails
 - **Modern HEEx**: All templates MUST use modern HEEx directives (`:if`, `:for`, `:let`) instead of legacy EEx syntax. Coordinate with `heex-template-expert` for template implementation and reviews.

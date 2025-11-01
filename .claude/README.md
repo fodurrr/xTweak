@@ -1,7 +1,4 @@
 # Claude Code Consolidated Reference
-**Version**: 2.0.0
-**Date**: 2025-10-30
-**Status**: Active
 
 > **Purpose**: Single reference for all agents. Contains agent matrix, workflows, model selection, pattern guide, and quick checklist.
 
@@ -24,12 +21,24 @@
 
 ### One-Minute Checklist for Every Task
 - [ ] **Model**: Choose Haiku (⚡ cost) or Sonnet (🧠 quality) based on task complexity
-- [ ] Launch `mcp-verify-first` to confirm project context
+- [ ] **NEW**: If Peter gives direct prompt (no slash command), run mandatory Prompt Analysis & Agent Routing protocol from CLAUDE.md
+- [ ] Launch `mcp-verify-first` to confirm project context (OR it runs automatically in routing protocol)
 - [ ] Load core patterns: placeholder-basics → phase-zero-context → mcp-tool-discipline → self-check-core → dual-example-bridge
-- [ ] Select the right agent from Agent Matrix below
+- [ ] **NEW**: Load architecture rules from `/usage-rules/` based on task type
+- [ ] Select the right agent from Agent Matrix below (OR coordinator selects via classification table)
 - [ ] Track work with `TodoWrite`; keep tasks visible until done
 - [ ] Run quality gates (`mix format`, `mix credo --strict`, `mix compile --warnings-as-errors`, targeted `mix test`)
 - [ ] Close with `collaboration-handoff`: summary, artifacts, outstanding items, validation, next steps
+
+### 🆕 Coordination Layer (2025-11-01)
+
+**Base Claude is ALWAYS the coordinator** for non-slash-command prompts. See CLAUDE.md "Prompt Analysis & Agent Routing" section for full protocol.
+
+**Key changes**:
+- **Clarification-first**: Claude checks prompt clarity before launching any agent
+- **Architecture rules loading**: Mandatory loading from `/usage-rules/` based on task type
+- **Explicit agent selection**: Classification table maps request type → lead agent
+- **Context handoff**: Full context passed to agents (detected apps/domain + loaded rules)
 
 ### MCP Command Highlights
 - `mcp__tidewave__project_eval` – Verify modules, run Ash queries, inspect configs
@@ -531,9 +540,3 @@ Launch `agent-architect` with:
 
 It will produce a JSON spec referencing the same pattern stack structure so the team stays aligned.
 
----
-
-## Version History
-
-- **v2.0.0** (2025-10-30) - Consolidated from AGENT_USAGE_GUIDE, agent-workflows, MODEL_SELECTION_STRATEGY, quick-reference, pattern-guide
-- **v1.0.0** (2025-10-29) - Individual files maintained separately

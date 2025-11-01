@@ -58,8 +58,8 @@
 
 ### Human Documentation (`/Human_docs/`)
 **Not for agents** - Human-readable guides for developers:
-- `WORKFLOW_GUIDE.md` - How Peter kicks off workflows (slash commands)
-- `claude_agent_workflow.md` - Detailed agent mechanics
+- `README.md` - Documentation index
+- `COMPLETE_WORKFLOW_GUIDE.md` - Complete guide for working with Claude Code (workflow, agents, commands)
 - `project-renaming.md` - How to rename xTweak
 - `template-initialization.md` - Using xTweak as template
 - `AI_WORKFLOW_REFACTOR_PLAN.md` - Complete refactor plan and philosophy
@@ -142,7 +142,7 @@ bash scripts/setup_usage_rules.sh
 
 ## 🚀 Quick Command Reference
 
-**For Peter** (see `Human_docs/WORKFLOW_GUIDE.md` for details):
+**For Peter** (see `Human_docs/COMPLETE_WORKFLOW_GUIDE.md` for details):
 - `/prd-plan-sprint` - Plan next sprint
 - `/prd-implement` - Execute current sprint
 - `/prd-status` - Check progress dashboard

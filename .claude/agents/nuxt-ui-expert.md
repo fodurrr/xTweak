@@ -15,6 +15,8 @@ pattern-stack:
   - mcp-tool-discipline
   - self-check-core
   - dual-example-bridge
+required-usage-rules:
+  - heex
 ---
 
 # Nuxt UI Component Expert

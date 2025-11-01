@@ -9,6 +9,11 @@
 * **ALWAYS** use Nuxt UI MCP server for component API research and design system specifications
 * **ALWAYS** use Context7 MCP server for non-Elixir libraries when specific MCP unavailable
 * **NEVER** commit changes unless explicitly asked by Peter. Do not add "commit changes" tasks to todo lists.
+* **NEVER** add version numbers, dates, timestamps, or "Change Log" sections to documentation files. Git tracks all changes.
+* **ALWAYS** follow documentation placement rules (see `.claude/patterns/documentation-organization.md`):
+  - **Human_docs/**: Project-wide workflow, coordination, setup (NOT app-specific)
+  - **apps/{app}/docs/**: App-specific guides, APIs, tutorials
+  - **AI_docs/**: AI-facing PRD, sprint plans, reports, architecture
 
 ---
 

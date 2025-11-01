@@ -20,6 +20,7 @@ Patterns are the contract between agents and documentation. Every agent declares
 
 | Pattern | File | When to Attach |
 | --- | --- | --- |
+| Documentation Organization | `documentation-organization.md` | Before creating or placing documentation files |
 | Ash Resource Template | `ash-resource-template.md` | Resource design, migrations, Ash policies |
 | Error Recovery Loop | `error-recovery-loop.md` | Any workflow that retries or heals after failures |
 | Error Recovery (Haiku) | `error-recovery-haiku.md` | Haiku agents only; escalation guidance for bounded tasks |

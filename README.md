@@ -7,10 +7,11 @@ A minimal, clean Elixir umbrella project template with Phoenix LiveView, Ash Fra
 This project is optimized for AI-assisted development.
 
 **For Humans (Peter):**
-- 🎯 [Human_docs/WORKFLOW_GUIDE.md](./Human_docs/WORKFLOW_GUIDE.md) – **Start here!** How to use slash commands and kick off workflows
+- 🎯 [Human_docs/README.md](./Human_docs/README.md) – Documentation index (start here!)
+- 📖 [Human_docs/COMPLETE_WORKFLOW_GUIDE.md](./Human_docs/COMPLETE_WORKFLOW_GUIDE.md) – Complete guide for working with Claude Code
 
 **For Claude Code (Automatic):**
-- Claude reads [CLAUDE.md](./CLAUDE.md) automatically - you just use slash commands from WORKFLOW_GUIDE.md
+- Claude reads [CLAUDE.md](./CLAUDE.md) automatically - you just use slash commands or direct prompts
 
 ## 🏗️ Architecture
 

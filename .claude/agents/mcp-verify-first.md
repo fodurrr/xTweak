@@ -17,6 +17,8 @@ pattern-stack:
   - collaboration-handoff
   - error-recovery-loop
   - error-recovery-haiku
+required-usage-rules:
+  - usage_rules
 ---
 
 # MCP Verification Enforcer

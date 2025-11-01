@@ -45,5 +45,3 @@ end
 - Use language-specific fences (` ```elixir`, ` ```bash`, etc.) to preserve formatting.
 - Reference the pattern in agent text as `Pattern: dual-example-bridge` for traceability.
 
-## Change Log
-- – Migrated from legacy dual-example pattern with consistent naming and metadata.

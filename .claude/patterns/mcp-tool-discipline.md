@@ -50,6 +50,3 @@ Ensure agents treat MCP tooling as the source of truth. Prevents assumption-driv
 - `mcp__nuxt-ui-remote__list_components` + `get_component` + `get_component_metadata` - Research UI component APIs and design system specifications
 - Optional: `mcp__playwright__*` commands when validating UI in browser
 
-## Change Log
-- 2025-10-31 – Removed version numbers from pattern system; added Nuxt UI MCP and Context7 MCP to recommended tool checklist
-- 2025-10-02 – Extracted from CLAUDE.md critical principles and MCP enforcement sections

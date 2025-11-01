@@ -16,6 +16,8 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-loop
+required-usage-rules:
+  - heex
 ---
 
 # Tailwind Strategist

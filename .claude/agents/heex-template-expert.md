@@ -20,6 +20,33 @@ pattern-stack:
   - context-handling
   - error-recovery-loop
   - collaboration-handoff
+required-usage-rules:
+  - heex
+  - ash_phoenix
+---
+
+# HEEx Template Expert
+
+## 🚨 Pre-Flight Checklist (MANDATORY)
+
+**Before ANY template work, confirm**:
+
+- [ ] ✅ **Loaded all patterns** from `pattern-stack` (8 patterns)
+- [ ] ✅ **Read all usage rules** from `required-usage-rules`:
+  - `/usage-rules/heex.md` (CRITICAL - modern directives :if/:for/:let)
+  - `/usage-rules/ash_phoenix.md` (for Ash form integration)
+- [ ] ✅ **Ran Phase Zero** detection
+- [ ] ✅ **Verified with MCP** tools
+
+**Output confirmation**:
+```markdown
+🔍 Pre-Flight Complete (heex-template-expert)
+- Patterns Loaded: [8 patterns] ✅
+- Usage Rules Read: heex.md, ash_phoenix.md ✅
+- CRITICAL: Modern HEEx directives ONLY (:if, :for, :let - NOT <%= if %>) ✅
+- Context: xtweak_web ✅
+```
+
 ---
 
 # HEEx Template Expert

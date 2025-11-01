@@ -86,6 +86,189 @@ defmodule XTweakUI.Theme do
           variant: "solid",
           size: "md"
         }
+      },
+      badge: %{
+        base:
+          "inline-flex items-center justify-center font-medium rounded-full whitespace-nowrap",
+        default: %{
+          color: "gray",
+          variant: "solid",
+          size: "md"
+        }
+      },
+      avatar: %{
+        base:
+          "inline-flex items-center justify-center shrink-0 select-none rounded-full align-middle bg-gray-100 dark:bg-gray-800",
+        default: %{
+          size: "md"
+        }
+      },
+      card: %{
+        base: "rounded-lg overflow-hidden",
+        variant: %{
+          solid: "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900",
+          outline:
+            "bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800 divide-y divide-gray-200 dark:divide-gray-800",
+          soft: "bg-gray-50/50 dark:bg-gray-900/50 divide-y divide-gray-200 dark:divide-gray-800",
+          subtle:
+            "bg-gray-50/50 dark:bg-gray-900/50 ring-1 ring-gray-200 dark:ring-gray-800 divide-y divide-gray-200 dark:divide-gray-800"
+        },
+        padding: %{
+          none: "",
+          sm: "p-3 sm:px-4",
+          md: "p-4 sm:px-6",
+          lg: "p-6 sm:px-8"
+        },
+        default: %{
+          variant: "outline",
+          padding: "md"
+        }
+      },
+      alert: %{
+        base: "relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5",
+        orientation: %{
+          vertical: "items-start",
+          horizontal: "items-center"
+        },
+        color: %{
+          info: %{
+            icon: "hero-information-circle",
+            aria_live: "polite",
+            solid: "bg-blue-500 text-white",
+            outline: "text-blue-600 dark:text-blue-400 ring ring-inset ring-blue-500/25",
+            soft: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+            subtle:
+              "bg-blue-500/10 text-blue-600 dark:text-blue-400 ring ring-inset ring-blue-500/25"
+          },
+          success: %{
+            icon: "hero-check-circle",
+            aria_live: "polite",
+            solid: "bg-green-500 text-white",
+            outline: "text-green-600 dark:text-green-400 ring ring-inset ring-green-500/25",
+            soft: "bg-green-500/10 text-green-600 dark:text-green-400",
+            subtle:
+              "bg-green-500/10 text-green-600 dark:text-green-400 ring ring-inset ring-green-500/25"
+          },
+          warning: %{
+            icon: "hero-exclamation-triangle",
+            aria_live: "assertive",
+            solid: "bg-yellow-500 text-white",
+            outline: "text-yellow-600 dark:text-yellow-400 ring ring-inset ring-yellow-500/25",
+            soft: "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400",
+            subtle:
+              "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 ring ring-inset ring-yellow-500/25"
+          },
+          error: %{
+            icon: "hero-x-circle",
+            aria_live: "assertive",
+            solid: "bg-red-500 text-white",
+            outline: "text-red-600 dark:text-red-400 ring ring-inset ring-red-500/25",
+            soft: "bg-red-500/10 text-red-600 dark:text-red-400",
+            subtle: "bg-red-500/10 text-red-600 dark:text-red-400 ring ring-inset ring-red-500/25"
+          },
+          primary: %{
+            icon: "hero-bell",
+            aria_live: "polite",
+            solid: "bg-primary-500 text-white",
+            outline: "text-primary-600 dark:text-primary-400 ring ring-inset ring-primary-500/25",
+            soft: "bg-primary-500/10 text-primary-600 dark:text-primary-400",
+            subtle:
+              "bg-primary-500/10 text-primary-600 dark:text-primary-400 ring ring-inset ring-primary-500/25"
+          },
+          secondary: %{
+            icon: "hero-bell",
+            aria_live: "polite",
+            solid: "bg-gray-500 text-white",
+            outline: "text-gray-600 dark:text-gray-400 ring ring-inset ring-gray-500/25",
+            soft: "bg-gray-500/10 text-gray-600 dark:text-gray-400",
+            subtle:
+              "bg-gray-500/10 text-gray-600 dark:text-gray-400 ring ring-inset ring-gray-500/25"
+          },
+          neutral: %{
+            icon: "hero-bell",
+            aria_live: "polite",
+            solid: "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900",
+            outline:
+              "text-gray-700 dark:text-gray-300 ring ring-inset ring-gray-200 dark:ring-gray-800",
+            soft: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+            subtle:
+              "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 ring ring-inset ring-gray-200 dark:ring-gray-800"
+          }
+        },
+        slots: %{
+          leading: "shrink-0",
+          icon: "size-5",
+          wrapper: "min-w-0 flex-1 flex flex-col",
+          title: "text-sm font-medium",
+          description: "text-sm opacity-90",
+          actions: "flex flex-wrap gap-1.5 shrink-0",
+          close:
+            "p-0 inline-flex items-center justify-center text-current opacity-70 hover:opacity-100 transition-opacity"
+        },
+        default: %{
+          color: "info",
+          variant: "soft",
+          orientation: "vertical",
+          close: false
+        }
+      },
+      divider: %{
+        base: "flex items-center align-center text-center",
+        orientation: %{
+          horizontal: %{
+            root: "w-full flex-row",
+            border: "w-full",
+            container: "mx-3 whitespace-nowrap"
+          },
+          vertical: %{
+            root: "h-full flex-col",
+            border: "h-full",
+            container: "my-2"
+          }
+        },
+        size: %{
+          horizontal: %{
+            xs: "border-t",
+            sm: "border-t-[2px]",
+            md: "border-t-[3px]",
+            lg: "border-t-[4px]",
+            xl: "border-t-[5px]"
+          },
+          vertical: %{
+            xs: "border-s",
+            sm: "border-s-[2px]",
+            md: "border-s-[3px]",
+            lg: "border-s-[4px]",
+            xl: "border-s-[5px]"
+          }
+        },
+        type: %{
+          solid: "border-solid",
+          dashed: "border-dashed",
+          dotted: "border-dotted"
+        },
+        color: %{
+          primary: "border-[var(--color-primary)]",
+          secondary: "border-[var(--color-secondary)]",
+          success: "border-[var(--color-success)]",
+          info: "border-[var(--color-info)]",
+          warning: "border-[var(--color-warning)]",
+          error: "border-[var(--color-error)]",
+          neutral: "border-gray-200 dark:border-gray-800"
+        },
+        slots: %{
+          container: "font-medium text-gray-700 dark:text-gray-300 flex shrink-0",
+          icon: "shrink-0 size-5",
+          avatar: "shrink-0",
+          avatar_size: "2xs",
+          label: "text-sm whitespace-nowrap"
+        },
+        default: %{
+          color: "neutral",
+          size: "xs",
+          type: "solid",
+          orientation: "horizontal"
+        }
       }
     }
   }

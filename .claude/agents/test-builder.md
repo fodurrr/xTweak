@@ -16,9 +16,34 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-loop
+required-usage-rules:
+  - ash
+  - ash_phoenix
 ---
 
 # Test Builder
+
+## 🚨 Pre-Flight Checklist (MANDATORY)
+
+**Before ANY test writing, confirm**:
+
+- [ ] ✅ **Loaded all patterns** from `pattern-stack` (8 patterns)
+- [ ] ✅ **Read all usage rules** from `required-usage-rules`:
+  - `/usage-rules/ash.md` (for Ash resource tests)
+  - `/usage-rules/ash_phoenix.md` (for LiveView tests)
+- [ ] ✅ **Ran Phase Zero** detection (apps/domain detected)
+- [ ] ✅ **Verified with MCP** tools
+
+**Output confirmation**:
+```markdown
+🔍 Pre-Flight Complete (test-builder)
+- Patterns Loaded: [8 patterns] ✅
+- Usage Rules Read: ash.md, ash_phoenix.md ✅
+- Context: xtweak_core, xtweak_web (XTweak.Core domain) ✅
+- MCP Verification: Complete ✅
+```
+
+---
 
 ## Mission
 - Deliver maintainable, behaviour-focused tests covering happy paths, edge cases, and regression scenarios.

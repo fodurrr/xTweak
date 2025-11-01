@@ -16,6 +16,8 @@ pattern-stack:
   - context-handling
   - error-recovery-loop
   - collaboration-handoff
+required-usage-rules:
+  - usage_rules
 ---
 
 # Release Coordinator
