@@ -59,7 +59,7 @@ mix test apps/xtweak_core/test/...
 
 ## Slash Commands Overview
 
-xTweak uses 10 slash commands split into two categories: **PRD-centric** (feature development) and **Non-PRD** (maintenance & quality).
+xTweak uses 11 slash commands split into two categories: **PRD-centric** (feature development) and **Non-PRD** (maintenance & quality).
 
 ### PRD-Centric Commands (Feature Development)
 
@@ -80,6 +80,7 @@ xTweak uses 10 slash commands split into two categories: **PRD-centric** (featur
 | `/upgrade-deps [package]` | Dependency upgrades | dependency-auditor (Sonnet) → domain specialists → docs-maintainer (Haiku) | Security patches, framework upgrades |
 | `/update-docs [type]` | Non-PRD documentation | docs-maintainer (Haiku) | README, migration guides, framework rules |
 | `/setup-tool [type] [name]` | Infrastructure & tooling | tools-config-guardian (Haiku) → ci-cd-optimizer (Sonnet) | MCP servers, CI checks, dev tools |
+| `/workflow [action] [target]` | Workflow infrastructure management | workflow-expert (Sonnet) | Audit/validate/propose changes to agents, patterns, commands |
 
 ### Command Selection Decision Tree
 
@@ -96,7 +97,8 @@ Is this a new feature or enhancement?
     ├─ Code quality issue? → /refactor
     ├─ Package update needed? → /upgrade-deps
     ├─ Docs outdated? → /update-docs
-    └─ Need new tool? → /setup-tool
+    ├─ Need new tool? → /setup-tool
+    └─ Workflow/agent/pattern issue? → /workflow
 ```
 
 **Key Principle**: PRD commands track long-term project goals. Non-PRD commands handle reactive work, maintenance, and infrastructure.
@@ -203,6 +205,7 @@ Look for `⚠️ HAIKU ESCALATION RECOMMENDED` messages with structured context 
 | `cytoscape-expert` | 🧠 Sonnet | Graph visualizations with Cytoscape.js + LiveView | Resource updates, JS hooks, performance guidance, UI validation artifacts | `test-builder`, `code-reviewer` |
 | `nuxt-ui-expert` | 🧠 Sonnet | Read-only Nuxt UI component API research | Component specs (props/slots/events), markdown + JSON output, accessibility docs | `frontend-design-enforcer`, `heex-template-expert` |
 | `tailwind-strategist` | 🧠 Sonnet | Tailwind strategy, utility audits, responsive plans | Usage audit, config recommendations, layout playbooks | `frontend-design-enforcer`, `heex-template-expert` |
+| `theme-compliance-guard` | 🧠 Sonnet | Audit UI components for theme architecture compliance and detect hardcoded colors | Violation report, theme usage audit, remediation guidance | `frontend-design-enforcer`, `heex-template-expert` |
 | `docs-maintainer` | ⚡ Haiku | Sync developer docs & changelog with recent changes | Updated Markdown, changelog snippets, doc debt Todo list | Review/merge, `release-coordinator` |
 | `release-coordinator` | 🧠 Sonnet | Run release readiness checks and compile notes | Readiness dashboard, changelog draft, risk register | `docs-maintainer`, `dependency-auditor` |
 | `dependency-auditor` | 🧠 Sonnet | Audit deps for updates & security issues | Prioritized findings, upgrade plan, evidence bundle | `test-builder`, `release-coordinator` |
@@ -219,6 +222,7 @@ Look for `⚠️ HAIKU ESCALATION RECOMMENDED` messages with structured context 
 | `pattern-librarian` | ⚡ Haiku | Audit pattern library & agent compliance | Updated pattern versions, compliance report, changelog entry | Agent owners, `docs-maintainer` |
 | `agent-architect` | 🧠 Sonnet | Design or refactor agent prompts/system messages | JSON agent spec, pattern stack references, follow-up tasks | Implement new agent, update docs |
 | `tools-config-guardian` | 🧠 Sonnet | Verify CLI configs, test MCP servers, check tool versions | Configuration health report, version comparison, breaking changes, recommendations | `docs-maintainer` (if updates needed) |
+| `workflow-expert` | 🧠 Sonnet | Meta-workflow specialist: audit, validate, propose improvements to workflow infrastructure (agents, patterns, commands). Proposal-only mode | Audit reports, validation reports, structured proposals (with diffs, rationale, risk assessment) | Approval required before changes |
 
 ### Pattern Shortcuts by Agent
 - **Ash resource work**: `ash-resource-architect` + `ash-resource-template` pattern
@@ -229,6 +233,7 @@ Look for `⚠️ HAIKU ESCALATION RECOMMENDED` messages with structured context 
 - **Testing**: `test-builder` + `error-recovery-loop` for flaky tests
 - **Security sweeps**: `security-reviewer` (confidence-based findings only)
 - **Framework rules**: Reference `/usage-rules/` for all framework and xTweak-specific patterns
+- **Workflow management**: `workflow-expert` with `documentation-organization` + `collaboration-handoff` for structured proposals
 
 ---
 
@@ -351,6 +356,27 @@ Each flow assumes the **Core Pattern Stack** is loaded and `mcp-verify-first` ha
 **Highlights**:
 - Librarian updates `.claude/CHANGELOG.md` and identifies follow-up work
 - Documentation team mirrors any pattern changes in developer guides
+
+### Meta-Workflow Management
+**Sequence**: `workflow-expert` (audit/validate/propose) → Peter approval → Implementation (if approved)
+
+**When to Use**:
+- Adding new agents, patterns, or commands
+- Detecting inconsistencies or broken references in workflow files
+- Regular workflow quality audits
+- Before major workflow refactors
+
+**Highlights**:
+- **Proposal-only mode**: workflow-expert NEVER directly edits files, only generates structured proposals
+- All proposals include: current state analysis → proposed changes (diffs) → rationale → risk assessment → rollback plan
+- Peter must approve before any changes are applied
+- Self-validation capability: `/workflow self-check` validates workflow-expert itself (meta-awareness)
+
+**Common Operations**:
+- `/workflow review` - Full audit of all workflow infrastructure
+- `/workflow validate agent:name` - Check specific component compliance
+- `/workflow add agent name` - Propose new agent with complete specification
+- `/workflow update target` - Propose improvements to existing component
 
 ### Decision Trees for Common Scenarios
 

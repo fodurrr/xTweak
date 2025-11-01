@@ -15,6 +15,8 @@ pattern-stack:
   - mcp-tool-discipline
   - self-check-core
   - dual-example-bridge
+  - context-handling
+  - collaboration-handoff
 required-usage-rules:
   - heex
 ---

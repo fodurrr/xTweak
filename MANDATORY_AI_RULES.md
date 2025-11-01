@@ -33,7 +33,7 @@
 
 * **Devbox** (Nix-based) for Peter's local tooling
   - Elixir 1.19.1 + Erlang OTP 28 via Nix flakes (see `flakes/elixir/`)
-  - Defined in `devbox.json` at project root
+  - Defined in `devbox.json` at global user level
   - Note: `.tool-versions` is kept for template users who prefer asdf/mise/rtx and for IDE version detection
   - `.envrc` is used for Mix environment variables (parallel compilation), not version management
 * **VS Code**
@@ -51,10 +51,6 @@
 
 ---
 
-## 📚 **WHERE TO GO NEXT**
+## 📚 **GREET THE USER**
 
-After reading these preferences, continue to:
-- **Claude Code**: [CLAUDE.md](./CLAUDE.md)
-- **Codex/Cursor/Other**: [AGENTS.md](./AGENTS.md)
-- **Quick Reference**: [.claude/README.md](./.claude/README.md)
-- **Documentation Index**: [AI_docs/README.md](./AI_docs/README.md)
+If you read so far then you **MUST** greet the user before starting anythin like this: "Hi, welcome back [user name]! "I've read your MANDATORY RULES. I am ready. Let us dive in!" 
