@@ -53,8 +53,7 @@ required-usage-rules: []
 
 - [ ] ✅ **Loaded all patterns** from `pattern-stack` (8 patterns listed in frontmatter)
 - [ ] ✅ **Read workflow context files**:
-  - `.claude/README.md` (agent matrix, workflows, patterns)
-  - `CLAUDE.md` (prompt analysis protocol)
+  - `CLAUDE.md` (coordinator routing protocol with three-layer architecture)
   - `.claude/patterns/README.md` (pattern library index)
 - [ ] ✅ **Inventory workflow files**:
   - Glob `.claude/agents/*.md` (current agent inventory)
@@ -64,13 +63,13 @@ required-usage-rules: []
 - [ ] ✅ **Verified boundaries**:
   - MANDATORY_AI_RULES.md (read-only reference, OFF-LIMITS for edits)
   - usage-rules/ (package-owned, OFF-LIMITS for edits)
-  - AI_docs/prd/ (PRD-only, OFF-LIMITS for edits)
+  - prd/ (PRD-only, OFF-LIMITS for edits)
 
 **Output confirmation**:
 ```markdown
 🔍 Pre-Flight Complete (workflow-expert)
 - Patterns Loaded: 8 patterns ✅
-- Workflow Context: README.md, CLAUDE.md, patterns/README.md ✅
+- Workflow Context: CLAUDE.md, patterns/README.md ✅
 - Inventory: [X] agents, [Y] patterns, [Z] commands ✅
 - Context: {detected_core_app}, {detected_web_app}, {detected_ui_app} ✅
 - Boundaries Verified: PRD/MANDATORY/usage-rules OFF-LIMITS ✅
@@ -88,16 +87,15 @@ required-usage-rules: []
 ## What You Manage
 
 **✅ IN SCOPE** (can propose changes):
-- `.claude/README.md` (agent matrix, workflows, model strategy)
-- `CLAUDE.md` (prompt analysis & routing protocol)
-- `.claude/agents/*.md` (agent definitions)
+- `CLAUDE.md` (coordinator routing protocol with three-layer architecture)
+- `.claude/agents/*.md` (agent definitions with frontmatter)
 - `.claude/commands/*.md` (slash command definitions)
 - `.claude/patterns/*.md` (pattern library)
 
 **❌ OFF-LIMITS** (read-only reference, never propose changes):
 - `MANDATORY_AI_RULES.md` (non-negotiable rules)
 - `usage-rules/**` (package-owned framework rules)
-- `AI_docs/prd/**` (PRD documents and sprint plans)
+- `prd/**` (PRD documents and sprint plans)
 
 ---
 
@@ -122,10 +120,11 @@ required-usage-rules: []
    - All patterns have Problem/Solution/Usage sections
 
 3. **Cross-Reference Validation**:
-   - Agents referenced in `.claude/README.md` matrix actually exist
+   - Agents in `.claude/agents/` have complete frontmatter (model, pattern-stack, required-usage-rules)
    - Patterns in agent pattern-stacks exist in `.claude/patterns/`
    - Commands referenced in `CLAUDE.md` exist in `.claude/commands/`
    - Placeholder tokens used consistently (`{Placeholder}` format)
+   - CLAUDE.md classification table references valid agents
 
 4. **Quality Checks**:
    - MCP tool references valid (tools exist in environment)
@@ -295,10 +294,10 @@ required-usage-rules: []
 
 ### Cross-Reference Validation
 
-**Agent Matrix** (`.claude/README.md`):
-- All agents listed in matrix exist in `.claude/agents/`
-- Model column matches agent frontmatter
-- Category assignment logical
+**Agent Inventory** (`.claude/agents/`):
+- All agents have complete frontmatter (model, pattern-stack, required-usage-rules)
+- Model in frontmatter is "haiku" or "sonnet" (lowercase)
+- Pattern-stack starts with Core 5 patterns
 
 **Pattern References**:
 - All patterns in agent pattern-stacks exist in `.claude/patterns/`
@@ -460,18 +459,16 @@ required-usage-rules: []
 ## Integration Updates
 
 **Files Requiring Updates**:
-- `.claude/README.md`:
-  - Add to agent matrix (row X in table Y)
-  - Update workflow section Z
 - `CLAUDE.md`:
   - Add to classification table (row W in Step 2)
+  - Update reference pointers if needed
 
 **Diffs**:
 ```diff
-# .claude/README.md
-@@ -45,6 +45,7 @@
- | code-reviewer | Sonnet | Deep single-file reviews | ... |
-+| new-agent | Haiku | New capability | ... |
+# CLAUDE.md (Step 2: Classification Table)
+@@ -200,6 +200,7 @@
+ | **Code Review** | "review code", "check quality" | `code-reviewer` | Sonnet | `code-review-implement` (for fixes) |
++| **New Capability** | "indicators" | `new-agent` | Haiku | Supporting agents |
 ```
 
 ## Risk Assessment
@@ -516,7 +513,7 @@ required-usage-rules: []
 
 **If Approved**:
 1. [Action 1 - which tool to use, e.g., "Write to .claude/agents/new-agent.md"]
-2. [Action 2 - which tool to use, e.g., "Edit .claude/README.md (add row)"]
+2. [Action 2 - which tool to use, e.g., "Edit CLAUDE.md (add classification table row)"]
 3. [Validation step - e.g., "Run `/workflow validate agent:new-agent`"]
 
 **If Rejected**:

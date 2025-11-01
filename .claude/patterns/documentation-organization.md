@@ -14,27 +14,20 @@ Documentation lives closest to what it documents, organized by scope and audienc
 
 ## Three-Tier Documentation Structure
 
-### Tier 1: Project-Wide Documentation (`Human_docs/`)
+### Tier 1: Coordinator Documentation (`.claude/`, `CLAUDE.md`)
 
-**Scope**: Cross-cutting project concerns, workflows, coordination
+**Scope**: AI coordinator routing protocol and agent definitions
 
 **Belongs Here**:
-- Workflow guides (how to work with Claude Code)
-- Setup instructions (Claude CLI, tooling)
-- Project-wide conventions
-- Cross-app coordination docs
+- `CLAUDE.md` - Coordinator routing protocol
+- `.claude/agents/*.md` - Agent definitions with frontmatter
+- `.claude/commands/*.md` - Slash command definitions
+- `.claude/patterns/*.md` - Reusable patterns
 
 **Does NOT Belong Here**:
-- App-specific user guides
-- Component API references
-- App-specific tutorials
-- Sprint reports (those go in AI_docs)
-
-**Examples**:
-✅ `Human_docs/COMPLETE_WORKFLOW_GUIDE.md` - How to work with Claude Code
-✅ `Human_docs/claude_cli_setup.md` - Claude CLI setup
-❌ `Human_docs/SHOWCASE_GUIDE.md` - xTweak UI specific (moved to `apps/xtweak_ui/docs/`)
-❌ `Human_docs/SPRINT_2_COMPLETION_REPORT.md` - Sprint report (moved to `AI_docs/prd/06-sprint-plans/`)
+- Human reference documentation (see `Human_docs/` - optional, not read by AI)
+- PRD/sprint plans (see `prd/`)
+- App-specific docs (see `apps/{app}/docs/`)
 
 ---
 
@@ -61,26 +54,26 @@ Documentation lives closest to what it documents, organized by scope and audienc
 
 ---
 
-### Tier 3: AI Documentation (`AI_docs/`)
+### Tier 3: PRD Documentation (`prd/`)
 
-**Scope**: AI-facing documentation (PRD, architecture, sprint plans, reports)
+**Scope**: Product roadmap, sprint plans, and implementation tracking
 
 **Belongs Here**:
 - PRD documents
 - Architecture decisions
 - Sprint plans and reports
-- AI workflow patterns
 - Technical specifications
 
 **Does NOT Belong Here**:
-- Human workflow guides (those go in `Human_docs/`)
+- Coordinator routing protocol (belongs in `CLAUDE.md`)
 - App user guides (those go in `apps/{app}/docs/`)
 
 **Examples**:
-✅ `AI_docs/prd/QUICK_START.md` - AI quick reference
-✅ `AI_docs/prd/06-sprint-plans/phase-1-foundation/sprint-2-COMPLETION-REPORT.md` - Sprint report
-✅ `AI_docs/prd/03-architecture.md` - Architecture decisions
-❌ `AI_docs/SHOWCASE_GUIDE.md` - User guide (belongs in `apps/xtweak_ui/docs/`)
+✅ `prd/QUICK_START.md` - AI quick reference
+✅ `prd/06-sprint-plans/phase-1-foundation/sprint-2-COMPLETION-REPORT.md` - Sprint report
+✅ `prd/03-architecture.md` - Architecture decisions
+
+**Note**: `Human_docs/` exists for optional human-readable reference guides. These are NOT read by AI coordinators or subagents.
 
 ---
 
@@ -91,10 +84,10 @@ When creating or placing documentation, ask:
 ```
 Is this about a specific app's features/API?
 ├─ YES → apps/{app}/docs/
-└─ NO → Is this for AI (PRD, sprint plans, architecture)?
-    ├─ YES → AI_docs/
-    └─ NO → Is this project-wide workflow/coordination?
-        ├─ YES → Human_docs/
+└─ NO → Is this PRD, sprint plans, or product architecture?
+    ├─ YES → prd/
+    └─ NO → Is this AI coordinator routing or agent definitions?
+        ├─ YES → CLAUDE.md or .claude/
         └─ NO → Consider if documentation is needed at all
 ```
 
@@ -128,14 +121,10 @@ apps/{app}/docs/
 - **Decision tree**: Quick placement guide
 - **Examples**: Clear right/wrong patterns
 
-### Human README (Human_docs/README.md)
-- **Section**: "Documentation Organization"
-- **Explains**: The three-tier structure for humans
-- **Links**: To this pattern for details
-
-### Claude Guidelines (CLAUDE.md)
+### Coordinator Guidelines (CLAUDE.md)
 - **Reference**: Link to this pattern
 - **Instruction**: Check pattern before creating docs
+- **Layer Separation**: `.claude/` files do NOT reference `Human_docs/` (human-only reference)
 
 ---
 
@@ -152,14 +141,14 @@ apps/{app}/docs/
 - **Inline moduledocs**: In source files ✅
 
 ### Reports & Summaries
-- **Sprint reports**: `AI_docs/prd/06-sprint-plans/phase-X/sprint-Y-REPORTS.md` ✅
-- **Task summaries**: `AI_docs/prd/06-sprint-plans/phase-X/TASK_N_SUMMARY.md` ✅
-- **PRD status**: `AI_docs/prd/.prd-completion-status.md` ✅
+- **Sprint reports**: `prd/06-sprint-plans/phase-X/sprint-Y-REPORTS.md` ✅
+- **Task summaries**: `prd/06-sprint-plans/phase-X/TASK_N_SUMMARY.md` ✅
+- **PRD status**: `prd/.prd-completion-status.md` ✅
 
 ### Architecture & Design
-- **Project architecture**: `AI_docs/prd/03-architecture.md` ✅
+- **Project architecture**: `prd/03-architecture.md` ✅
 - **App architecture**: `apps/{app}/docs/ARCHITECTURE.md` ✅
-- **Technical specs**: `AI_docs/prd/01-technical-specification.md` ✅
+- **Technical specs**: `prd/01-technical-specification.md` ✅
 
 ### Workflow & Setup
 - **Claude Code workflow**: `Human_docs/COMPLETE_WORKFLOW_GUIDE.md` ✅
@@ -224,5 +213,6 @@ Before creating documentation, verify:
 ## Notes
 
 - This pattern was established November 1, 2025
-- Based on lessons learned from Human_docs reorganization
+- Updated to reflect layer separation: `.claude/` files do NOT reference `Human_docs/`
+- `Human_docs/` exists for optional human-readable reference only
 - May evolve as project grows

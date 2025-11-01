@@ -10,8 +10,8 @@ Provide a concise dashboard of PRD progress showing what's done, in progress, ne
 
 ### 1. Gather Current Status
 Read key files to understand project state:
-- `AI_docs/prd/QUICK_START.md` - Current state and where we left off
-- `AI_docs/prd/.prd-completion-status.md` - Completed phases/sprints
+- `prd/QUICK_START.md` - Current state and where we left off
+- `prd/.prd-completion-status.md` - Completed phases/sprints
 - Current sprint `REPORTS.md` (if exists) - Recent activity
 - Git status: `git status` and `git log -1 --oneline`
 

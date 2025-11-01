@@ -71,7 +71,6 @@ Add and configure development tools, CI checks, MCP servers, or GitHub Actions t
 
 **Actions**:
 - Update MANDATORY_AI_RULES.md or CLAUDE.md
-- Add to Human_docs/COMPLETE_WORKFLOW_GUIDE.md if user-facing
 - Update quality gates documentation
 
 ## Output Format

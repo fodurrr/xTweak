@@ -23,7 +23,7 @@ Analyze:
 - Last commit → Clue about what finished
 
 ### 2. Read QUICK_START.md
-Primary source of truth: `AI_docs/prd/QUICK_START.md`
+Primary source of truth: `prd/QUICK_START.md`
 
 Extract:
 - **Current Phase/Sprint**: Where are we?

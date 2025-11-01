@@ -23,8 +23,7 @@ Manage Claude Code's workflow infrastructure through structured audits, validati
    - Store context for session
 
 2. ✅ **Load Workflow Context**
-   - Read `.claude/README.md` (agent matrix, workflows)
-   - Read `CLAUDE.md` (prompt analysis protocol)
+   - Read `CLAUDE.md` (coordinator routing protocol with three-layer architecture)
    - Read `.claude/patterns/README.md` (pattern library)
    - Glob `.claude/agents/*.md`, `.claude/commands/*.md`, `.claude/patterns/*.md`
 
@@ -34,7 +33,7 @@ Manage Claude Code's workflow infrastructure through structured audits, validati
 4. ✅ **Verify Boundaries**
    - Confirm MANDATORY_AI_RULES.md read-only
    - Confirm usage-rules/ package-owned
-   - Confirm AI_docs/prd/ off-limits
+   - Confirm prd/ off-limits
 
 5. ✅ **Output Confirmation**
    ```markdown
@@ -91,7 +90,6 @@ Manage Claude Code's workflow infrastructure through structured audits, validati
 /workflow update agent:ash-resource-architect
 /workflow update pattern:mcp-tool-discipline
 /workflow update command:refactor
-/workflow update README         # Update .claude/README.md
 /workflow update CLAUDE          # Update CLAUDE.md
 ```
 
@@ -172,14 +170,14 @@ Creates new security-scanner agent for dependency vulnerability and licensing re
 
 [Complete file contents with frontmatter, structure, workflow]
 
-### Component 2: .claude/README.md
+### Component 2: CLAUDE.md
 **Action**: Update
 
 ```diff
-# Agent matrix
-@@ -X,Y +X,Z @@
- | dependency-auditor | Haiku | ... |
-+| security-scanner | Sonnet | Reviews dependency security and licensing | ... |
+# CLAUDE.md (Step 2: Classification Table)
+@@ -200,6 +200,7 @@
+ | **Dependency Update** | "upgrade package", "update deps" | `dependency-auditor` | Sonnet | Domain agents |
++| **Security Scan** | "security scan", "check vulnerabilities" | `security-scanner` | Sonnet | `code-review-implement` |
 ```
 
 ## Risk Assessment
@@ -198,7 +196,7 @@ Creates new security-scanner agent for dependency vulnerability and licensing re
 ## Next Steps
 **If Approved**:
 1. Write to `.claude/agents/security-scanner.md`
-2. Edit `.claude/README.md` (add row to agent matrix)
+2. Edit `CLAUDE.md` (add row to classification table)
 3. Run `/workflow validate agent:security-scanner`
 ```
 
@@ -322,8 +320,8 @@ Output:
 
 **Step 1: Inventory Phase** (workflow-expert):
 - Glob all files in scope (`.claude/agents/`, `.claude/patterns/`, `.claude/commands/`)
-- Count components (agents: ~24, patterns: ~17, commands: ~11)
-- Read `.claude/README.md`, `CLAUDE.md` for references
+- Count components (agents: ~25, patterns: ~12, commands: ~11)
+- Read `CLAUDE.md` for coordinator routing protocol and classification table
 
 **Step 2: Validation Phase** (workflow-expert):
 - For each component:

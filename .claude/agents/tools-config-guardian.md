@@ -114,26 +114,31 @@ Create TodoWrite checklist for validation steps.
 
 #### Structure Validation
 
-Read these entry point files:
-- `CLAUDE.md` - Claude Code entry point
+**Read these entry point files**:
+- `CLAUDE.md` - Coordinator (Base Claude) routing protocol
 - `AGENTS.md` - Codex/Cursor/Copilot/etc entry point
 - `MANDATORY_AI_RULES.md` - Mandatory AI rules
-- `README.md` - Human-facing overview
+- `README.md` - Human-facing project overview
 
-**Verify one-way flow** (no circular links):
-- Entry points (Tier 1) should link DOWN to docs/README.md
-- docs/README.md (Tier 2) should link DOWN to references, NEVER up to entry points
-- Reference materials (Tier 3) should NEVER link up
+**Verify three-layer architecture** (no circular links):
+- **Tier 1 (Coordinators)**: `CLAUDE.md`, `AGENTS.md`
+  - Must link to `MANDATORY_AI_RULES.md` first
+  - Should reference `.claude/agents/` (agent frontmatter directory)
+  - NEVER link to `.claude/README.md` (should not exist)
+- **Tier 2 (Subagents)**: `.claude/agents/*.md` (individual agent frontmatter)
+  - Must have `model:`, `pattern-stack:`, `required-usage-rules:`
+  - Should reference patterns from `.claude/patterns/`
+  - NEVER link to `CLAUDE.md` (coordinator-only)
 
 **Check mandatory patterns**:
-- CLAUDE.md must link to MANDATORY_AI_RULES.md first
-- AGENTS.md must link to MANDATORY_AI_RULES.md first
-- No upward links from docs/README.md to CLAUDE.md or AGENTS.md
+- CLAUDE.md: THREE-LAYER ARCHITECTURE section present
+- CLAUDE.md: "For Subagents" references frontmatter, NOT .claude/README.md
+- CLAUDE.md: Reference Pointers distinguish "For Coordinator" vs "For Peter"
+- No circular reference (CLAUDE.md → README.md → CLAUDE.md)
 
 #### Content Accuracy
 
 **Verify configuration documentation**:
-- Configuration files documented in Human_docs/claude_cli_setup.md
 - `AGENTS.md` section on Codex CLI matches actual `.codex/config.toml`
 - `docs/codex_profiles.md` lists all 21 profiles found in config
 
@@ -316,9 +321,9 @@ Health Check:
 ```markdown
 ## Configuration Check for XTweak
 
-Entry Points:
-- `CLAUDE.md` → `MANDATORY_AI_RULES.md` (mandatory) → `docs/README.md` → references
-- `AGENTS.md` → `MANDATORY_AI_RULES.md` (mandatory) → `docs/README.md` → references
+Three-Layer Architecture:
+- **Tier 1 (Coordinators)**: `CLAUDE.md` → `MANDATORY_AI_RULES.md` → `.claude/agents/`
+- **Tier 2 (Subagents)**: `.claude/agents/*.md` (frontmatter: model, pattern-stack, required-usage-rules)
 
 MCP Servers (check .mcp.json):
 - TideWave: HTTP @ http://127.0.0.1:4000/tidewave/mcp
@@ -340,13 +345,15 @@ codex mcp list → expect: 4 servers, 2 HTTP (streamable_http), 2 stdio
 
 Documentation Flow:
 ```
-CLAUDE.md (Tier 1)
-  ↓ 1. MANDATORY_AI_RULES.md
-  ↓ 2. .claude/README.md
-  ↓ 3. AI_docs/README.md (Tier 2)
-      ↓ .claude/patterns/README.md (Tier 3)
-      ↓ usage-rules/ (Tier 3)
-      ✗ NEVER links back to CLAUDE.md
+CLAUDE.md (Tier 1 - Coordinator)
+  ↓ 1. MANDATORY_AI_RULES.md (mandatory first)
+  ↓ 2. .claude/agents/ (agent frontmatter directory)
+
+.claude/agents/*.md (Tier 2 - Subagents)
+  ↓ 1. Frontmatter: model, pattern-stack, required-usage-rules
+  ↓ 2. .claude/patterns/*.md (pattern details)
+  ↓ 3. usage-rules/*.md (framework rules)
+  ✗ NEVER links back to CLAUDE.md (coordinator-only)
 ```
 
 Version Check:

@@ -10,15 +10,16 @@ This comprehensive guide explains how to work with Claude Code on the xTweak pro
 
 1. [Quick Start](#quick-start)
 2. [The Clarification-First Approach](#the-clarification-first-approach)
-3. [Workflow Commands](#workflow-commands)
-4. [How Claude Decides Which Agent](#how-claude-decides-which-agent)
-5. [Complete Documentation Flow](#complete-documentation-flow)
-6. [Agent Quick Reference](#agent-quick-reference)
-7. [Understanding Agent Workflow](#understanding-agent-workflow)
-8. [Typical End-to-End Scenarios](#typical-end-to-end-scenarios)
-9. [Understanding Agent Outputs](#understanding-agent-outputs)
-10. [Tips for Best Experience](#tips-for-best-experience)
-11. [Troubleshooting](#troubleshooting)
+3. [Understanding the Layered Architecture](#understanding-the-layered-architecture)
+4. [Workflow Commands](#workflow-commands)
+5. [How Claude Decides Which Agent](#how-claude-decides-which-agent)
+6. [Complete Documentation Flow](#complete-documentation-flow)
+7. [Agent Quick Reference](#agent-quick-reference)
+8. [Understanding Agent Workflow](#understanding-agent-workflow)
+9. [Typical End-to-End Scenarios](#typical-end-to-end-scenarios)
+10. [Understanding Agent Outputs](#understanding-agent-outputs)
+11. [Tips for Best Experience](#tips-for-best-experience)
+12. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -76,6 +77,100 @@ This comprehensive guide explains how to work with Claude Code on the xTweak pro
 | "Make it better" | Asks: What to improve? Code quality, tests, performance, UX? |
 | "Fix the search" | Asks: Which search component? What's broken? Expected behavior? |
 | "Add email field to User resource" | Clear! Proceeds directly (all 5 clarity checks pass) |
+
+---
+
+## Understanding the Layered Architecture
+
+**NEW (2025-11-01)**: Claude Code uses a layered documentation architecture to minimize context consumption while maintaining quality.
+
+### The Three Levels
+
+**Level 0: Always Read**
+- `MANDATORY_AI_RULES.md` - Your preferences, identity, permanent rules
+- `CLAUDE.md` - High-level workflow routing logic
+
+**Level 1: Coordinator (Routes Only)**
+- Minimal Phase Zero detection (which apps/resources exist)
+- Classification logic (which agent for this request)
+- Clarification questions (if prompt is ambiguous)
+- Agent launch (delegate to specialist)
+- Result synthesis (present to you)
+
+**Level 2: Subagents (Full Context)**
+- Load patterns from their frontmatter (9-15 patterns each)
+- Load usage rules from their frontmatter (framework-specific rules)
+- Detailed Phase Zero (resource fields, actions, policies)
+- Implementation work
+- Quality gates and handoff
+
+### Visual Flow (How It All Works Together)
+
+```
+Peter's Prompt
+     ↓
+📋 Read MANDATORY_AI_RULES.md ← COORDINATOR
+📋 Read CLAUDE.md ← COORDINATOR
+     ↓
+❓ Step 0: Clarity Check ← COORDINATOR
+     ├─ Ambiguous? → Ask Questions → Enhance & Confirm
+     └─ Clear? → Proceed
+     ↓
+🔍 Step 1: Minimal Phase Zero ← COORDINATOR
+     - ls apps/
+     - list_ash_resources
+     - Store session context
+     [NO pattern/usage-rules reading here!]
+     ↓
+🎯 Step 2: Classify Request ← COORDINATOR
+     - Use hardcoded table
+     - "Add email field" → ash-resource-architect
+     ↓
+⚡ Step 3: Check Slash Commands ← COORDINATOR
+     - Any shortcuts apply?
+     ↓
+🚀 Step 4: Launch Subagent ← COORDINATOR
+     - Task tool: ash-resource-architect
+     - Pass: {apps, domain, resources}
+     - Instruction: "Read YOUR patterns/usage-rules"
+     ↓
+
+👷 SUBAGENT: ash-resource-architect
+     📖 Pre-Flight Checklist:
+        - Read 9 patterns from pattern-stack
+        - Read 3 usage-rules from required-usage-rules
+        - Run FULL Phase Zero (detailed)
+     💻 Implementation work
+     ✅ Quality gates
+     📦 Collaboration handoff
+     ↓
+
+📊 Step 5: Synthesize Results ← COORDINATOR
+     - Present to Peter
+```
+
+### Key Benefits
+
+**64% Context Reduction**: Coordinator reads ~1,000 tokens (down from ~14,500)
+
+**Faster Routing**: Coordinator makes decisions in ~2 seconds without reading implementation docs
+
+**Specialized Context**: Each subagent reads exactly what IT needs for its specific task
+
+**No Redundancy**: Files read once (by subagent) instead of twice (coordinator + subagent)
+
+### What This Means for You
+
+**You still get**:
+- Clarification questions when prompts are ambiguous
+- Smart agent selection based on your request
+- Quality implementation following all framework rules
+- Complete result synthesis
+
+**You now benefit from**:
+- Faster response times (less reading overhead)
+- Lower token costs (coordinator reads less)
+- Same quality output (subagents read everything they need)
 
 ---
 

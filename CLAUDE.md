@@ -2,27 +2,34 @@
 
 > **📋 MANDATORY**: Read [MANDATORY_AI_RULES.md](./MANDATORY_AI_RULES.md) first – These rules override all instructions below.
 
-## Essential Reading (in order)
+## Essential Reading for Coordinators
 
 1. [MANDATORY_AI_RULES.md](./MANDATORY_AI_RULES.md) – Mandatory rules that override everything
-2. [.claude/README.md](./.claude/README.md) – Agent matrix, workflows, model strategy, patterns
-3. [AI_docs/README.md](./AI_docs/README.md) – Complete AI documentation index
-4. [AI_docs/prd/QUICK_START.md](./AI_docs/prd/QUICK_START.md) – Current PRD status
-5. [Current sprint plan] – Auto-loaded based on PRD phase
-6. [/usage-rules.md](./usage-rules.md) – Framework overview index
-7. [/usage-rules/](./usage-rules/) – Framework rules and xTweak-specific patterns
-8. [.claude/patterns/](.//.claude/patterns/) – Reusable execution patterns
+2. This document (CLAUDE.md) – Routing protocol
 
-## Additional References
+**For Subagents**: Each subagent has self-contained instructions in frontmatter (`model:`, `pattern-stack:`, `required-usage-rules:`). The coordinator passes all required context when launching subagents via the Task tool.
 
-- [.claude/patterns/README.md](./.claude/patterns/README.md) – Pattern library details
-- [.claude/commands/](./.claude/commands/) – PRD-centric slash commands
+---
 
-## How to Use This Playbook
+## THREE-LAYER ARCHITECTURE
 
-- Treat this document as the high-level contract; detailed instructions live in `.claude/README.md` and pattern library (`.claude/patterns/README.md`).
-- Read `.claude/README.md` for agent matrix, workflows, and model selection strategy.
-- Load the **Core Pattern Stack** (`placeholder-basics`, `phase-zero-context`, `mcp-tool-discipline`, `self-check-core`, `dual-example-bridge`) before implementing anything.
+**Layer 1: Peter (User)**
+- Human who provides prompts and makes decisions
+- Reference docs: `Human_docs/` (optional, human-readable guides)
+
+**Layer 2: Base Claude (Coordinator)**
+- This agent - reads CLAUDE.md for routing protocol
+- Routes prompts to appropriate subagents via Task tool
+- Passes context (apps, domain, resources, request details) to subagents
+- Synthesizes subagent results for Peter
+
+**Layer 3: Subagents**
+- Specialized agents launched via Task tool by coordinator
+- Read their own frontmatter ONLY (model, pattern-stack, required-usage-rules)
+- Receive context from coordinator (no direct access to CLAUDE.md)
+- Return results to coordinator via collaboration-handoff pattern
+
+**Information Flow**: `Peter (prompt) → Coordinator (CLAUDE.md + routing) → Subagent (frontmatter + context) → Coordinator (synthesis) → Peter (results)`
 
 ---
 
@@ -30,7 +37,7 @@
 
 ### Overview: The Clarification-First Approach
 
-**WHO IS IN THE DRIVING SEAT**: Base Claude is ALWAYS the coordinator for non-slash-command prompts. You analyze prompts, clarify ambiguity, select agents, and synthesize results.
+**WHO IS IN THE DRIVING SEAT**: Base Claude (the coordinator) is ALWAYS responsible for routing non-slash-command prompts. The coordinator analyzes prompts, clarifies ambiguity with Peter (the user), selects appropriate subagents, and synthesizes results.
 
 **CORE PRINCIPLE**: NEVER guess Peter's intent. ALWAYS clarify ambiguity before launching agents or doing any work.
 
@@ -188,28 +195,7 @@ mcp__tidewave__project_eval code: "h XTweak.Core"
 
 **Store** detected context: `{detected_core_app}`, `{detected_web_app}`, `{detected_ui_app}`, `{detected_domain}`
 
-#### 1.2 Load Architecture Rules
-
-**Based on request classification** (see Step 2), read applicable files:
-
-| Request Type | Required Usage Rules |
-|--------------|---------------------|
-| Backend/Ash Resource | `/usage-rules/ash.md`, `/usage-rules/ash_postgres.md` |
-| LiveView/Frontend | `/usage-rules/heex.md`, `/usage-rules/ash_phoenix.md` |
-| Template Work | `/usage-rules/heex.md` |
-| Generators | `/usage-rules/igniter.md` |
-| All Requests | `/usage-rules.md` (overview) |
-
-#### 1.3 Load Core Patterns
-
-**Read these patterns** (in order):
-1. `.claude/patterns/placeholder-basics.md`
-2. `.claude/patterns/phase-zero-context.md`
-3. `.claude/patterns/mcp-tool-discipline.md`
-4. `.claude/patterns/self-check-core.md`
-5. `.claude/patterns/dual-example-bridge.md`
-
-#### 1.4 Output Confirmation
+#### 1.2 Output Confirmation
 
 **Display this confirmation** before proceeding:
 ```markdown
@@ -223,12 +209,6 @@ mcp__tidewave__project_eval code: "h XTweak.Core"
 - Apps: xtweak_core, xtweak_web, xtweak_ui
 - Domain: XTweak.Core
 - Resources: [count] resources found
-
-**Architecture Rules Loaded**:
-- [List files read, e.g., ash.md, heex.md]
-
-**Patterns Loaded**:
-- placeholder-basics, phase-zero-context, mcp-tool-discipline, self-check-core, dual-example-bridge
 
 **Proceeding to launch [Agent Name]...**
 ```
@@ -307,15 +287,12 @@ Task(
   - Domain: XTweak.Core
   - Resources: [list if relevant]
 
-  **Architecture Rules Available**:
-  You have access to these loaded rules:
-  - [List files that were read in Step 1.2]
-
   **Your Task**:
   [Specific instructions based on request type and classification]
 
   **Requirements**:
-  - Follow all loaded architecture rules from /usage-rules/
+  - Read and follow architecture rules from /usage-rules/ (listed in your `required-usage-rules` frontmatter)
+  - Load all patterns from your `pattern-stack` frontmatter
   - Use MCP tools for verification (cite evidence)
   - Run quality gates before completion
   - Document all decisions with evidence
@@ -403,118 +380,50 @@ Step 5: Monitor & Synthesize Results
 
 ---
 
-## 🚨 MANDATORY PRE-TASK PROTOCOL (ALL TASKS)
+## Project Context
 
-**This section applies AFTER Step 0-1 (clarification) and IS Step 1 above**
+- **Apps**: xtweak_core (domain logic), xtweak_web (Phoenix+LiveView), xtweak_ui (components)
+- **Domain**: XTweak.Core | **Stack**: Ash 3.7.6+, Phoenix, Tailwind CSS
 
-See Step 1 in "Prompt Analysis & Agent Routing" section for full details.
+## Documentation Layer Separation
 
-**Quick Checklist**:
-- [ ] Phase Zero detection complete (apps, domain, resources detected)
-- [ ] Architecture rules loaded (based on request type)
-- [ ] Core patterns loaded (5 patterns)
-- [ ] Confirmation output displayed
+**IMPORTANT**: This project enforces strict documentation layer separation:
 
-**If any step fails**: STOP and request clarification or escalate.
+**Layer 1 (AI Coordinator)**: `CLAUDE.md` + `.claude/`
+- Read by Base Claude (coordinator)
+- Contains routing protocol, agent definitions, patterns, commands
+- **MUST NOT** reference `Human_docs/` (human-only reference)
 
----
+**Layer 2 (AI Product)**: `prd/`
+- Product roadmap, sprint plans, architecture decisions
+- Read by coordinator when implementing PRD tasks
+- Moved from `AI_docs/prd/` to `prd/` for clarity
 
-## Project Snapshot (October 30, 2025)
+**Layer 3 (Human Reference)**: `Human_docs/` (optional)
+- **NOT** read by AI coordinator or subagents
+- Optional human-readable reference guides for Peter (the user)
+- Example: `Human_docs/AGENT_REFERENCE.md`, `Human_docs/COMPLETE_WORKFLOW_GUIDE.md`
 
-- **Umbrella apps**: `xtweak_core` (Ash domain logic), `xtweak_web` (Phoenix + LiveView), `xtweak_docs` (documentation), `xtweak_ui` (component library).
-- **Domain module**: `XTweak.Core`.
-- **Web namespace**: `XTweakWeb`.
-- **Frontend stack**: Tailwind CSS (no component framework), validated with Playwright MCP tools.
-- **Data layer**: Ash Framework 3.7.6+ over Postgres—no direct Ecto schemas or Repo calls.
-- **Recent updates**: AI workflow refactor complete (2025-10-30) - PRD-centric commands, consolidated documentation, usage_rules integration.
+**Reference Pattern**: See `.claude/patterns/documentation-organization.md` for complete documentation placement rules.
 
-## 5 Critical Principles (Read Before Every Session)
+## Tooling (Phase Zero Detection)
 
-1. **MCP first** – Verification beats assumption. Use Tidewave/Ash/Context7 MCP tools before writing or editing code.
-2. **Ash everywhere** – Model data with Ash resources/actions/policies. Generators + `ash-resource-template` pattern are mandatory starting points.
-3. **Respect umbrella boundaries** – Core has no web deps; web depends on core only. Keep interfaces clean.
-4. **Generator-first, customize second** – Check `mcp__ash_ai__list_generators`, run scaffold with `--yes`, then extend safely.
-5. **Quality gates** – Run `mix format`, `mix credo --strict`, `mix compile --warnings-as-errors`, and targeted `mix test` before declaring success.
-
-## Placeholder Discipline
-
-- All shared examples use `{Placeholder}` tokens. See `placeholder-basics.md` for the canonical explanation and wrong/right examples.
-- Always perform `phase-zero-context` to detect real module names, then replace every token before responding.
-
-## Recommended Workflow (per task)
-
-- **Implementation**: `mcp-verify-first` → domain-specific agent (e.g., `ash-resource-architect`, `frontend-design-enforcer`) → `code-reviewer`/`code-review-implement` for validation.
-- **Reviews**: `mcp-verify-first` → `code-reviewer` (analysis) → `code-review-implement` (fixes) → rerun `code-reviewer`.
-- **Testing**: `mcp-verify-first` → `test-builder` → targeted `mix test` commands → document with `collaboration-handoff`.
-- **Security**: `mcp-verify-first` → `security-reviewer` → follow up with owners.
-
-See [.claude/README.md](./.claude/README.md) for complete workflows.
-
-## Tooling Cheat Sheet
-
-- **Tidewave MCP**: `project_eval`, `get_docs`, `get_logs`, `search_package_docs`, `get_ecto_schemas`, `execute_sql_query` (debug only).
-- **Ash AI MCP**: `list_ash_resources`, `list_generators`, `get_usage_rules` (discovers usage rules from deps).
-- **Context7 MCP**: `resolve-library-id`, `get-library-docs` (fallback for non-Elixir libraries when specific MCP unavailable).
-- **Nuxt UI MCP**: `list_components`, `get_component`, `get_component_metadata`, `search_components_by_category` (component API research, design system specs).
-- **Playwright MCP**: browser navigation, screenshots, console capture for UI verification.
-
-## Elixir/Ash Framework Rules
-
-**All framework rules are now in `/usage-rules/`** at project root:
-- [/usage-rules.md](./usage-rules.md) – Overview and index of all framework rules
-- [/usage-rules/](./usage-rules/) – Individual framework rule files
-
-**Core Files**:
-- **Core**: [usage-rules/ash.md](./usage-rules/ash.md) – Ash framework patterns
-- **Data Layer**: [usage-rules/ash_postgres.md](./usage-rules/ash_postgres.md) – Database patterns
-- **Web Integration**: [usage-rules/ash_phoenix.md](./usage-rules/ash_phoenix.md) – Phoenix/LiveView patterns
-- **AI Integration**: [usage-rules/ash_ai.md](./usage-rules/ash_ai.md) – AI integration patterns
-- **Authentication**: [usage-rules/ash_authentication.md](./usage-rules/ash_authentication.md) – Auth patterns
-- **Templates**: [usage-rules/heex.md](./usage-rules/heex.md) – HEEx template conventions
-- **Code Generation**: [usage-rules/igniter.md](./usage-rules/igniter.md) – Generator patterns
-
-**Agents should**: Read relevant files from `/usage-rules/` for all framework guidance
-
-## Usage Rules (Automatic Discovery)
-
-Package usage rules are **automatically discovered** via the Ash AI MCP server (`mcp__ash_ai__get_usage_rules`). No manual sync required!
-
-**How it works**:
-- MCP server scans `deps/` for `usage-rules.md` files
-- Currently available: 17 rule files from ash, phoenix, igniter, and more
-- Agents read relevant rules on-demand based on task context
-- Always current with installed package versions
-
-**Human-readable copies** maintained in `/usage-rules/` for reference.
-
-## Quality Gates & Commands
-
-```bash
-mix format
-mix credo --strict
-mix compile --warnings-as-errors
-mix test --only <tag>
-mix test apps/xtweak_core/test/xtweak/core/<resource>_test.exs
-mix ash_postgres.generate_migrations
-```
+- **Tidewave MCP**: Elixir evaluation, docs, logs, resources
+- **Ash AI MCP**: List resources and generators
+- **Playwright MCP**: UI verification (browser control)
 
 ## Git & Change Control
 
-- Never commit/push without explicit direction.
-- Use `TodoWrite` to manage multi-step edits; clear tasks before handing off.
-- Summaries for handoffs should follow `collaboration-handoff` pattern (summary, artifacts, outstanding items, validation, next steps).
+Never commit/push without explicit direction. Use `TodoWrite` for multi-step tracking.
 
-## Reference Material
+## Reference Pointers
 
-- `.claude/README.md` – **Single reference** for agents (matrix, workflows, model strategy, patterns)
-- `.claude/patterns/README.md` – Pattern library index
-- `.claude/patterns/documentation-organization.md` – **Documentation placement rules** (where docs belong: project/app/AI)
-- `.claude/patterns/mcp-tool-discipline.md` – Pattern change log tracked in individual pattern files
-- `.claude/commands/` – PRD-centric slash commands (5 commands)
-- `AI_docs/prd/06-sprint-plans/` – Sprint plans with REPORTS.md (agent execution logs)
-- `/usage-rules.md` and `/usage-rules/` – Framework rules and xTweak-specific patterns
-- [AI_docs/README.md](./AI_docs/README.md) – Complete AI documentation index
+**For Coordinator (Base Claude)**:
+- This document (CLAUDE.md) – Complete routing protocol
+- `.claude/agents/` – Subagent frontmatter (model, patterns, rules)
+- `.claude/commands/` – Slash command implementations
 
-**Documentation Organization**: Before creating/placing documentation, check `.claude/patterns/documentation-organization.md` for three-tier structure (Human_docs/ for project-wide, apps/{app}/docs/ for app-specific, AI_docs/ for AI-facing).
-
-Stay pattern-first, cite MCP evidence, and keep responses sharp and scannable.
+**For Peter (User)**:
+- `Human_docs/` – Optional human-readable reference guides (not read by AI)
+- `prd/` – Product roadmap and sprint plans
+- `MANDATORY_AI_RULES.md` – Non-negotiable rules

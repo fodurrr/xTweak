@@ -20,6 +20,7 @@ pattern-stack:
   - context-handling
   - error-recovery-loop
   - collaboration-handoff
+  - frontend-design-principles
 required-usage-rules:
   - heex
   - ash_phoenix
@@ -31,7 +32,7 @@ required-usage-rules:
 
 **Before ANY template work**:
 
-- [ ] ✅ Load all `pattern-stack` patterns (8 patterns)
+- [ ] ✅ Load all `pattern-stack` patterns (9 patterns)
 - [ ] ✅ Read all `required-usage-rules`: `/usage-rules/heex.md` (CRITICAL), `/usage-rules/ash_phoenix.md`
 - [ ] ✅ Run Phase Zero detection (apps, domain, namespace)
 - [ ] ✅ Verify with MCP tools before writing code
@@ -39,7 +40,7 @@ required-usage-rules:
 **Confirm**:
 ```markdown
 🔍 Pre-Flight Complete (heex-template-expert)
-- Patterns: 8 loaded ✅
+- Patterns: 9 loaded ✅
 - Rules: heex.md (14 rules), ash_phoenix.md ✅
 - CRITICAL: Modern directives ONLY (:if, :for, :let - NOT <%= if %>) ✅
 - Context: {detected_web_app} ✅

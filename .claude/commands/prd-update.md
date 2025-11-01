@@ -23,7 +23,7 @@ Update a specified PRD section with new information, decisions, or changes while
 ### 1. Parse Section Argument
 Identify which PRD section to update:
 
-**PRD Chapters** (in `AI_docs/prd/`):
+**PRD Chapters** (in `prd/`):
 - `00-executive-summary` or `executive-summary` → `00-executive-summary.md`
 - `01-technical-specification` or `technical-specification` or `tech-spec` → `01-technical-specification.md`
 - `02-requirements` or `requirements` → `02-requirements.md`
@@ -31,13 +31,13 @@ Identify which PRD section to update:
 - `04-component-inventory` or `component-inventory` or `components` → `04-component-inventory.md`
 - `05-implementation-roadmap` or `roadmap` → `05-implementation-roadmap.md`
 
-**Sprint Plans** (in `AI_docs/prd/06-sprint-plans/[phase]/`):
+**Sprint Plans** (in `prd/06-sprint-plans/[phase]/`):
 - `sprint-1`, `sprint-2`, etc. → Find in appropriate phase folder
 - `phase-1-sprint-1` → Specify both phase and sprint
 
 **Status Files**:
-- `QUICK_START` or `quick-start` → `AI_docs/prd/QUICK_START.md`
-- `completion-status` or `status` → `AI_docs/prd/.prd-completion-status.md`
+- `QUICK_START` or `quick-start` → `prd/QUICK_START.md`
+- `completion-status` or `status` → `prd/.prd-completion-status.md`
 
 **If no argument provided**: Ask Peter which section to update.
 
@@ -224,7 +224,7 @@ Before completing:
 
 ## What Was Updated
 - **Section**: Architecture (Chapter 03)
-- **File**: `AI_docs/prd/03-architecture.md`
+- **File**: `prd/03-architecture.md`
 - **Last Updated**: 2025-10-30
 
 ## Changes Made

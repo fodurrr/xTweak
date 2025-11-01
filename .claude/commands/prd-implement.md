@@ -20,7 +20,7 @@ Execute the current sprint plan by launching appropriate specialized agents for 
 Launch `mcp-verify-first` to read the current sprint context:
 
 **Read these files**:
-- `AI_docs/prd/QUICK_START.md` - Identifies current sprint
+- `prd/QUICK_START.md` - Identifies current sprint
 - Current sprint plan file (path from QUICK_START.md)
 - Current sprint `REPORTS.md` - Check for any completed tasks or blockers
 

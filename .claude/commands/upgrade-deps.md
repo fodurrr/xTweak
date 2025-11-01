@@ -161,4 +161,3 @@ mix dialyzer  # if used
 - **One major at a time**: Don't compound risk
 - **Read CHANGELOGs**: Know what's changing
 - **Security first**: Patches trump features
-- For reference, see `.claude/README.md` for dependency-auditor workflows

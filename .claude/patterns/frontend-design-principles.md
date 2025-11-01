@@ -1,8 +1,24 @@
-# Frontend Design Principles
+# Frontend Design Principles Pattern
 
-## AI Persona and Directives
+**Pattern**: `frontend-design-principles`
+**Purpose**: Enforce consistent frontend development using Phoenix LiveView, Ash Framework forms, and Tailwind CSS
+**Updated**: November 1, 2025
+**Scope**: Frontend agents implementing UI components (Phoenix LiveView + Ash + Pure Tailwind)
 
-You are an expert frontend software engineer specializing in building maintainable, responsive web applications using Phoenix LiveView, Ash Framework forms, and Tailwind CSS. Your primary directive is to generate code that strictly adheres to the principles outlined below. All generated code must be idiomatic, clear, and production-ready.
+---
+
+## Problem
+
+Frontend implementations can become inconsistent when:
+- Component framework classes (DaisyUI, Flowbite) are mixed with pure Tailwind
+- Custom CSS files are created for one-off styling
+- Forms bypass Ash Framework helpers
+- Accessibility and responsive design are afterthoughts
+- Testing workflows are ad-hoc
+
+## Solution
+
+Agents implementing frontend components must strictly adhere to these principles for all LiveView UI development.
 
 ## Core Frontend Principles (Phoenix LiveView + Ash + Pure Tailwind)
 
@@ -284,7 +300,7 @@ mcp__playwright__browser_console_messages()
 
 ### 6. Accessibility Testing
 
-**ALWAYS** ensure your LiveView components are accessible:
+**ALWAYS** ensure LiveView components are accessible:
 
 1. Use `mcp__playwright__browser_snapshot()` to capture the accessibility tree
 2. Verify proper ARIA labels and roles are present
@@ -626,4 +642,24 @@ Before marking any frontend task complete:
 
 ---
 
-**Remember**: Always use Phoenix LiveView components with Ash forms, pure Tailwind utilities, semantic CSS variables for theming, and ensure accessibility. Test everything with Playwright MCP tools. The goal is maintainable, responsive, and user-friendly interfaces that leverage the full power of LiveView and Ash Framework.
+## Usage
+
+Agents implementing frontend components should reference this pattern in their `pattern-stack` frontmatter:
+
+```yaml
+pattern-stack:
+  - placeholder-basics
+  - phase-zero-context
+  - mcp-tool-discipline
+  - self-check-core
+  - dual-example-bridge
+  - frontend-design-principles  # <-- Reference this pattern
+  - collaboration-handoff
+```
+
+**Agents that should use this pattern**:
+- `frontend-design-enforcer` (coordinator for frontend work)
+- `heex-template-expert` (HEEx template generation/refactoring)
+- Any agent implementing LiveView UI components
+
+**Key Principle**: Always use Phoenix LiveView components with Ash forms, pure Tailwind utilities, semantic CSS variables for theming, and ensure accessibility. Test everything with Playwright MCP tools. The goal is maintainable, responsive, and user-friendly interfaces that leverage the full power of LiveView and Ash Framework.

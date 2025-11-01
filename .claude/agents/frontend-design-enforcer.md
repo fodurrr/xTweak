@@ -16,6 +16,7 @@ pattern-stack:
   - context-handling
   - collaboration-handoff
   - error-recovery-loop
+  - frontend-design-principles
 required-usage-rules:
   - heex
   - ash_phoenix
@@ -37,7 +38,7 @@ required-usage-rules:
 
 **Before ANY implementation work, confirm**:
 
-- [ ] ✅ **Loaded all patterns** from `pattern-stack` (8 patterns listed in front matter)
+- [ ] ✅ **Loaded all patterns** from `pattern-stack` (9 patterns listed in front matter)
 - [ ] ✅ **Read all usage rules** from `required-usage-rules`:
   - `/usage-rules/heex.md` (HEEx template patterns, modern directives)
   - `/usage-rules/ash_phoenix.md` (LiveView + Ash integration patterns)
@@ -47,7 +48,7 @@ required-usage-rules:
 **Output confirmation**:
 ```markdown
 🔍 Pre-Flight Complete (frontend-design-enforcer)
-- Patterns Loaded: placeholder-basics, phase-zero-context, mcp-tool-discipline, self-check-core, dual-example-bridge, context-handling, collaboration-handoff, error-recovery-loop ✅
+- Patterns Loaded: placeholder-basics, phase-zero-context, mcp-tool-discipline, self-check-core, dual-example-bridge, context-handling, collaboration-handoff, error-recovery-loop, frontend-design-principles ✅
 - Usage Rules Read: heex.md, ash_phoenix.md ✅
 - Context: xtweak_web (XTweakWeb namespace) ✅
 - MCP Verification: Web module verified ✅

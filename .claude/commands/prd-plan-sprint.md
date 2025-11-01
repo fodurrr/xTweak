@@ -12,9 +12,9 @@ Plan the next sprint based on the PRD roadmap and create a detailed sprint plan.
 
 ### 1. Gather Context
 Launch `mcp-verify-first` agent to gather project context:
-- Read `AI_docs/prd/QUICK_START.md` to understand current status (where we left off, last action)
-- Read `AI_docs/prd/.prd-completion-status.md` to see what's already completed
-- Read `AI_docs/prd/05-implementation-roadmap.md` to understand phase and sprint structure
+- Read `prd/QUICK_START.md` to understand current status (where we left off, last action)
+- Read `prd/.prd-completion-status.md` to see what's already completed
+- Read `prd/05-implementation-roadmap.md` to understand phase and sprint structure
 - Check git status for any uncommitted work
 
 ### 2. Identify Next Sprint
@@ -27,7 +27,7 @@ Determine which sprint to plan based on:
 ### 3. Create Detailed Sprint Plan
 Create a new sprint plan file in the appropriate phase folder:
 
-**Location**: `AI_docs/prd/06-sprint-plans/[phase-folder]/sprint-[number]-[name].md`
+**Location**: `prd/06-sprint-plans/[phase-folder]/sprint-[number]-[name].md`
 
 **Sprint Plan Structure**:
 ```markdown
@@ -156,7 +156,7 @@ Sprint [number] plan has been created and is ready for implementation.
 
 ## 📂 Active Sprint
 Sprint [number]: [Name]
-See: `AI_docs/prd/06-sprint-plans/[phase]/sprint-[number]-[name].md`
+See: `prd/06-sprint-plans/[phase]/sprint-[number]-[name].md`
 ```
 
 **Update `.prd-completion-status.md`**:
@@ -204,7 +204,7 @@ Before completing:
 - ✅ Updated .prd-completion-status.md
 
 ## Sprint Details
-- **File**: `AI_docs/prd/06-sprint-plans/phase-1-foundation/sprint-2-core-components.md`
+- **File**: `prd/06-sprint-plans/phase-1-foundation/sprint-2-core-components.md`
 - **Tasks**: 8 total (4 backend, 2 frontend, 2 testing)
 - **Estimated Duration**: 5-7 days
 - **Complexity**: Medium

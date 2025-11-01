@@ -145,4 +145,3 @@ mix compile --warnings-as-errors
 - **Small steps**: Commit frequently, one refactor at a time
 - **Verify constantly**: Run tests after each step
 - **Document why**: Commit messages explain the improvement
-- For reference, see `.claude/README.md` agent workflows section
