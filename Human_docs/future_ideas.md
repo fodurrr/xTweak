@@ -1,0 +1,2 @@
+- Check how we can leverage hooks and the new "skills" with Claude in our AI workflow
+- Separate agents into "project specific agent" and "general agent" subfolders? in thi sway it would be easy just to copy into an other project
