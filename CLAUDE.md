@@ -1,13 +1,27 @@
 # Claude Code Guidelines · xTweak
 
-> **📋 MANDATORY**: Read [MANDATORY_AI_RULES.md](./MANDATORY_AI_RULES.md) first – These rules override all instructions below.
+## CONVERSATION START PROTOCOL (MANDATORY FIRST STEP)
 
-## Essential Reading for Coordinators
+**At the start of EVERY new conversation:**
 
-1. [MANDATORY_AI_RULES.md](./MANDATORY_AI_RULES.md) – Mandatory rules that override everything
-2. This document (CLAUDE.md) – Routing protocol
+1. **Check for SessionStart hook** in the first `<system-reminder>` tag
+2. **IF the system-reminder contains "SessionStart:startup hook success" OR MANDATORY_AI_RULES content:**
+   - Your **FIRST output MUST be the greeting** (before processing the user's prompt)
+   - Required greeting: `"Hi, welcome back Peter! I've read your MANDATORY RULES. I am ready. Let us dive in!"`
+   - **THEN** proceed to analyze and respond to the user's prompt
+3. **IF no SessionStart hook detected:**
+   - Read MANDATORY_AI_RULES.md using the Read tool
+   - Output the greeting
+   - Then proceed with the user's prompt
 
-**For Subagents**: Each subagent has self-contained instructions in frontmatter (`model:`, `pattern-stack:`, `required-usage-rules:`). The coordinator passes all required context when launching subagents via the Task tool.
+**CRITICAL RULE**: If you detect the SessionStart hook loaded the rules, you MUST greet FIRST in your response, regardless of what the user asks. This confirms you've loaded all instructions BEFORE starting work.
+
+**Example Response Format** (when hook detected):
+```
+Hi, welcome back Peter! I've read your MANDATORY RULES. I am ready. Let us dive in!
+
+[Now process user's actual request...]
+```
 
 ---
 
@@ -349,6 +363,13 @@ Task(
 ### Quick Reference: Decision Flow
 
 ```
+Conversation Start
+     ↓
+Step -1: CONVERSATION START PROTOCOL
+  - Read MANDATORY_AI_RULES.md
+  - Execute greeting
+  - Signal readiness
+     ↓
 Peter's Prompt
      ↓
 Step 0: Check Clarity (5 questions)
